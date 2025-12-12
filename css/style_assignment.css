@@ -1,0 +1,282 @@
+/* Scoped CSS for Assignment Grading Page */
+/* Namespace: .prof-assign- */
+
+:root {
+    --pa-navy: #2C3E50;
+    --pa-blue: #3498DB;
+    --pa-bg: #F5F7FA;
+    --pa-white: #ffffff;
+    --pa-border: #E1E4E8;
+    --pa-text-main: #333333;
+    --pa-text-sub: #666666;
+
+    /* Badge Colors */
+    --badge-safe-bg: #E8F5E9;
+    --badge-safe-text: #2E7D32;
+    --badge-warn-bg: #FFF3E0;
+    --badge-warn-text: #EF6C00;
+    --badge-danger-bg: #FFEBEE;
+    --badge-danger-text: #C62828;
+
+    --badge-status-wait-bg: #f5f5f5;
+    --badge-status-wait-text: #666;
+    --badge-status-wait-border: #ccc;
+
+    --badge-status-done-bg: #E3F2FD;
+    --badge-status-done-text: #1976D2;
+}
+
+body {
+    background-color: var(--pa-bg);
+}
+
+.prof-assign-container {
+    padding: 30px;
+    padding-bottom: 100px;
+    /* Space for footer */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 1. Filters Card */
+.prof-assign-header-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.prof-assign-filter-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.prof-assign-select {
+    padding: 10px;
+    border: 1px solid var(--pa-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 150px;
+    color: var(--pa-text-main);
+}
+
+.prof-assign-select:focus {
+    border-color: var(--pa-blue);
+    outline: none;
+}
+
+/* 2. Tabs */
+.prof-assign-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--pa-border);
+}
+
+.prof-assign-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    color: var(--pa-text-sub);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.prof-assign-tab:hover {
+    color: var(--pa-blue);
+}
+
+.prof-assign-tab.active {
+    color: var(--pa-blue);
+    border-bottom-color: var(--pa-blue);
+    font-weight: bold;
+}
+
+/* 3. Table */
+.prof-assign-table-wrapper {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.prof-assign-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.prof-assign-table th {
+    background-color: #f8f9fa;
+    color: var(--pa-text-main);
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--pa-border);
+}
+
+.prof-assign-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--pa-border);
+    vertical-align: middle;
+    color: var(--pa-text-main);
+    text-align: center;
+}
+
+.prof-assign-table tr:hover {
+    background-color: #f1f8ff;
+    /* Light blue tint on hover */
+}
+
+/* Table Specific Columns */
+.td-left {
+    text-align: left !important;
+}
+
+.td-file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--pa-text-main);
+    text-decoration: none;
+    justify-content: flex-start;
+}
+
+.td-file i {
+    color: var(--pa-text-sub);
+}
+
+/* Badges */
+.pa-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-safe {
+    background-color: var(--badge-safe-bg);
+    color: var(--badge-safe-text);
+}
+
+.badge-warn {
+    background-color: var(--badge-warn-bg);
+    color: var(--badge-warn-text);
+}
+
+.badge-danger {
+    background-color: var(--badge-danger-bg);
+    color: var(--badge-danger-text);
+}
+
+.badge-status-wait {
+    background-color: var(--badge-status-wait-bg);
+    color: var(--badge-status-wait-text);
+    border: 1px solid var(--badge-status-wait-border);
+    padding: 3px 9px;
+    /* Adjust for border */
+}
+
+.badge-status-done {
+    background-color: var(--badge-status-done-bg);
+    color: var(--badge-status-done-text);
+}
+
+/* Input */
+.pa-score-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid var(--pa-border);
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--pa-blue);
+    transition: all 0.2s;
+}
+
+.pa-score-input:focus {
+    border-color: var(--pa-blue);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+    outline: none;
+}
+
+.pa-btn-comment {
+    background: none;
+    border: 1px solid var(--pa-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: var(--pa-text-sub);
+    transition: all 0.2s;
+}
+
+.pa-btn-comment:hover {
+    background-color: #f5f5f5;
+    color: var(--pa-blue);
+}
+
+/* Footer Action Bar */
+.pa-footer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 260px;
+    /* Sidebar width */
+    right: 0;
+    height: 70px;
+    background: white;
+    border-top: 1px solid var(--pa-border);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px;
+    gap: 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.pa-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pa-btn-secondary {
+    background: white;
+    border: 1px solid var(--pa-border);
+    color: var(--pa-text-main);
+}
+
+.pa-btn-secondary:hover {
+    background-color: #f8f9fa;
+}
+
+.pa-btn-primary {
+    background: var(--pa-blue);
+    border: none;
+    color: white;
+}
+
+.pa-btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive adjustment for footer */
+@media (max-width: 768px) {
+    .pa-footer-bar {
+        left: 0;
+    }
+}

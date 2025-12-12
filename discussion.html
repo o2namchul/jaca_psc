@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토론관리 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/discussion.css">
+</head>
+
+<body>
+
+    <div class="prof-discuss-container">
+
+        <!-- Top Controls -->
+        <div class="prof-discuss-controls">
+            <div class="prof-discuss-filters">
+                <select class="prof-discuss-select">
+                    <option>경영학개론 (2024-2학기)</option>
+                    <option>인적자원관리 (2024-2학기)</option>
+                </select>
+                <select class="prof-discuss-select" style="min-width: 300px;">
+                    <option>[3주차] ESG 경영의 실제 사례와 시사점 도출</option>
+                    <option>[7주차] 4차 산업혁명과 기업가 정신</option>
+                </select>
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드" style="margin-left: 10px;">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label"></div>
+                    <span>개인정보보호 ON</span>
+                </label>
+            </div>
+
+            <div class="prof-discuss-status-board">
+                <div class="prof-discuss-status-item">
+                    전체 인원 <strong>45</strong>
+                </div>
+                <div class="prof-discuss-status-item">
+                    참여 인원 <strong>42</strong>
+                </div>
+                <div class="prof-discuss-status-item">
+                    채점 완료 <strong>40</strong>
+                </div>
+                <div class="prof-discuss-status-item">
+                    미채점 <strong class="prof-discuss-text-red">2</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grading Table -->
+        <div class="prof-discuss-table-container">
+            <table class="prof-discuss-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 40%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>이름 (아이디)</th>
+                        <th>토론 제목</th>
+                        <th>작성일</th>
+                        <th>내용보기</th>
+                        <th>점수 (100)</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student 1 (Graded) -->
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <span class="privacy-name" data-original="홍길동">홍길동</span>
+                            (<span class="privacy-id" data-original="2024001">2024001</span>)
+                        </td>
+                        <td class="prof-discuss-table-left">파타고니아의 사례를 통한 분석</td>
+                        <td>2024.12.10</td>
+                        <td><button class="prof-discuss-btn-view"
+                                onclick="openModal('홍길동', '파타고니아의 사례를 통한 분석', '파타고니아는 환경 보호를 기업의 핵심 가치로 삼고 있습니다...')">보기</button>
+                        </td>
+                        <td><input type="number" class="prof-discuss-score-input" value="95"></td>
+                        <td><span class="prof-discuss-badge prof-discuss-badge-outline-blue">채점완료</span></td>
+                    </tr>
+                    <!-- Student 2 (Waiting - Highlighted) -->
+                    <tr class="prof-discuss-row-waiting">
+                        <td>2</td>
+                        <td>
+                            <span class="privacy-name" data-original="이영희">이영희</span>
+                            (<span class="privacy-id" data-original="2024002">2024002</span>)
+                        </td>
+                        <td class="prof-discuss-table-left">국내 스타트업의 ESG 도입 난관</td>
+                        <td>2024.12.11</td>
+                        <td><button class="prof-discuss-btn-view"
+                                onclick="openModal('이영희', '국내 스타트업의 ESG 도입 난관', '국내 스타트업들은 자본과 인력의 부족으로 인해 ESG 경영 도입에 어려움을 겪고 있습니다...')">보기</button>
+                        </td>
+                        <td><input type="number" class="prof-discuss-score-input" placeholder=""></td>
+                        <td>
+                            <span class="prof-discuss-badge prof-discuss-badge-green"
+                                style="margin-bottom: 2px;">참여완료</span><br>
+                            <span class="prof-discuss-badge prof-discuss-badge-red">채점대기</span>
+                        </td>
+                    </tr>
+                    <!-- Student 3 (Not Participated) -->
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <span class="privacy-name" data-original="김철수">김철수</span>
+                            (<span class="privacy-id" data-original="2024003">2024003</span>)
+                        </td>
+                        <td class="prof-discuss-table-left" style="color: #999;">-</td>
+                        <td>-</td>
+                        <td><button class="prof-discuss-btn-view" disabled
+                                style="opacity: 0.5; cursor: not-allowed;">보기</button></td>
+                        <td><input type="number" class="prof-discuss-score-input" value="0" disabled></td>
+                        <td><span class="prof-discuss-badge prof-discuss-badge-gray">미참여</span></td>
+                    </tr>
+                    <!-- Student 4 (Graded) -->
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <span class="privacy-name" data-original="박민수">박민수</span>
+                            (<span class="privacy-id" data-original="2024004">2024004</span>)
+                        </td>
+                        <td class="prof-discuss-table-left">ESG 경영의 필요성</td>
+                        <td>2024.12.09</td>
+                        <td><button class="prof-discuss-btn-view"
+                                onclick="openModal('박민수', 'ESG 경영의 필요성', '현대 사회에서 기업의 사회적 책임은 선택이 아닌 필수입니다...')">보기</button>
+                        </td>
+                        <td><input type="number" class="prof-discuss-score-input" value="90"></td>
+                        <td><span class="prof-discuss-badge prof-discuss-badge-outline-blue">채점완료</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Actions -->
+        <div class="prof-discuss-actions">
+            <button class="prof-discuss-btn-primary"><i class="fa-solid fa-check"></i> 성적 저장하기</button>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="prof-discuss-modal-overlay" id="discussModal">
+        <div class="prof-discuss-modal">
+            <div class="prof-discuss-modal-header">
+                <h3 class="prof-discuss-modal-title">토론 내용 보기</h3>
+                <button class="prof-discuss-modal-close" onclick="closeModal()"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-discuss-modal-body">
+                <div class="prof-discuss-modal-info">
+                    <strong>작성자:</strong> <span id="modalAuthor">홍길동</span><br>
+                    <strong>주제:</strong> [3주차] ESG 경영의 실제 사례와 시사점 도출
+                </div>
+                <h4 id="modalTitle" style="margin-top: 0; margin-bottom: 15px;">파타고니아의 사례를 통한 분석</h4>
+                <div id="modalContent" class="prof-discuss-modal-content">
+                    내용이 여기에 표시됩니다.
+                </div>
+            </div>
+            <div class="prof-discuss-modal-footer">
+                <button class="prof-discuss-btn-view" onclick="closeModal()"
+                    style="background-color: #666; color: white; border: none;">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('discussion');
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('discussModal');
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(author, title, content) {
+            // Check Masking State for Author Name in Modal
+            const toggle = document.getElementById('privacyToggle');
+            let displayAuthor = author;
+
+            if (toggle && toggle.checked) {
+                if (author.length > 1) {
+                    const first = author.charAt(0);
+                    const last = author.charAt(author.length - 1);
+                    displayAuthor = first + '*'.repeat(author.length - 2) + last;
+                }
+            }
+
+            modalAuthor.textContent = displayAuthor;
+            modalTitle.textContent = title;
+            modalContent.textContent = content;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

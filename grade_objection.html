@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 성적 이의신청 관리</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Layout & Page CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/grade_objection.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-obj-container">
+            <!-- Left Panel: List -->
+            <div class="prof-obj-list-panel">
+                <div class="prof-obj-list-header">
+                    <div class="prof-obj-title">이의신청 목록</div>
+                    <!-- Privacy Toggle -->
+                    <label class="security-mask-toggle" title="개인정보 보호 모드"
+                        style="font-size: 0.8rem; margin-left: auto; margin-right: 15px;">
+                        <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                            onchange="toggleMasking(this)">
+                        <div class="toggle-switch-label" style="width:30px; height:16px;"></div>
+                        <span>개인정보보호 ON</span>
+                    </label>
+
+                    <div class="prof-obj-search-box">
+                        <i class="fa-solid fa-magnifying-glass prof-obj-search-icon"></i>
+                        <input type="text" class="prof-obj-search-input" placeholder="이름 검색...">
+                    </div>
+                </div>
+                <div class="prof-obj-list-content">
+                    <!-- Item 1 (Active) -->
+                    <div class="prof-obj-item active" onclick="selectItem(this)">
+                        <div class="prof-obj-item-top">
+                            <span class="prof-obj-name privacy-name" data-original="이민수">이민수</span>
+                            <span class="prof-obj-date">2024.12.10</span>
+                        </div>
+                        <div class="prof-obj-subject">중간고사 성적 관련 문의드립니다.</div>
+                        <span class="prof-obj-status-badge prof-obj-status-new">답변대기</span>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="prof-obj-item" onclick="selectItem(this)">
+                        <div class="prof-obj-item-top">
+                            <span class="prof-obj-name privacy-name" data-original="박지영">박지영</span>
+                            <span class="prof-obj-date">2024.12.09</span>
+                        </div>
+                        <div class="prof-obj-subject">과제 점수가 생각보다 낮게 나왔습니다.</div>
+                        <span class="prof-obj-status-badge prof-obj-status-progress">처리중</span>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="prof-obj-item" onclick="selectItem(this)">
+                        <div class="prof-obj-item-top">
+                            <span class="prof-obj-name privacy-name" data-original="최성훈">최성훈</span>
+                            <span class="prof-obj-date">2024.12.08</span>
+                        </div>
+                        <div class="prof-obj-subject">기말고사 15번 문항 정답 확인 요청</div>
+                        <span class="prof-obj-status-badge prof-obj-status-done">완료</span>
+                    </div>
+                    <!-- More dummy items -->
+                    <div class="prof-obj-item" onclick="selectItem(this)">
+                        <div class="prof-obj-item-top">
+                            <span class="prof-obj-name privacy-name" data-original="김태희">김태희</span>
+                            <span class="prof-obj-date">2024.12.08</span>
+                        </div>
+                        <div class="prof-obj-subject">출석 점수 오류 정정 부탁드립니다.</div>
+                        <span class="prof-obj-status-badge prof-obj-status-done">완료</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Detail -->
+            <div class="prof-obj-detail-panel">
+                <div id="detailView">
+                    <div class="prof-obj-detail-header">
+                        <div>
+                            <div class="prof-obj-detail-title"><span class="privacy-name" data-original="이민수">이민수</span>
+                                학생 - 중간고사 성적 관련 문의</div>
+                            <span style="color:#64748b; font-size: 0.9rem;">경영학개론 | 2024.12.10 14:30</span>
+                        </div>
+                        <div class="prof-obj-status-actions">
+                            <button class="prof-obj-btn-status active" onclick="setStatus(this)">처리중</button>
+                            <button class="prof-obj-btn-status" onclick="setStatus(this)">완료</button>
+                        </div>
+                    </div>
+
+                    <div class="prof-obj-detail-content">
+                        <!-- Student Message -->
+                        <div class="prof-obj-message-box">
+                            <div class="prof-obj-msg-header">
+                                <span><i class="fa-solid fa-user"></i> <span class="privacy-name"
+                                        data-original="이민수">이민수</span> (학생)</span>
+                                <span>2024.12.10 14:30</span>
+                            </div>
+                            <div class="prof-obj-msg-body">교수님, 안녕하세요.
+                                이번 중간고사 서술형 3번 문제에서 제가 작성한 답안이 부분 점수를 받지 못한 것 같아서 문의드립니다.
+                                저는 핵심 키워드인 '경쟁 우위'를 포함하여 작성했는데, 채점 결과를 보니 0점 처리되어 있습니다.
+                                혹시 제가 오개념을 서술했는지, 아니면 채점 과정에서 누락된 부분이 있는지 확인 부탁드립니다.
+
+                                감사합니다.</div>
+                        </div>
+
+                        <!-- Previous Reply (If any) -->
+                        <!-- 
+                        <div class="prof-obj-message-box" style="background-color: #f0f9ff; border-color: #bae6fd;">
+                            <div class="prof-obj-msg-header">
+                                <span><i class="fa-solid fa-chalkboard-user"></i> 김이젠 (교수)</span>
+                                <span>2024.12.10 16:00</span>
+                            </div>
+                            <div class="prof-obj-msg-body">확인해보고 다시 답변 드리겠습니다.</div>
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="prof-obj-reply-section">
+                        <textarea class="prof-obj-textarea" placeholder="답변 내용을 입력하세요..."></textarea>
+                        <button class="prof-obj-btn-send" onclick="sendReply()">답변 등록</button>
+                    </div>
+                </div>
+
+                <!-- Empty State (Hidden by default for demo) -->
+                <div id="emptyView" class="prof-obj-empty" style="display: none;">
+                    <i class="fa-solid fa-comments"></i>
+                    <p>좌측 목록에서 이의신청 내용을 선택해주세요.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Initialization -->
+    <script src="layout.js"></script>
+    <script>
+        initLayout('grade_objection');
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        function selectItem(element) {
+            // Remove active class from all
+            document.querySelectorAll('.prof-obj-item').forEach(el => el.classList.remove('active'));
+            // Add to clicked
+            element.classList.add('active');
+
+            // Show detail view (In a real app, strict fetching would happen here)
+            document.getElementById('detailView').style.display = 'block';
+            document.getElementById('emptyView').style.display = 'none';
+
+            // Just for demo visual feedback
+            const nameEl = element.querySelector('.prof-obj-name');
+            const name = nameEl.innerText;
+            const originalName = nameEl.getAttribute('data-original');
+            const subject = element.querySelector('.prof-obj-subject').innerText;
+
+            // Update Detail Title Dynamic Masking Support
+            const titleEl = document.querySelector('.prof-obj-detail-title');
+            // We need to inject span for dynamic toggling of detail view as well
+            titleEl.innerHTML = `<span class="privacy-name" data-original="${originalName}">${name}</span> 학생 - ${subject.length > 15 ? subject.substring(0, 15) + '...' : subject}`;
+
+            // Re-apply current mask state to newly injected elements
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle && toggle.checked) {
+                toggleMasking(toggle);
+            }
+        }
+
+        function setStatus(btn) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.prof-obj-btn-status').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function sendReply() {
+            const textarea = document.querySelector('.prof-obj-textarea');
+            if (textarea.value.trim() === '') {
+                alert('내용을 입력해주세요.');
+                return;
+            }
+            alert('답변이 등록되었습니다.');
+            textarea.value = '';
+
+            // In real app, append message to list
+        }
+    </script>
+</body>
+
+</html>

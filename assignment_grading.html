@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제 채점 관리 - 이젠에듀</title>
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="layout.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style_assignment.css">
+</head>
+
+<body>
+
+    <div class="prof-assign-container">
+
+        <!-- 1. Header Filters -->
+        <h2 style="margin-bottom: 20px; color: #2C3E50;">과제 제출 및 채점 관리</h2>
+
+        <div class="prof-assign-header-card">
+            <div class="prof-assign-filter-row">
+                <select class="prof-assign-select">
+                    <option>[전공필수] 마케팅원론 (2024-2학기)</option>
+                </select>
+                <select class="prof-assign-select" style="min-width: 300px;">
+                    <option>중간 대체 레포트: 마케팅 성공 사례 분석</option>
+                </select>
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드"
+                    style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label" style="width:36px; height:20px;"></div>
+                    <span style="font-weight:600; color:#333;">개인정보보호 ON</span>
+                </label>
+            </div>
+
+            <div style="text-align:right;">
+                <span style="font-size:0.9rem; color:#666;">제출 현황: 28 / 30명</span>
+            </div>
+        </div>
+
+        <!-- 2. Tabs -->
+        <div class="prof-assign-tabs">
+            <div class="prof-assign-tab active" onclick="setFilter('all', this)">전체</div>
+            <div class="prof-assign-tab" onclick="setFilter('waiting', this)">채점대기</div>
+            <div class="prof-assign-tab" onclick="setFilter('done', this)">채점완료</div>
+        </div>
+
+        <!-- 3. Table -->
+        <div class="prof-assign-table-wrapper">
+            <table class="prof-assign-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 25%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>이름 (ID)</th>
+                        <th>제출일</th>
+                        <th>제출파일</th>
+                        <th>모사율</th>
+                        <th>점수</th>
+                        <th>코멘트</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody id="assignTableBody">
+                    <!-- Javascript Will Render Rows Here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- 4. Footer Action Bar -->
+    <div class="pa-footer-bar">
+        <button class="pa-btn pa-btn-secondary" onclick="requestPlagCheck()">
+            <i class="fa-solid fa-rotate"></i> 모사율 재검사 요청
+        </button>
+        <button class="pa-btn pa-btn-primary" onclick="saveAllScores()">
+            <i class="fa-solid fa-floppy-disk"></i> 점수 일괄 저장
+        </button>
+    </div>
+
+    <!-- Layout & Custom Scripts -->
+    <script src="layout.js"></script>
+    <script src="script_assignment.js"></script>
+</body>
+
+</html>

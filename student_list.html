@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생관리 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/student_list.css">
+</head>
+
+<body>
+
+    <div class="prof-student-container">
+
+        <!-- Summary Widgets -->
+        <div class="prof-student-summary-grid">
+            <div class="prof-student-summary-card">
+                <span class="prof-student-summary-label">전체 수강생</span>
+                <span class="prof-student-summary-value">45명</span>
+            </div>
+            <div class="prof-student-summary-card">
+                <span class="prof-student-summary-label">금주 출석률</span>
+                <span class="prof-student-summary-value">82%</span>
+            </div>
+            <div class="prof-student-summary-card">
+                <span class="prof-student-summary-label">과락 의심 학생</span>
+                <span class="prof-student-summary-value prof-student-text-red">3명</span>
+            </div>
+            <div class="prof-student-summary-card">
+                <span class="prof-student-summary-label">미수강자</span>
+                <span class="prof-student-summary-value">5명</span>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="prof-student-filter-bar" style="display:flex; justify-content: space-between;">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <select class="prof-student-select">
+                    <option>전체 상태</option>
+                    <option>위험군 (과락 의심)</option>
+                    <option>수료권</option>
+                </select>
+                <!-- Privacy Toggle Switch -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label"></div>
+                    <span>개인정보보호 ON</span>
+                </label>
+            </div>
+
+            <div style="display:flex; gap:10px;">
+                <input type="text" class="prof-student-search-input" placeholder="이름 또는 아이디을 검색하세요">
+                <button class="prof-student-btn-search">검색</button>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="prof-student-actions">
+            <button class="prof-student-btn-action"><i class="fa-solid fa-comment-sms"></i> 선택 학생 문자 발송</button>
+            <button class="prof-student-btn-action"><i class="fa-solid fa-envelope"></i> 독려 메일 발송</button>
+            <button class="prof-student-btn-action" onclick="openSecurityModal()"><i class="fa-solid fa-file-excel"></i>
+                엑셀 다운로드</button>
+        </div>
+
+        <!-- Student Table -->
+        <div class="prof-student-table-container">
+            <table class="prof-student-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>No</th>
+                        <th>이름 (아이디)</th>
+                        <th>연락처</th>
+                        <th>최근접속일</th>
+                        <th>출석률</th>
+                        <th>진도율</th>
+                        <th>상태</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student 1 -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td>
+                            <span class="privacy-name" data-original="홍길동">홍길동</span>
+                            (<span class="privacy-id" data-original="2024001">2024001</span>)
+                        </td>
+                        <td><span class="privacy-phone" data-original="010-1234-5678">010-1234-5678</span></td>
+                        <td>2024.12.11</td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-green" style="width: 95%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">95%</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-green" style="width: 98%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">98%</span>
+                            </div>
+                        </td>
+                        <td><span class="prof-student-badge prof-student-badge-green">수료예정</span></td>
+                        <td>
+                            <button class="prof-student-btn-action"
+                                style="padding: 4px 8px; font-size: 0.8rem;">쪽지</button>
+                        </td>
+                    </tr>
+                    <!-- Student 2 -->
+                    <tr style="background-color: #fff5f5;">
+                        <td><input type="checkbox"></td>
+                        <td>2</td>
+                        <td>
+                            <span class="privacy-name" data-original="이영희">이영희</span>
+                            (<span class="privacy-id" data-original="2024002">2024002</span>)
+                        </td>
+                        <td><span class="privacy-phone" data-original="010-9876-5432">010-9876-5432</span></td>
+                        <td>2024.11.20</td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-red" style="width: 60%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">60%</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-orange" style="width: 55%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">55%</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="prof-student-badge prof-student-badge-red"
+                                style="margin-bottom: 2px;">출석미달</span><br>
+                            <span class="prof-student-badge prof-student-badge-outline-orange">장기미접속</span>
+                        </td>
+                        <td>
+                            <button class="prof-student-btn-action"
+                                style="padding: 4px 8px; font-size: 0.8rem;">쪽지</button>
+                        </td>
+                    </tr>
+                    <!-- Student 3 -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>3</td>
+                        <td>
+                            <span class="privacy-name" data-original="김철수">김철수</span>
+                            (<span class="privacy-id" data-original="2024003">2024003</span>)
+                        </td>
+                        <td><span class="privacy-phone" data-original="010-1111-2222">010-1111-2222</span></td>
+                        <td>2024.12.10</td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-blue" style="width: 85%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">85%</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="prof-student-progress-wrapper">
+                                <div class="prof-student-progress-bg">
+                                    <div class="prof-student-progress-bar prof-student-bar-blue" style="width: 80%;">
+                                    </div>
+                                </div>
+                                <span class="prof-student-progress-text">80%</span>
+                            </div>
+                        </td>
+                        <td><span class="prof-student-badge prof-student-badge-blue">학습중</span></td>
+                        <td>
+                            <button class="prof-student-btn-action"
+                                style="padding: 4px 8px; font-size: 0.8rem;">쪽지</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('student_list');
+
+        // Initialize Masking on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+    </script>
+</body>
+
+</html>

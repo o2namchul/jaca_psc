@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 교수자 대시보드</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-email-container">
+
+            <!-- Tabs -->
+            <div class="prof-email-tabs">
+                <div class="prof-email-tab active" onclick="switchTab('write')">메일 쓰기</div>
+                <div class="prof-email-tab" onclick="switchTab('history')">발송 내역</div>
+            </div>
+
+            <!-- Tab 1: Write Mode -->
+            <div id="tab-write" class="prof-email-tab-content active">
+                <div class="prof-email-form-group">
+                    <label class="prof-email-label">받는 사람</label>
+                    <div class="prof-email-recipient-controls">
+                        <select class="prof-email-select">
+                            <option>강의 선택</option>
+                            <option>경영학개론 (2024-2학기)</option>
+                            <option>인적자원관리 (2024-2학기)</option>
+                        </select>
+                        <button class="prof-email-btn-secondary"><i class="fa-solid fa-address-book"></i> 주소록
+                            불러오기</button>
+                    </div>
+                    <div class="prof-email-recipient-list">
+                        <span class="prof-email-recipient-tag">경영학개론(전체) <i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                </div>
+
+                <div class="prof-email-form-group">
+                    <div class="prof-email-options">
+                        <label><input type="checkbox"> 참조(CC)</label>
+                        <label><input type="checkbox"> 숨은참조(BCC)</label>
+                    </div>
+                </div>
+
+                <div class="prof-email-form-group">
+                    <label class="prof-email-label">제목</label>
+                    <input type="text" class="prof-email-input" value="[중요] 기말고사 대체 과제 가이드라인 송부">
+                </div>
+
+                <div class="prof-email-form-group">
+                    <label class="prof-email-label">파일 첨부</label>
+                    <div class="prof-email-dropzone">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>이곳에 파일을 드래그 하거나 클릭하여 업로드하세요.</p>
+                    </div>
+                </div>
+
+                <div class="prof-email-form-group">
+                    <label class="prof-email-label">본문</label>
+                    <textarea class="prof-email-textarea" rows="10">안녕하세요, 교수 김이젠입니다. 
+
+첨부된 가이드라인을 반드시 확인하시기 바랍니다.
+감사합니다.</textarea>
+                </div>
+
+                <div class="prof-email-action-bar">
+                    <button class="prof-email-btn prof-email-btn-secondary">임시저장</button>
+                    <button class="prof-email-btn prof-email-btn-secondary">미리보기</button>
+                    <button class="prof-email-btn prof-email-btn-primary">보내기</button>
+                </div>
+            </div>
+
+            <!-- Tab 2: History Mode -->
+            <div id="tab-history" class="prof-email-tab-content">
+                <table class="prof-email-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">No</th>
+                            <th>제목</th>
+                            <th style="width: 200px;">받는사람</th>
+                            <th style="width: 150px;">발송일시</th>
+                            <th style="width: 60px;">첨부</th>
+                            <th style="width: 100px;">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr>
+                            <td>3</td>
+                            <td class="prof-email-title-cell">10주차 보강 수업 일정 안내</td>
+                            <td>홍길동 외 44명 <span class="prof-email-badge-recipient-all">전체</span></td>
+                            <td>2024.12.11 10:00</td>
+                            <td><i class="fa-solid fa-paperclip"></i></td>
+                            <td><span class="prof-email-badge prof-email-badge-success">발송성공</span></td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr>
+                            <td>2</td>
+                            <td class="prof-email-title-cell">과제 파일 오류로 인한 재제출 요청</td>
+                            <td>이영희 <span class="prof-email-badge-recipient-individual">개인</span></td>
+                            <td>2024.12.10 15:30</td>
+                            <td>-</td>
+                            <td><span class="prof-email-badge prof-email-badge-fail">발송실패</span></td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr>
+                            <td>1</td>
+                            <td class="prof-email-title-cell">다음 주 휴강 안내</td>
+                            <td>인적자원관리 수강생 전체 <span class="prof-email-badge-recipient-all">전체</span></td>
+                            <td>2024.12.20 09:00</td>
+                            <td>-</td>
+                            <td><span class="prof-email-badge prof-email-badge-reserved">예약</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('email_send');
+
+        // Tab Switching Script
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.prof-email-tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Deactivate all tabs
+            document.querySelectorAll('.prof-email-tab').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Activate selected tab
+            // Find the tab element that was clicked (this is a bit hacky but works for this simple case)
+            const tabs = document.querySelectorAll('.prof-email-tab');
+            if (tabName === 'write') tabs[0].classList.add('active');
+            if (tabName === 'history') tabs[1].classList.add('active');
+        }
+    </script>
+
+</body>
+
+</html>

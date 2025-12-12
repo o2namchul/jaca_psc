@@ -1,0 +1,360 @@
+/* Scoped CSS for Professor Attendance Page */
+/* All styles must be prefixed with .prof-attend- to avoid conflicts */
+
+:root {
+    --prof-attend-navy: #1a2b4b;
+    --prof-attend-bg: #f4f6f9;
+    --prof-attend-blue: #0056b3;
+    --prof-attend-white: #ffffff;
+    --prof-attend-text-main: #333333;
+    --prof-attend-text-sub: #666666;
+    --prof-attend-border: #e1e4e8;
+
+    /* Symbol Colors */
+    --prof-attend-color-present: #2196f3;
+    /* Blue */
+    --prof-attend-color-absent: #f44336;
+    /* Red */
+    --prof-attend-color-late: #ff9800;
+    /* Orange */
+    --prof-attend-color-excused: #9e9e9e;
+    /* Gray */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--prof-attend-bg);
+    color: var(--prof-attend-text-main);
+}
+
+/* Layout Wrapper */
+.prof-attend-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Scoped) */
+.prof-attend-sidebar {
+    width: 260px;
+    background-color: var(--prof-attend-navy);
+    color: var(--prof-attend-white);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-attend-sidebar-header {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-attend-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.prof-attend-nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prof-attend-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-attend-nav-link:hover,
+.prof-attend-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--prof-attend-white);
+}
+
+.prof-attend-nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.prof-attend-nav-submenu.active {
+    display: block;
+}
+
+.prof-attend-sub-link {
+    display: block;
+    padding: 12px 20px 12px 40px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.prof-attend-sub-link:hover,
+.prof-attend-sub-link.active {
+    color: var(--prof-attend-white);
+}
+
+/* Main Content Area */
+.prof-attend-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+.prof-attend-header {
+    height: 60px;
+    background-color: var(--prof-attend-white);
+    border-bottom: 1px solid var(--prof-attend-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+/* Container */
+.prof-attend-container {
+    max-width: 1600px;
+    /* Wider container for table */
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Filter & Legend Bar */
+.prof-attend-top-bar {
+    background-color: var(--prof-attend-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.prof-attend-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-attend-border);
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.prof-attend-legend {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--prof-attend-text-sub);
+}
+
+.prof-attend-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Table Container with Horizontal Scroll */
+.prof-attend-table-wrapper {
+    background-color: var(--prof-attend-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    /* Horizontal Scroll */
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.prof-attend-table {
+    width: 100%;
+    border-collapse: separate;
+    /* Required for sticky */
+    border-spacing: 0;
+    min-width: 1500px;
+    /* Force width to trigger scroll */
+}
+
+.prof-attend-table th,
+.prof-attend-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--prof-attend-border);
+    border-right: 1px solid var(--prof-attend-border);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+.prof-attend-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--prof-attend-navy);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sticky Columns */
+.prof-attend-sticky-col {
+    position: sticky;
+    left: 0;
+    background-color: var(--prof-attend-white);
+    z-index: 5;
+    border-right: 2px solid #d1d5db !important;
+    /* Stronger border for separation */
+}
+
+.prof-attend-table th.prof-attend-sticky-col {
+    z-index: 15;
+    /* Higher than normal th and normal sticky td */
+    background-color: #f8f9fa;
+}
+
+/* Column Widths */
+.prof-attend-col-no {
+    width: 50px;
+    left: 0;
+}
+
+.prof-attend-col-id {
+    width: 100px;
+    left: 50px;
+}
+
+.prof-attend-col-name {
+    width: 100px;
+    left: 150px;
+}
+
+.prof-attend-col-total {
+    width: 80px;
+    left: 250px;
+}
+
+/* Adjust left positions for sticky columns */
+.prof-attend-table td.prof-attend-col-no,
+.prof-attend-table th.prof-attend-col-no {
+    left: 0;
+}
+
+.prof-attend-table td.prof-attend-col-id,
+.prof-attend-table th.prof-attend-col-id {
+    left: 50px;
+}
+
+.prof-attend-table td.prof-attend-col-name,
+.prof-attend-table th.prof-attend-col-name {
+    left: 150px;
+}
+
+.prof-attend-table td.prof-attend-col-total,
+.prof-attend-table th.prof-attend-col-total {
+    left: 250px;
+}
+
+/* Symbols */
+.prof-attend-symbol {
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-attend-symbol:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.prof-attend-present {
+    color: var(--prof-attend-color-present);
+}
+
+.prof-attend-absent {
+    color: var(--prof-attend-color-absent);
+}
+
+.prof-attend-late {
+    color: var(--prof-attend-color-late);
+}
+
+.prof-attend-excused {
+    color: var(--prof-attend-color-excused);
+}
+
+/* Action Buttons */
+.prof-attend-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.prof-attend-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.prof-attend-btn-primary {
+    background-color: var(--prof-attend-blue);
+    color: white;
+}
+
+.prof-attend-btn-primary:hover {
+    background-color: #004494;
+}
+
+.prof-attend-btn-secondary {
+    background-color: var(--prof-attend-white);
+    border: 1px solid var(--prof-attend-border);
+    color: var(--prof-attend-text-main);
+}
+
+.prof-attend-btn-secondary:hover {
+    background-color: #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-attend-wrapper {
+        flex-direction: column;
+    }
+
+    .prof-attend-sidebar {
+        display: none;
+    }
+
+    .prof-attend-top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prof-attend-legend {
+        justify-content: center;
+    }
+}

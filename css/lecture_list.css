@@ -1,0 +1,385 @@
+/* Scoped CSS for Professor Lecture List */
+/* All styles must be prefixed with .prof-list- to avoid conflicts */
+
+:root {
+    --prof-list-navy: #1a2b4b;
+    --prof-list-bg: #f4f6f9;
+    --prof-list-blue: #0056b3;
+    --prof-list-white: #ffffff;
+    --prof-list-text-main: #333333;
+    --prof-list-text-sub: #666666;
+    --prof-list-border: #e1e4e8;
+
+    /* Badge Colors */
+    --prof-list-badge-navy-bg: #1a2b4b;
+    --prof-list-badge-navy-text: #ffffff;
+    --prof-list-badge-gray-outline: #616161;
+    --prof-list-badge-green-bg: #e8f5e9;
+    --prof-list-badge-green-text: #2e7d32;
+    --prof-list-badge-gray-bg: #f5f5f5;
+    --prof-list-badge-gray-text: #616161;
+    --prof-list-badge-red-bg: #ffebee;
+    --prof-list-badge-red-text: #c62828;
+    --prof-list-badge-blue-bg: #e3f2fd;
+    --prof-list-badge-blue-text: #1565c0;
+    --prof-list-badge-purple-bg: #f3e5f5;
+    --prof-list-badge-purple-text: #7b1fa2;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--prof-list-bg);
+    color: var(--prof-list-text-main);
+}
+
+/* Layout Wrapper */
+.prof-list-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Scoped) */
+.prof-list-sidebar {
+    width: 260px;
+    background-color: var(--prof-list-navy);
+    color: var(--prof-list-white);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-list-sidebar-header {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-list-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.prof-list-nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prof-list-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-list-nav-link:hover,
+.prof-list-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--prof-list-white);
+}
+
+.prof-list-nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.prof-list-nav-submenu.active {
+    display: block;
+}
+
+.prof-list-sub-link {
+    display: block;
+    padding: 12px 20px 12px 40px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.prof-list-sub-link:hover,
+.prof-list-sub-link.active {
+    color: var(--prof-list-white);
+}
+
+/* Main Content Area */
+.prof-list-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+.prof-list-header {
+    height: 60px;
+    background-color: var(--prof-list-white);
+    border-bottom: 1px solid var(--prof-list-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+/* Container */
+.prof-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Filter Bar */
+.prof-list-filter-bar {
+    background-color: var(--prof-list-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.prof-list-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-list-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-list-border);
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.prof-list-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.prof-list-search-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--prof-list-border);
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.prof-list-btn-search {
+    padding: 8px 20px;
+    background-color: var(--prof-list-navy);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Lecture List */
+.prof-list-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.prof-list-card {
+    background-color: var(--prof-list-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid var(--prof-list-border);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.prof-list-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--prof-list-blue);
+}
+
+.prof-list-thumb {
+    width: 120px;
+    height: 80px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--prof-list-text-sub);
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.prof-list-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prof-list-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prof-list-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--prof-list-text-main);
+    margin: 0;
+}
+
+.prof-list-meta {
+    font-size: 0.9rem;
+    color: var(--prof-list-text-sub);
+}
+
+/* Badges */
+.prof-list-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.prof-list-badge-navy {
+    background-color: var(--prof-list-badge-navy-bg);
+    color: var(--prof-list-badge-navy-text);
+}
+
+.prof-list-badge-gray-outline {
+    border: 1px solid var(--prof-list-badge-gray-outline);
+    color: var(--prof-list-badge-gray-outline);
+    background: transparent;
+}
+
+.prof-list-badge-green {
+    background-color: var(--prof-list-badge-green-bg);
+    color: var(--prof-list-badge-green-text);
+}
+
+.prof-list-badge-gray {
+    background-color: var(--prof-list-badge-gray-bg);
+    color: var(--prof-list-badge-gray-text);
+}
+
+.prof-list-badge-red {
+    background-color: var(--prof-list-badge-red-bg);
+    color: var(--prof-list-badge-red-text);
+}
+
+.prof-list-badge-blue {
+    background-color: var(--prof-list-badge-blue-bg);
+    color: var(--prof-list-badge-blue-text);
+}
+
+.prof-list-badge-purple {
+    background-color: var(--prof-list-badge-purple-bg);
+    color: var(--prof-list-badge-purple-text);
+}
+
+/* Action Buttons */
+.prof-list-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.prof-list-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+}
+
+.prof-list-btn-primary {
+    background-color: var(--prof-list-blue);
+    color: white;
+    border: none;
+}
+
+.prof-list-btn-primary:hover {
+    background-color: #004494;
+}
+
+.prof-list-btn-secondary {
+    background-color: white;
+    border: 1px solid var(--prof-list-border);
+    color: var(--prof-list-text-main);
+}
+
+.prof-list-btn-secondary:hover {
+    background-color: #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-list-wrapper {
+        flex-direction: column;
+    }
+
+    .prof-list-sidebar {
+        display: none;
+    }
+
+    .prof-list-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .prof-list-thumb {
+        width: 100%;
+        height: 120px;
+    }
+
+    .prof-list-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .prof-list-btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .prof-list-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prof-list-search-input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,401 @@
+/* Scoped CSS for Professor Consulting Page */
+/* All styles must be prefixed with .prof-consult- to avoid conflicts */
+
+:root {
+    --prof-consult-navy: #1a2b4b;
+    --prof-consult-bg: #f4f6f9;
+    --prof-consult-blue: #0056b3;
+    --prof-consult-white: #ffffff;
+    --prof-consult-text-main: #333333;
+    --prof-consult-text-sub: #666666;
+    --prof-consult-border: #e1e4e8;
+
+    /* Status Colors */
+    --prof-consult-status-waiting-bg: #ffebee;
+    --prof-consult-status-waiting-text: #c62828;
+    --prof-consult-status-done-bg: #e8f5e9;
+    --prof-consult-status-done-text: #2e7d32;
+
+    /* Chat Colors */
+    --prof-consult-chat-q-bg: #f1f3f5;
+    --prof-consult-chat-a-bg: #e3f2fd;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--prof-consult-bg);
+    color: var(--prof-consult-text-main);
+}
+
+/* Container */
+.prof-consult-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Top Filters */
+.prof-consult-filters {
+    background-color: var(--prof-consult-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.prof-consult-filter-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prof-consult-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-consult-border);
+    border-radius: 4px;
+    min-width: 150px;
+    font-size: 0.95rem;
+}
+
+.prof-consult-search {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-consult-border);
+    border-radius: 4px;
+    min-width: 250px;
+    font-size: 0.95rem;
+}
+
+/* Board List Table */
+.prof-consult-table-container {
+    background-color: var(--prof-consult-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.prof-consult-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    min-width: 1000px;
+    font-size: 0.95rem;
+}
+
+.prof-consult-table th,
+.prof-consult-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--prof-consult-border);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prof-consult-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--prof-consult-navy);
+}
+
+.prof-consult-table-left {
+    text-align: left !important;
+    padding-left: 20px !important;
+}
+
+.prof-consult-link {
+    text-decoration: none;
+    color: var(--prof-consult-text-main);
+    font-weight: 500;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.prof-consult-link:hover {
+    color: var(--prof-consult-blue);
+    text-decoration: underline;
+}
+
+.prof-consult-row-highlight {
+    background-color: #fffbfb;
+    /* Subtle alert for waiting items */
+}
+
+/* Status Badges */
+.prof-consult-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.prof-consult-badge-waiting {
+    background-color: var(--prof-consult-status-waiting-bg);
+    color: var(--prof-consult-status-waiting-text);
+    border: 1px solid var(--prof-consult-status-waiting-text);
+}
+
+.prof-consult-badge-done {
+    background-color: var(--prof-consult-status-done-bg);
+    color: var(--prof-consult-status-done-text);
+    border: 1px solid var(--prof-consult-status-done-text);
+}
+
+/* Modal Styling (Wide & Chat Style) */
+.prof-consult-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.prof-consult-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.prof-consult-modal-container {
+    background-color: white;
+    width: 900px;
+    max-width: 100%;
+    height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+}
+
+.prof-consult-modal-overlay.active .prof-consult-modal-container {
+    transform: translateY(0);
+}
+
+/* Modal Header */
+.prof-consult-modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--prof-consult-border);
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.prof-consult-modal-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.prof-consult-modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--prof-consult-text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-consult-modal-meta {
+    font-size: 0.85rem;
+    color: var(--prof-consult-text-sub);
+}
+
+.prof-consult-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--prof-consult-text-sub);
+    cursor: pointer;
+}
+
+/* Modal Body (Chat Area + Form) */
+.prof-consult-modal-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+}
+
+/* Chat History Area */
+.prof-consult-chat-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background-color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: 1px solid transparent;
+}
+
+.chat-bubble-q {
+    background-color: var(--prof-consult-chat-q-bg);
+    align-self: flex-start;
+    border-top-left-radius: 2px;
+    color: #333;
+}
+
+.chat-bubble-a {
+    background-color: var(--prof-consult-chat-a-bg);
+    align-self: flex-end;
+    border-top-right-radius: 2px;
+    color: #0d47a1;
+    border-color: #bbdefb;
+}
+
+.chat-info {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-info strong {
+    font-weight: 700;
+}
+
+.chat-attach {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+}
+
+.chat-attach a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* Reply Area */
+.prof-consult-reply-area {
+    padding: 20px 25px;
+    border-top: 1px solid var(--prof-consult-border);
+    background-color: white;
+    flex-shrink: 0;
+}
+
+/* Quick Reply Macros */
+.quick-reply-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.btn-macro {
+    padding: 6px 12px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #555;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.btn-macro:hover {
+    background-color: #f1f3f5;
+    border-color: #ccc;
+    color: #333;
+}
+
+.btn-macro i {
+    color: var(--prof-consult-blue);
+    margin-right: 4px;
+}
+
+.prof-consult-textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border: 1px solid var(--prof-consult-border);
+    border-radius: 8px;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.prof-consult-textarea:focus {
+    outline: none;
+    border-color: var(--prof-consult-blue);
+}
+
+.prof-consult-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-upload-simple {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.prof-consult-btn-send {
+    padding: 10px 25px;
+    background-color: var(--prof-consult-navy);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.prof-consult-btn-send:hover {
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-consult-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prof-consult-search,
+    .prof-consult-select {
+        width: 100%;
+    }
+
+    .chat-bubble {
+        max-width: 95%;
+    }
+}

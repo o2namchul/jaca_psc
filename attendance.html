@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출석부 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/attendance.css">
+</head>
+
+<body>
+
+    <div class="prof-attend-container">
+
+        <!-- Filter & Legend -->
+        <div class="prof-attend-top-bar">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <select class="prof-attend-select">
+                    <option>경영학개론 (2024-2학기)</option>
+                    <option>인적자원관리 (2024-2학기)</option>
+                </select>
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label"></div>
+                    <span>개인정보보호 ON</span>
+                </label>
+            </div>
+
+            <div class="prof-attend-legend">
+                <div class="prof-attend-legend-item">
+                    <span class="prof-attend-symbol prof-attend-present"><i class="fa-solid fa-circle"></i></span> 출석
+                </div>
+                <div class="prof-attend-legend-item">
+                    <span class="prof-attend-symbol prof-attend-absent"><i class="fa-solid fa-xmark"></i></span>
+                    결석
+                </div>
+                <div class="prof-attend-legend-item">
+                    <span class="prof-attend-symbol prof-attend-late"><i class="fa-solid fa-play"
+                            style="transform: rotate(-90deg);"></i></span> 지각
+                </div>
+                <div class="prof-attend-legend-item">
+                    <span class="prof-attend-symbol prof-attend-excused"><i class="fa-solid fa-minus"></i></span> 공결
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance Table -->
+        <div class="prof-attend-table-wrapper">
+            <table class="prof-attend-table">
+                <thead>
+                    <tr>
+                        <th class="prof-attend-sticky-col prof-attend-col-no">No</th>
+                        <th class="prof-attend-sticky-col prof-attend-col-id">아이디</th>
+                        <th class="prof-attend-sticky-col prof-attend-col-name">이름</th>
+                        <th class="prof-attend-sticky-col prof-attend-col-total">총점</th>
+                        <th>1주</th>
+                        <th>2주</th>
+                        <th>3주</th>
+                        <th>4주</th>
+                        <th>5주</th>
+                        <th>6주</th>
+                        <th>7주</th>
+                        <th>8주</th>
+                        <th>9주</th>
+                        <th>10주</th>
+                        <th>11주</th>
+                        <th>12주</th>
+                        <th>13주</th>
+                        <th>14주</th>
+                        <th>15주</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student 1 -->
+                    <tr>
+                        <td class="prof-attend-sticky-col prof-attend-col-no">1</td>
+                        <td class="prof-attend-sticky-col prof-attend-col-id"><span class="privacy-id"
+                                data-original="2024001">2024001</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-name"><span class="privacy-name"
+                                data-original="홍길동">홍길동</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-total"
+                            style="font-weight: bold; color: #2196f3;">100%</td>
+                        <!-- 1-15 Weeks -->
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                    </tr>
+                    <!-- Student 2 -->
+                    <tr>
+                        <td class="prof-attend-sticky-col prof-attend-col-no">2</td>
+                        <td class="prof-attend-sticky-col prof-attend-col-id"><span class="privacy-id"
+                                data-original="2024002">2024002</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-name"><span class="privacy-name"
+                                data-original="이영희">이영희</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-total"
+                            style="font-weight: bold; color: #f44336;">80%</td>
+                        <!-- 1-15 Weeks -->
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-absent"><i class="fa-solid fa-xmark"></i></span>
+                        </td>
+                        <td><span class="prof-attend-symbol prof-attend-late"><i class="fa-solid fa-play"
+                                    style="transform: rotate(-90deg);"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                    </tr>
+                    <!-- Student 3 -->
+                    <tr>
+                        <td class="prof-attend-sticky-col prof-attend-col-no">3</td>
+                        <td class="prof-attend-sticky-col prof-attend-col-id"><span class="privacy-id"
+                                data-original="2024003">2024003</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-name"><span class="privacy-name"
+                                data-original="김철수">김철수</span></td>
+                        <td class="prof-attend-sticky-col prof-attend-col-total"
+                            style="font-weight: bold; color: #333;">93%</td>
+                        <!-- 1-15 Weeks -->
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-excused"><i
+                                    class="fa-solid fa-minus"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                        <td><span class="prof-attend-symbol prof-attend-present"><i
+                                    class="fa-solid fa-circle"></i></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Actions -->
+        <div class="prof-attend-actions">
+            <button class="prof-attend-btn prof-attend-btn-secondary" onclick="openSecurityModal()"><i
+                    class="fa-solid fa-file-excel"></i> 엑셀
+                다운로드</button>
+            <button class="prof-attend-btn prof-attend-btn-secondary"><i class="fa-solid fa-gavel"></i> 출석 이의신청
+                관리</button>
+            <button class="prof-attend-btn prof-attend-btn-primary"><i class="fa-solid fa-check"></i>
+                저장하기</button>
+        </div>
+
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('attendance');
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+    </script>
+</body>
+
+</html>

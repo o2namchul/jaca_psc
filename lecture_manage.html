@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주차별 강의 운영 관리 - 이젠에듀</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/notice.css"> <!-- Reusing some base variables if needed -->
+    <link rel="stylesheet" href="css/lecture_manage.css">
+</head>
+
+<body>
+
+    <div class="lecture-mgr-wrapper">
+        <div class="lecture-mgr-header">
+            <div class="lecture-mgr-title">주차별 강의 운영 관리</div>
+            <!-- Optional: Global Actions -->
+            <!-- <button class="btn-secondary">전체 펼치기</button> -->
+        </div>
+
+        <!-- Week 1: Standard (VOD) -->
+        <div class="lecture-week-card">
+            <div class="lecture-week-header">
+                <span>1주차 : 마케팅의 이해</span>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="lecture-week-body">
+                <!-- 1st Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">1교시</div>
+                    <div class="item-content">
+                        <div class="item-title">마케팅의 개념과 정의</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 25:00</span>
+                            <span class="status-badge status-closed">학습종료</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <button class="btn-action btn-preview" onclick="openVodModal('마케팅의 개념과 정의')">
+                                <i class="fa-solid fa-play"></i> 미리보기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2nd Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">2교시</div>
+                    <div class="item-content">
+                        <div class="item-title">마케팅 프로세스의 이해</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 28:30</span>
+                            <span class="status-badge status-closed">학습종료</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <button class="btn-action btn-preview" onclick="openVodModal('마케팅 프로세스의 이해')">
+                                <i class="fa-solid fa-play"></i> 미리보기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 5: Assignment -->
+        <div class="lecture-week-card">
+            <div class="lecture-week-header">
+                <span>5주차 : 마케팅 환경 분석</span>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="lecture-week-body">
+                <!-- 1st Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">1교시</div>
+                    <div class="item-content">
+                        <div class="item-title">마케팅 조사론</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 30:00</span>
+                            <span class="status-badge status-closed">학습종료</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <button class="btn-action btn-preview" onclick="openVodModal('마케팅 조사론')">
+                            <i class="fa-solid fa-play"></i> 미리보기
+                        </button>
+                    </div>
+                </div>
+                <!-- 2nd Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">2교시</div>
+                    <div class="item-content">
+                        <div class="item-title">표적 시장 선정</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 32:15</span>
+                            <span class="status-badge status-closed">학습종료</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <button class="btn-action btn-preview" onclick="openVodModal('표적 시장 선정')">
+                            <i class="fa-solid fa-play"></i> 미리보기
+                        </button>
+                    </div>
+                </div>
+                <!-- Assignment -->
+                <div class="lecture-item-row item-assignment" title="채점 페이지로 이동">
+                    <div class="item-type-badge badge-assign">과제</div>
+                    <div class="item-content">
+                        <div class="item-title">
+                            마케팅 환경 분석 보고서
+                            <span class="status-badge status-closed">마감</span>
+                        </div>
+                        <div class="item-meta">
+                            <span>제출기간: 2024.10.01 ~ 2024.10.15</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <div class="stat-label">제출률</div>
+                            <div class="stat-value">45/45 (100%)</div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <a href="grade_detail.html?type=assignment" class="btn-action btn-grade">
+                            채점하기 <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 8: Midterm Exam -->
+        <div class="lecture-week-card">
+            <div class="lecture-week-header">
+                <span>8주차 : 중간고사</span>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="lecture-week-body">
+                <!-- Exam -->
+                <div class="lecture-item-row item-exam">
+                    <div class="item-type-badge badge-exam">시험</div>
+                    <div class="item-content">
+                        <div class="item-title">
+                            2024-2학기 중간고사
+                            <span class="status-badge status-closed">마감</span>
+                        </div>
+                        <div class="item-meta">
+                            <span>응시기간: 2024.10.20 ~ 2024.10.25</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <div class="stat-label">응시율</div>
+                            <div class="stat-value">44/45 (98%)</div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 98%;"></div>
+                            </div>
+                        </div>
+                        <a href="grade_detail.html?type=exam" class="btn-action btn-grade">
+                            결과보기 <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 11: Discussion -->
+        <div class="lecture-week-card">
+            <div class="lecture-week-header">
+                <span>11주차 : 소비자 행동론</span>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="lecture-week-body">
+                <!-- 1st Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">1교시</div>
+                    <div class="item-content">
+                        <div class="item-title">소비자 의사결정 과정</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 29:00</span>
+                            <span class="status-badge status-ongoing">학습중</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <button class="btn-action btn-preview" onclick="openVodModal('소비자 의사결정 과정')">
+                            <i class="fa-solid fa-play"></i> 미리보기
+                        </button>
+                    </div>
+                </div>
+                <!-- 2nd Period -->
+                <div class="lecture-item-row item-vod">
+                    <div class="item-type-badge badge-vod">2교시</div>
+                    <div class="item-content">
+                        <div class="item-title">소비 문화와 트렌드</div>
+                        <div class="item-meta">
+                            <span><i class="fa-regular fa-clock"></i> 31:40</span>
+                            <span class="status-badge status-ongoing">학습중</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <button class="btn-action btn-preview" onclick="openVodModal('소비 문화와 트렌드')">
+                            <i class="fa-solid fa-play"></i> 미리보기
+                        </button>
+                    </div>
+                </div>
+                <!-- Discussion -->
+                <div class="lecture-item-row item-discussion">
+                    <div class="item-type-badge badge-discuss">토론</div>
+                    <div class="item-content">
+                        <div class="item-title">
+                            윤리적 소비에 대한 찬반
+                            <span class="status-badge status-ongoing">진행중</span>
+                        </div>
+                        <div class="item-meta">
+                            <span>참여기간: 2024.11.10 ~ 2024.11.24</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <div class="stat-label">참여율</div>
+                            <div class="stat-value">12/45 (26%)</div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 26%;"></div>
+                            </div>
+                        </div>
+                        <a href="grade_detail.html?type=discussion" class="btn-action btn-grade">
+                            모니터링 <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week 15: Final Exam -->
+        <div class="lecture-week-card">
+            <div class="lecture-week-header">
+                <span>15주차 : 기말고사</span>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="lecture-week-body">
+                <!-- Exam -->
+                <div class="lecture-item-row item-exam">
+                    <div class="item-type-badge badge-exam">시험</div>
+                    <div class="item-content">
+                        <div class="item-title">
+                            기말고사 (온라인)
+                            <span class="status-badge status-reserved">예약</span>
+                        </div>
+                        <div class="item-meta">
+                            <span>응시기간: 2024.12.20 ~ 2024.12.25 (오픈 예정)</span>
+                        </div>
+                    </div>
+                    <div class="item-stats">
+                        <div class="stat-group">
+                            <div class="stat-label">응시율</div>
+                            <div class="stat-value">-</div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 0%; background-color: #eee;"></div>
+                            </div>
+                        </div>
+                        <button class="btn-action btn-secondary" disabled>
+                            대기중
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VOD Preview Modal -->
+    <div id="vod-modal" class="vod-modal-overlay">
+        <div class="vod-modal-container">
+            <div class="vod-modal-header">
+                <div class="vod-title" id="vod-player-title">강의 미리보기</div>
+                <button class="vod-close" onclick="closeVodModal()">&times;</button>
+            </div>
+            <div class="vod-player-wrapper">
+                <!-- Dummy Video Placeholder (normally iframe or video tag) -->
+                <div
+                    style="position: absolute; top:0; left:0; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; color:white; flex-direction: column;">
+                    <i class="fa-solid fa-play-circle" style="font-size: 4rem; opacity: 0.8;"></i>
+                    <p style="margin-top: 15px;">이 영상은 미리보기 화면입니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        // Init Layout (Assuming 'lecture_manage' is the ID for this page in layout.js)
+        initLayout('lecture_manage');
+
+        // VOD Modal Logic
+        const vodModal = document.getElementById('vod-modal');
+        const vodTitle = document.getElementById('vod-player-title');
+
+        function openVodModal(title) {
+            vodTitle.innerText = title;
+            vodModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVodModal() {
+            vodModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Close logic for video (pause, etc) would go here
+        }
+
+        // Close on outside click
+        vodModal.addEventListener('click', (e) => {
+            if (e.target === vodModal) closeVodModal();
+        });
+
+        // Close on Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && vodModal.classList.contains('active')) {
+                closeVodModal();
+            }
+        });
+
+        // Accordion Toggle (Optional)
+        document.querySelectorAll('.lecture-week-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.parentElement.classList.toggle('collapsed'); // Need CSS for this if wanted
+                // For now, let's keep them all open as per typical dashboard view
+                // Or implementing a simple slide toggle
+                /* 
+                const body = header.nextElementSibling;
+                if (body.style.display === 'none') {
+                    body.style.display = 'block';
+                } else {
+                    body.style.display = 'none';
+                }
+                */
+            });
+        });
+    </script>
+</body>
+
+</html>

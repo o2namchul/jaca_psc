@@ -1,0 +1,410 @@
+/* Scoped CSS for Professor Discussion Page */
+/* All styles must be prefixed with .prof-discuss- to avoid conflicts */
+
+:root {
+    --prof-discuss-navy: #1a2b4b;
+    --prof-discuss-bg: #f4f6f9;
+    --prof-discuss-blue: #0056b3;
+    --prof-discuss-white: #ffffff;
+    --prof-discuss-text-main: #333333;
+    --prof-discuss-text-sub: #666666;
+    --prof-discuss-border: #e1e4e8;
+
+    /* Badge Colors */
+    --prof-discuss-badge-green-bg: #e8f5e9;
+    --prof-discuss-badge-green-text: #2e7d32;
+    --prof-discuss-badge-gray-bg: #f5f5f5;
+    --prof-discuss-badge-gray-text: #616161;
+    --prof-discuss-badge-blue-outline: #1565c0;
+    --prof-discuss-badge-red-bg: #ffebee;
+    --prof-discuss-badge-red-text: #c62828;
+
+    /* Highlight Colors */
+    --prof-discuss-highlight-bg: #fff8e1;
+    /* Light Orange/Yellow for waiting */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--prof-discuss-bg);
+    color: var(--prof-discuss-text-main);
+}
+
+/* Layout Wrapper */
+.prof-discuss-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Scoped) */
+.prof-discuss-sidebar {
+    width: 260px;
+    background-color: var(--prof-discuss-navy);
+    color: var(--prof-discuss-white);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-discuss-sidebar-header {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-discuss-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.prof-discuss-nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prof-discuss-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-discuss-nav-link:hover,
+.prof-discuss-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--prof-discuss-white);
+}
+
+.prof-discuss-nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.prof-discuss-nav-submenu.active {
+    display: block;
+}
+
+.prof-discuss-sub-link {
+    display: block;
+    padding: 12px 20px 12px 40px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.prof-discuss-sub-link:hover,
+.prof-discuss-sub-link.active {
+    color: var(--prof-discuss-white);
+}
+
+/* Main Content Area */
+.prof-discuss-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+.prof-discuss-header {
+    height: 60px;
+    background-color: var(--prof-discuss-white);
+    border-bottom: 1px solid var(--prof-discuss-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+/* Container */
+.prof-discuss-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Top Controls */
+.prof-discuss-controls {
+    background-color: var(--prof-discuss-white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.prof-discuss-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prof-discuss-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-discuss-border);
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+/* Status Board */
+.prof-discuss-status-board {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: var(--prof-discuss-text-sub);
+}
+
+.prof-discuss-status-item strong {
+    color: var(--prof-discuss-text-main);
+    font-size: 1.1rem;
+}
+
+.prof-discuss-text-red {
+    color: var(--prof-discuss-badge-red-text) !important;
+}
+
+/* Table */
+.prof-discuss-table-container {
+    background-color: var(--prof-discuss-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.prof-discuss-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    min-width: 1000px;
+}
+
+.prof-discuss-table th,
+.prof-discuss-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--prof-discuss-border);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prof-discuss-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--prof-discuss-navy);
+}
+
+.prof-discuss-table-left {
+    text-align: left !important;
+}
+
+/* Row Highlight */
+.prof-discuss-row-waiting {
+    background-color: var(--prof-discuss-highlight-bg);
+}
+
+.prof-discuss-row-waiting:hover {
+    background-color: #fff3cd;
+    /* Slightly darker on hover */
+}
+
+/* Score Input */
+.prof-discuss-score-input {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid var(--prof-discuss-border);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.prof-discuss-score-input:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+
+/* Badges */
+.prof-discuss-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.prof-discuss-badge-green {
+    background-color: var(--prof-discuss-badge-green-bg);
+    color: var(--prof-discuss-badge-green-text);
+}
+
+.prof-discuss-badge-gray {
+    background-color: var(--prof-discuss-badge-gray-bg);
+    color: var(--prof-discuss-badge-gray-text);
+}
+
+.prof-discuss-badge-outline-blue {
+    border: 1px solid var(--prof-discuss-badge-blue-outline);
+    color: var(--prof-discuss-badge-blue-outline);
+    background: transparent;
+}
+
+.prof-discuss-badge-red {
+    background-color: var(--prof-discuss-badge-red-bg);
+    color: var(--prof-discuss-badge-red-text);
+}
+
+/* Buttons */
+.prof-discuss-btn-view {
+    padding: 6px 12px;
+    border: 1px solid var(--prof-discuss-border);
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.prof-discuss-btn-view:hover {
+    background-color: #f8f9fa;
+}
+
+.prof-discuss-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.prof-discuss-btn-primary {
+    padding: 10px 20px;
+    background-color: var(--prof-discuss-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.prof-discuss-btn-primary:hover {
+    background-color: #004494;
+}
+
+/* Modal */
+.prof-discuss-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.prof-discuss-modal-overlay.active {
+    display: flex;
+}
+
+.prof-discuss-modal {
+    background-color: white;
+    width: 600px;
+    max-width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+}
+
+.prof-discuss-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--prof-discuss-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prof-discuss-modal-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.prof-discuss-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.prof-discuss-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+.prof-discuss-modal-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--prof-discuss-text-sub);
+}
+
+.prof-discuss-modal-content {
+    font-size: 1rem;
+    color: var(--prof-discuss-text-main);
+}
+
+.prof-discuss-modal-footer {
+    padding: 20px;
+    border-top: 1px solid var(--prof-discuss-border);
+    text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-discuss-wrapper {
+        flex-direction: column;
+    }
+
+    .prof-discuss-sidebar {
+        display: none;
+    }
+
+    .prof-discuss-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prof-discuss-select {
+        width: 100%;
+    }
+
+    .prof-discuss-status-board {
+        justify-content: space-between;
+    }
+}

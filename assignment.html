@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제관리 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/assignment.css">
+</head>
+
+<body>
+
+    <div class="prof-assign-container">
+
+        <!-- Filters & Helper -->
+        <div class="prof-assign-filters">
+            <div class="prof-assign-filter-group">
+                <select class="prof-assign-select">
+                    <option>마케팅원론 (2024-2학기)</option>
+                    <option>경영학개론 (2024-2학기)</option>
+                </select>
+                <select class="prof-assign-select" style="min-width: 250px;">
+                    <option>중간 대체 레포트: 마케팅 성공 사례 분석</option>
+                    <option>기말 대체 레포트: 2025 마케팅 트렌드</option>
+                </select>
+                <select class="prof-assign-select">
+                    <option>전체 상태</option>
+                    <option>채점대기</option>
+                    <option>채점완료</option>
+                    <option>모사의심</option>
+                </select>
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드" style="margin-left: 10px;">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label"></div>
+                    <span>개인정보보호 ON</span>
+                </label>
+            </div>
+
+            <button class="prof-assign-helper-btn" onclick="toggleHelper()">
+                <i class="fa-solid fa-circle-info"></i> 모사 과제 채점 기준표
+                <div class="prof-assign-helper-tooltip" id="helperTooltip">
+                    <span class="prof-assign-helper-title">모사율 구간별 감점 기준</span>
+                    <ul class="prof-assign-helper-list">
+                        <li><span>30% 이상 (위험)</span> <span style="color: #c62828; font-weight: bold;">-10점
+                                감점</span></li>
+                        <li><span>10% ~ 29% (주의)</span> <span style="color: #ef6c00; font-weight: bold;">-5점
+                                감점</span></li>
+                        <li><span>10% 미만 (안전)</span> <span style="color: #2e7d32;">감점 없음</span></li>
+                    </ul>
+                </div>
+            </button>
+        </div>
+
+        <!-- Table -->
+        <div class="prof-assign-table-container">
+            <table class="prof-assign-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>이름 (아이디)</th>
+                        <th>제출일</th>
+                        <th>파일</th>
+                        <th>모사율</th>
+                        <th>점수 (100)</th>
+                        <th>코멘트</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student 1 (High Risk) -->
+                    <tr style="background-color: #fff5f5;">
+                        <td>1</td>
+                        <td>
+                            <span class="privacy-name" data-original="김이젠">김이젠</span>
+                            (<span class="privacy-id" data-original="2024005">2024005</span>)
+                        </td>
+                        <td>2024.12.10</td>
+                        <td><a href="#" style="color: #333;"><i class="fa-solid fa-file-word"></i>
+                                report_kim.hwp</a></td>
+                        <td class="prof-assign-sim-cell">
+                            <span class="prof-assign-risk-high"><i class="fa-solid fa-triangle-exclamation"></i>
+                                88%</span>
+                            <div class="prof-assign-sim-tooltip">vs 박더미 (98% 일치)</div>
+                        </td>
+                        <td><input type="number" class="prof-assign-score-input" value="0"></td>
+                        <td><button class="prof-assign-btn-comment" onclick="openCommentModal('김이젠')"><i
+                                    class="fa-regular fa-comment-dots"></i></button></td>
+                        <td><span class="prof-assign-badge prof-assign-badge-red">채점대기</span></td>
+                    </tr>
+                    <!-- Student 2 (Safe) -->
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <span class="privacy-name" data-original="홍길동">홍길동</span>
+                            (<span class="privacy-id" data-original="2024001">2024001</span>)
+                        </td>
+                        <td>2024.12.09</td>
+                        <td><a href="#" style="color: #333;"><i class="fa-solid fa-file-pdf"></i>
+                                marketing_hong.pdf</a></td>
+                        <td class="prof-assign-sim-cell">
+                            <span class="prof-assign-risk-safe">5%</span>
+                            <div class="prof-assign-sim-tooltip">Clean</div>
+                        </td>
+                        <td><input type="number" class="prof-assign-score-input" value="95"></td>
+                        <td><button class="prof-assign-btn-comment" onclick="openCommentModal('홍길동')"><i
+                                    class="fa-regular fa-comment-dots"></i></button></td>
+                        <td><span class="prof-assign-badge prof-assign-badge-blue">채점완료</span></td>
+                    </tr>
+                    <!-- Student 3 (Warning) -->
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <span class="privacy-name" data-original="박철수">박철수</span>
+                            (<span class="privacy-id" data-original="2024003">2024003</span>)
+                        </td>
+                        <td>2024.12.11</td>
+                        <td><a href="#" style="color: #333;"><i class="fa-solid fa-file-word"></i>
+                                analysis_park.docx</a></td>
+                        <td class="prof-assign-sim-cell">
+                            <span class="prof-assign-risk-warning">15%</span>
+                            <div class="prof-assign-sim-tooltip">vs 인터넷 자료 (블로그)</div>
+                        </td>
+                        <td><input type="number" class="prof-assign-score-input" placeholder=""></td>
+                        <td><button class="prof-assign-btn-comment" onclick="openCommentModal('박철수')"><i
+                                    class="fa-regular fa-comment-dots"></i></button></td>
+                        <td><span class="prof-assign-badge prof-assign-badge-red">채점대기</span></td>
+                    </tr>
+                    <!-- Student 4 (Safe) -->
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <span class="privacy-name" data-original="이영희">이영희</span>
+                            (<span class="privacy-id" data-original="2024002">2024002</span>)
+                        </td>
+                        <td>2024.12.08</td>
+                        <td><a href="#" style="color: #333;"><i class="fa-solid fa-file-pdf"></i>
+                                lee_report_final.pdf</a></td>
+                        <td class="prof-assign-sim-cell">
+                            <span class="prof-assign-risk-safe">8%</span>
+                            <div class="prof-assign-sim-tooltip">Clean</div>
+                        </td>
+                        <td><input type="number" class="prof-assign-score-input" value="92"></td>
+                        <td><button class="prof-assign-btn-comment" onclick="openCommentModal('이영희')"><i
+                                    class="fa-regular fa-comment-dots"></i></button></td>
+                        <td><span class="prof-assign-badge prof-assign-badge-blue">채점완료</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Actions -->
+        <div class="prof-assign-actions">
+            <button class="prof-assign-btn-secondary"><i class="fa-solid fa-rotate-right"></i> 모사율 재검사
+                요청</button>
+            <button class="prof-assign-btn-primary"><i class="fa-solid fa-check"></i> 점수 일괄 저장</button>
+        </div>
+
+    </div>
+
+    <!-- Comment Modal -->
+    <div class="prof-assign-modal-overlay" id="commentModal">
+        <div class="prof-assign-modal">
+            <h3><span id="modalStudentName" class="privacy-name" data-original=""></span> 학생 피드백 입력</h3>
+            <textarea class="prof-assign-textarea" placeholder="학생에게 전달할 피드백을 입력하세요..."></textarea>
+            <div class="prof-assign-modal-actions">
+                <button class="prof-assign-btn-secondary" onclick="closeCommentModal()">취소</button>
+                <button class="prof-assign-btn-primary" onclick="saveComment()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('assignment');
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        // Helper Tooltip
+        function toggleHelper() {
+            const tooltip = document.getElementById('helperTooltip');
+            tooltip.classList.toggle('active');
+        }
+
+        // Close tooltip when clicking outside
+        document.addEventListener('click', function (event) {
+            const helperBtn = document.querySelector('.prof-assign-helper-btn');
+            const tooltip = document.getElementById('helperTooltip');
+            if (!helperBtn.contains(event.target)) {
+                tooltip.classList.remove('active');
+            }
+        });
+
+        // Comment Modal
+        const modal = document.getElementById('commentModal');
+        const modalStudentName = document.getElementById('modalStudentName');
+
+        function openCommentModal(name) {
+            modalStudentName.setAttribute('data-original', name);
+            modalStudentName.innerText = name;
+
+            // Re-apply masking if needed
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle && toggle.checked) {
+                toggleMasking(toggle);
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeCommentModal() {
+            modal.classList.remove('active');
+        }
+
+        function saveComment() {
+            // Save logic here
+            closeCommentModal();
+            alert('피드백이 저장되었습니다.');
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeCommentModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

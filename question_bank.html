@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 교수자 문제은행</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+    <link rel="stylesheet" href="css/question_bank.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-qb-container">
+
+            <!-- Filter Bar -->
+            <div class="prof-qb-filter-bar">
+                <select class="prof-qb-select">
+                    <option value="">전체 과목 (All)</option>
+                    <option value="biz">경영학개론</option>
+                    <option value="hr">인적자원관리</option>
+                    <option value="mkt">마케팅원론</option>
+                </select>
+                <select class="prof-qb-select">
+                    <option value="">유형 전체</option>
+                    <option value="mcq">객관식</option>
+                    <option value="sub">주관식</option>
+                    <option value="ox">OX</option>
+                </select>
+                <select class="prof-qb-select">
+                    <option value="">상태 전체</option>
+                    <option value="pending">검수대기</option>
+                    <option value="approved">사용가능</option>
+                </select>
+
+                <div class="prof-qb-search-wrap">
+                    <input type="text" class="prof-qb-input" placeholder="지문 내용 검색...">
+                    <button class="prof-qb-btn-search">검색</button>
+                </div>
+
+                <button class="prof-qb-btn-primary" onclick="openRegModal()">
+                    <i class="fa-solid fa-plus"></i> 문항 등록
+                </button>
+            </div>
+
+            <!-- Data Grid -->
+            <div class="prof-qb-table-wrapper">
+                <table class="prof-qb-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 120px;">과목</th>
+                            <th style="width: 80px;">유형</th>
+                            <th style="width: 60px;">난이도</th>
+                            <th>지문 (Question)</th>
+                            <th style="width: 80px;">작성자</th>
+                            <th style="width: 100px;">상태</th>
+                            <th style="width: 100px;" class="prof-qb-hide-mobile">등록일</th>
+                            <th style="width: 80px;">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Item 1: Pending, MCQ, Mid -->
+                        <tr onclick="openReviewModal('Pending', '객관식')">
+                            <td>105</td>
+                            <td>경영학개론</td>
+                            <td><span class="prof-qb-badge prof-qb-badge-mcq">객관식</span></td>
+                            <td><span class="prof-qb-diff-mid">중</span></td>
+                            <td class="prof-qb-text-cell">다음 중 마이클 포터의 5-Force 모델에 해당하지 않는 것은?</td>
+                            <td>김이젠</td>
+                            <td><span class="prof-qb-pill prof-qb-pill-orange">검수대기</span></td>
+                            <td class="prof-qb-hide-mobile">2024.12.11</td>
+                            <td><button class="prof-qb-btn-manage">상세</button></td>
+                        </tr>
+                        <!-- Item 2: Approved, Subjective, High -->
+                        <tr onclick="openReviewModal('Approved', '주관식')">
+                            <td>104</td>
+                            <td>인적자원관리</td>
+                            <td><span class="prof-qb-badge prof-qb-badge-sub">주관식</span></td>
+                            <td><span class="prof-qb-diff-high">상</span></td>
+                            <td class="prof-qb-text-cell">직무 평가 방법 중 서열법(Ranking Method)의 장단점을 서술하시오.</td>
+                            <td>이영희</td>
+                            <td><span class="prof-qb-pill prof-qb-pill-green">사용가능</span></td>
+                            <td class="prof-qb-hide-mobile">2024.12.10</td>
+                            <td><button class="prof-qb-btn-manage">상세</button></td>
+                        </tr>
+                        <!-- Item 3: Rejected, OX, Low -->
+                        <tr onclick="openReviewModal('Rejected', 'OX')">
+                            <td>103</td>
+                            <td>마케팅원론</td>
+                            <td><span class="prof-qb-badge prof-qb-badge-ox">OX</span></td>
+                            <td><span class="prof-qb-diff-low">하</span></td>
+                            <td class="prof-qb-text-cell">4P Mix에서 Place는 유통 전략만을 의미한다.</td>
+                            <td>박철수</td>
+                            <td><span class="prof-qb-pill prof-qb-pill-red">반려</span></td>
+                            <td class="prof-qb-hide-mobile">2024.12.09</td>
+                            <td><button class="prof-qb-btn-manage">상세</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Registration/Edit Modal -->
+    <div class="prof-qb-modal-overlay" id="regModal">
+        <div class="prof-qb-modal">
+            <div class="prof-qb-modal-header">
+                <div class="prof-qb-modal-title">새 문항 등록</div>
+                <button class="prof-qb-modal-close" onclick="closeModal('regModal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-qb-modal-body">
+                <!-- Top Info -->
+                <div class="prof-qb-form-row">
+                    <div class="prof-qb-form-group">
+                        <label class="prof-qb-label">과목</label>
+                        <select class="prof-qb-select" style="width:100%">
+                            <option>경영학개론</option>
+                            <option>인적자원관리</option>
+                        </select>
+                    </div>
+                    <div class="prof-qb-form-group">
+                        <label class="prof-qb-label">문제 유형</label>
+                        <select class="prof-qb-select" style="width:100%" id="regTypeSelect"
+                            onchange="toggleAnsSection()">
+                            <option value="mcq">객관식 (선택형)</option>
+                            <option value="sub">주관식 (서술형)</option>
+                            <option value="ox">OX (진위형)</option>
+                        </select>
+                    </div>
+                    <div class="prof-qb-form-group">
+                        <label class="prof-qb-label">난이도</label>
+                        <select class="prof-qb-select" style="width:100%">
+                            <option>상</option>
+                            <option selected>중</option>
+                            <option>하</option>
+                        </select>
+                    </div>
+                    <div class="prof-qb-form-group">
+                        <label class="prof-qb-label">배점</label>
+                        <input type="number" class="prof-qb-select" value="5" style="width:100%">
+                    </div>
+                </div>
+
+                <!-- Question Body -->
+                <div class="prof-qb-form-group" style="margin-bottom: 20px;">
+                    <label class="prof-qb-label">지문 (Question)</label>
+                    <textarea class="prof-qb-textarea" rows="4" placeholder="문제를 입력하세요..."></textarea>
+                </div>
+
+                <!-- Dynamic Answer Sections -->
+
+                <!-- MCQ Section -->
+                <div id="sectionMcq" class="prof-qb-section-mcq prof-qb-show">
+                    <label class="prof-qb-label" style="margin-bottom: 10px; display:block;">보기 및 정답 설정</label>
+                    <div class="prof-qb-option-row">
+                        <input type="radio" name="mcqAns">
+                        <input type="text" class="prof-qb-input" placeholder="보기 1">
+                    </div>
+                    <div class="prof-qb-option-row">
+                        <input type="radio" name="mcqAns">
+                        <input type="text" class="prof-qb-input" placeholder="보기 2">
+                    </div>
+                    <div class="prof-qb-option-row">
+                        <input type="radio" name="mcqAns">
+                        <input type="text" class="prof-qb-input" placeholder="보기 3">
+                    </div>
+                    <div class="prof-qb-option-row">
+                        <input type="radio" name="mcqAns">
+                        <input type="text" class="prof-qb-input" placeholder="보기 4">
+                    </div>
+                    <div class="prof-qb-option-row">
+                        <input type="radio" name="mcqAns">
+                        <input type="text" class="prof-qb-input" placeholder="보기 5">
+                    </div>
+                </div>
+
+                <!-- Subjective Section -->
+                <div id="sectionSub" class="prof-qb-section-sub">
+                    <label class="prof-qb-label">모범 답안 및 채점 키워드</label>
+                    <textarea class="prof-qb-textarea" rows="3" placeholder="모범 답안을 입력하세요."></textarea>
+                    <input type="text" class="prof-qb-input" placeholder="유사 키워드 (쉼표로 구분)"
+                        style="margin-top: 10px; width: 100%;">
+                </div>
+
+                <!-- Explanation -->
+                <div class="prof-qb-form-group">
+                    <label class="prof-qb-label">해설 (학생에게 공개될 풀이)</label>
+                    <textarea class="prof-qb-textarea" rows="3" placeholder="풀이 과정을 입력하세요"></textarea>
+                </div>
+            </div>
+            <div class="prof-qb-modal-footer">
+                <button class="prof-qb-btn-search" onclick="closeModal('regModal')">취소</button>
+                <button class="prof-qb-btn-primary">등록 요청</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal (Read Only + Review Actions) -->
+    <div class="prof-qb-modal-overlay" id="reviewModal">
+        <div class="prof-qb-modal">
+            <div class="prof-qb-modal-header" style="background-color: #fff3e0;">
+                <div class="prof-qb-modal-title">문항 검수 (Review)</div>
+                <button class="prof-qb-modal-close" onclick="closeModal('reviewModal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-qb-modal-body">
+                <div style="background: #eee; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                    <strong>[객관식] 경영학개론 (난이도: 중)</strong><br><br>
+                    Q. 다음 중 마이클 포터의 5-Force 모델에 해당하지 않는 것은?<br><br>
+                    1. 신규 진입자의 위협<br>
+                    2. 대체재의 위협<br>
+                    3. 구매자의 교섭력<br>
+                    4. 공급자의 교섭력<br>
+                    5. 내부 역량의 강화 (정답)
+                </div>
+
+                <!-- Review Comment Area -->
+                <div class="prof-qb-review-box">
+                    <label class="prof-qb-label" style="color: #e65100;">검수자 코멘트</label>
+                    <textarea class="prof-qb-textarea" rows="2"
+                        placeholder="반려 시 사유를 입력하세요. 승인 시에는 비워두셔도 됩니다."></textarea>
+                </div>
+            </div>
+            <div class="prof-qb-modal-footer">
+                <button class="prof-qb-btn-search" style="background-color: #d32f2f; color: white;">반려 (Reject)</button>
+                <button class="prof-qb-btn-primary" style="background-color: #2e7d32;">승인 (Approve)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('question_bank');
+
+        // Modal & Interactions
+        function openRegModal() {
+            document.getElementById('regModal').classList.add('active');
+        }
+
+        function openReviewModal(status, type) {
+            // In a real app, populate data here based on ID
+            document.getElementById('reviewModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Close on outside click
+        window.onclick = function (e) {
+            if (e.target.classList.contains('prof-qb-modal-overlay')) {
+                e.target.classList.remove('active');
+            }
+        }
+
+        // Dynamic Field Logic
+        function toggleAnsSection() {
+            const type = document.getElementById('regTypeSelect').value;
+            const mcqSec = document.getElementById('sectionMcq');
+            const subSec = document.getElementById('sectionSub');
+
+            if (type === 'mcq') {
+                mcqSec.classList.add('prof-qb-show');
+                mcqSec.classList.remove('prof-qb-hide');
+                subSec.classList.remove('prof-qb-show');
+                subSec.classList.add('prof-qb-hide');
+            } else if (type === 'sub') {
+                mcqSec.classList.remove('prof-qb-show');
+                mcqSec.classList.add('prof-qb-hide');
+                subSec.classList.add('prof-qb-show');
+                subSec.classList.remove('prof-qb-hide');
+            } else {
+                // OX case (Simplify for demo)
+                mcqSec.classList.add('prof-qb-hide');
+                subSec.classList.add('prof-qb-hide');
+            }
+        }
+    </script>
+</body>
+
+</html>

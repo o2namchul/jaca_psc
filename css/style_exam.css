@@ -1,0 +1,274 @@
+/* Scoped CSS for Exam Dashboard */
+/* Namespace: .prof-exam-dash- */
+
+:root {
+    --ped-bg: #F5F7FA;
+    --ped-navy: #2C3E50;
+    --ped-blue: #3498DB;
+    --ped-border: #E1E4E8;
+    --ped-text: #333;
+    --ped-text-sub: #666;
+
+    /* Status Colors */
+    --st-blue-bg: #E3F2FD;
+    --st-blue-text: #1976D2;
+    --st-red-bg: #FFEBEE;
+    --st-red-text: #C62828;
+    --st-green-bg: #E8F5E9;
+    --st-green-text: #2E7D32;
+    --st-gray-bg: #F5F5F5;
+    --st-gray-text: #757575;
+}
+
+body {
+    background-color: var(--ped-bg);
+}
+
+.prof-exam-dash-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 1. Header & Summary */
+.prof-exam-dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.prof-exam-header-title {
+    font-size: 1.8rem;
+    color: var(--ped-navy);
+    font-weight: 700;
+}
+
+.prof-exam-summary-widget {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    gap: 30px;
+}
+
+.prof-exam-sum-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prof-exam-sum-label {
+    font-size: 0.9rem;
+    color: var(--ped-text-sub);
+    margin-bottom: 5px;
+}
+
+.prof-exam-sum-val {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ped-navy);
+}
+
+.prof-exam-sum-val.highlight-red {
+    color: var(--st-red-text);
+}
+
+/* 2. Filter Bar */
+.prof-exam-filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.prof-exam-select {
+    padding: 10px 15px;
+    border: 1px solid var(--ped-border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    min-width: 200px;
+    color: var(--ped-text);
+}
+
+/* 3. Card Grid */
+.prof-exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* Card Component */
+.prof-exam-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-exam-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.prof-exam-card.urgent {
+    border-color: #ffcdd2;
+    /* Red accent for urgent grading */
+}
+
+/* Card Header */
+.pec-header {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.pec-title-group h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--ped-text);
+}
+
+.pec-badge-subject {
+    font-size: 0.8rem;
+    background-color: #f0f4f8;
+    color: #546e7a;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.pec-badge-status {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.status-blue {
+    background-color: var(--st-blue-bg);
+    color: var(--st-blue-text);
+}
+
+.status-red {
+    background-color: var(--st-red-bg);
+    color: var(--st-red-text);
+}
+
+.status-green {
+    background-color: var(--st-green-bg);
+    color: var(--st-green-text);
+}
+
+.status-gray {
+    background-color: var(--st-gray-bg);
+    color: var(--st-gray-text);
+}
+
+
+/* Card Body */
+.pec-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pec-info-row {
+    font-size: 0.9rem;
+    color: var(--ped-text-sub);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Progress Sections */
+.pec-progress-group {
+    margin-top: 5px;
+}
+
+.pec-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: var(--ped-text);
+}
+
+.pec-progress-track {
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pec-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+}
+
+.fill-blue {
+    background-color: var(--ped-blue);
+}
+
+.fill-green {
+    background-color: var(--st-green-text);
+}
+
+.fill-orange {
+    background-color: #FB8C00;
+}
+
+/* Card Footer */
+.pec-footer {
+    padding: 15px 20px;
+    background-color: #FAFAFA;
+    border-top: 1px solid #f0f0f0;
+    text-align: right;
+}
+
+.pec-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.pec-btn-primary {
+    background-color: var(--ped-blue);
+    color: white;
+    border: none;
+}
+
+.pec-btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.pec-btn-outline {
+    background: transparent;
+    border: 1px solid var(--ped-border);
+    color: var(--ped-text);
+}
+
+.pec-btn-outline:hover {
+    background-color: #e0e0e0;
+}
+
+.pec-btn-disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+}

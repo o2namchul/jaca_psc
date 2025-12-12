@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험 채점 상세 - 이젠에듀</title>
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/exam_grading_detail.css">
+</head>
+
+<body>
+
+    <div class="prof-grade-container">
+
+        <!-- LNB Stub (Visual Only for consistency with layout.js structure if needed, but here we build custom split) -->
+        <!-- Ideally this replaces the entire layout main content. -->
+        <!-- We will put a simplified Sidebar here or just use the layout.js init on a dummy element if we want the full sidebar. 
+             For "Detail" pages, often a full sidebar is distracted. 
+             Request said "Keep student list on left". Let's assume the main APP sidebar is hidden or we are in a full-screen mode.
+             However, to keep it consistent with the "Project Structure", we usually include layout.js.
+             Let's implement the specific "Left Student List" as requested.
+        -->
+
+        <!-- Left Panel: Student Queue -->
+        <div class="prof-grade-list">
+            <div class="prof-grade-list-header">
+                <div style="font-weight:bold; margin-bottom:10px; font-size:1.1rem;">
+                    <i class="fa-solid fa-users"></i> 응시자 목록
+                </div>
+                <div class="prof-grade-search-box">
+                    <i class="fa-solid fa-magnifying-glass prof-grade-search-icon"></i>
+                    <input type="text" class="prof-grade-search" placeholder="이름/ID 검색">
+                </div>
+
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드" style="font-size: 0.8rem; margin-top:5px;">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label" style="width:30px; height:16px;"></div>
+                    <span style="font-weight:normal; font-size:0.85rem; margin-left:5px;">보호 모드</span>
+                </label>
+
+                <div class="layout-toggle-group" style="margin-top:10px; display:flex; gap:10px;">
+                    <button class="btn-secondary" style="flex:1; padding:5px; font-size:0.8rem;"
+                        onclick="switchMode('student')">학생별</button>
+                    <button class="btn-secondary" style="flex:1; padding:5px; font-size:0.8rem;"
+                        onclick="switchMode('question')">문항별</button>
+                </div>
+            </div>
+
+            <ul class="prof-grade-student-list" id="studentList">
+                <!-- Students will be populated or static demo -->
+                <li class="prof-grade-student-item active">
+                    <div class="prof-grade-student-info">
+                        <span class="prof-grade-name privacy-name" data-original="김이젠">김이젠</span>
+                        <span style="font-size:0.8rem; color:#888;">2024005</span>
+                    </div>
+                    <div class="prof-grade-meta">
+                        <span class="prof-grade-badge badge-wait">채점중 (40/100)</span>
+                        <span>10:30 제출</span>
+                    </div>
+                </li>
+                <li class="prof-grade-student-item">
+                    <div class="prof-grade-student-info">
+                        <span class="prof-grade-name privacy-name" data-original="박철수">박철수</span>
+                        <span style="font-size:0.8rem; color:#888;">2024003</span>
+                    </div>
+                    <div class="prof-grade-meta">
+                        <span class="prof-grade-badge badge-wait">대기</span>
+                        <span>10:35 제출</span>
+                    </div>
+                </li>
+                <li class="prof-grade-student-item">
+                    <div class="prof-grade-student-info">
+                        <span class="prof-grade-name privacy-name" data-original="최영희">최영희</span>
+                        <span style="font-size:0.8rem; color:#888;">2024008</span>
+                    </div>
+                    <div class="prof-grade-meta">
+                        <span class="prof-grade-badge badge-done">완료 (95/100)</span>
+                        <span>10:20 제출</span>
+                    </div>
+                </li>
+                <li class="prof-grade-student-item">
+                    <div class="prof-grade-student-info">
+                        <span class="prof-grade-name privacy-name" data-original="이민수">이민수</span>
+                        <span style="font-size:0.8rem; color:#888;">2024012</span>
+                    </div>
+                    <div class="prof-grade-meta">
+                        <span class="prof-grade-badge badge-done">완료 (88/100)</span>
+                        <span>10:22 제출</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Panel: Grading Workspace -->
+        <div class="prof-grade-workspace">
+
+            <!-- Header -->
+            <div class="prof-grade-header">
+                <div class="prof-grade-info">
+                    <h2 style="font-size:1.2rem; margin:0;"><span class="privacy-name" data-original="김이젠">김이젠</span> 학생
+                        답안지</h2>
+                    <span style="color:#666;">경영학개론 2024-2학기 중간고사</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:20px;">
+                    <div style="text-align:right;">
+                        <span style="font-size:0.9rem; color:#666; display:block;">현재 총점 (객관식 40 + 주관식 <span
+                                id="subjScore">0</span>)</span>
+                        <span class="prof-grade-total-score" id="totalScore">40</span> <span style="color:#999;">/
+                            100</span>
+                    </div>
+                    <button class="btn-secondary" style="font-size:0.9rem;" onclick="location.href='exam_grading.html'">
+                        <i class="fa-solid fa-xmark"></i> 닫기
+                    </button>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="prof-grade-body">
+
+                <!-- Q21 -->
+                <div class="prof-grade-card" id="card_q21">
+                    <div class="prof-grade-q-title">
+                        <span>Q21. SWOT 분석의 4가지 요소를 서술하시오.</span>
+                        <span style="color:#666; font-size:0.9rem;">(5점)</span>
+                    </div>
+                    <div class="prof-grade-answer-section">
+                        <!-- Model Answer -->
+                        <div class="prof-grade-model-box">
+                            <div class="prof-grade-model-header" onclick="toggleModel(this)">
+                                <span><i class="fa-regular fa-lightbulb"></i> 모범 답안</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="prof-grade-model-content">
+                                Strength(강점), Weakness(약점), Opportunity(기회), Threat(위협)
+                            </div>
+                        </div>
+                        <!-- Student Answer -->
+                        <div class="prof-grade-student-box">
+                            <span class="highlight-keyword">강점</span>, <span class="highlight-keyword">약점</span>, <span
+                                class="highlight-keyword">기회</span>, 위기입니다.
+                        </div>
+                    </div>
+                    <!-- Grading Tools -->
+                    <div class="prof-grade-tools">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px; color:#666;">점수 입력</label>
+                            <input type="number" class="prof-grade-score-input" id="score_q21" max="5" min="0" value=""
+                                oninput="updateTotal()" placeholder="-">
+                        </div>
+                        <div class="prof-grade-chips">
+                            <button class="prof-grade-chip" onclick="setScore('q21', 5)">만점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q21', 3)">3점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q21', 1)">1점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q21', 0)">0점</button>
+                        </div>
+                        <input type="text" class="prof-grade-comment" placeholder="코멘트 (선택사항)">
+                    </div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="prof-grade-card" id="card_q22">
+                    <div class="prof-grade-q-title">
+                        <span>Q22. 마케팅 믹스(4P)에 대해 설명하시오.</span>
+                        <span style="color:#666; font-size:0.9rem;">(5점)</span>
+                    </div>
+                    <div class="prof-grade-answer-section">
+                        <div class="prof-grade-model-box">
+                            <div class="prof-grade-model-header" onclick="toggleModel(this)">
+                                <span><i class="fa-regular fa-lightbulb"></i> 모범 답안</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="prof-grade-model-content">
+                                Product(제품), Price(가격), Place(유통), Promotion(촉진)
+                            </div>
+                        </div>
+                        <div class="prof-grade-student-box">
+                            Product, Price 까지는 알겠는데 나머지는 모르겠습니다.
+                        </div>
+                    </div>
+                    <div class="prof-grade-tools">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px; color:#666;">점수 입력</label>
+                            <input type="number" class="prof-grade-score-input" id="score_q22" max="5" min="0"
+                                oninput="updateTotal()" placeholder="-">
+                        </div>
+                        <div class="prof-grade-chips">
+                            <button class="prof-grade-chip" onclick="setScore('q22', 5)">만점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q22', 2)">2점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q22', 0)">0점</button>
+                        </div>
+                        <input type="text" class="prof-grade-comment" placeholder="코멘트">
+                    </div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="prof-grade-card" id="card_q23">
+                    <div class="prof-grade-q-title">
+                        <span>Q23. ESG 경영의 3가지 핵심 요소는 무엇인가?</span>
+                        <span style="color:#666; font-size:0.9rem;">(5점)</span>
+                    </div>
+                    <div class="prof-grade-answer-section">
+                        <div class="prof-grade-model-box">
+                            <div class="prof-grade-model-header" onclick="toggleModel(this)">
+                                <span><i class="fa-regular fa-lightbulb"></i> 모범 답안</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="prof-grade-model-content">
+                                Environment(환경), Social(사회), Governance(지배구조)
+                            </div>
+                        </div>
+                        <div class="prof-grade-student-box">
+                            환경이랑 사회 공헌, 그리고 주주 가치 제고라고 알고 있습니다.
+                        </div>
+                    </div>
+                    <div class="prof-grade-tools">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px; color:#666;">점수 입력</label>
+                            <input type="number" class="prof-grade-score-input" id="score_q23" max="5" min="0"
+                                oninput="updateTotal()" placeholder="-">
+                        </div>
+                        <div class="prof-grade-chips">
+                            <button class="prof-grade-chip" onclick="setScore('q23', 5)">만점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q23', 3)">3점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q23', 0)">0점</button>
+                        </div>
+                        <input type="text" class="prof-grade-comment" placeholder="코멘트">
+                    </div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="prof-grade-card" id="card_q24">
+                    <div class="prof-grade-q-title">
+                        <span>Q24. '깨진 유리창의 법칙'의 시사점을 서술하시오.</span>
+                        <span style="color:#666; font-size:0.9rem;">(10점)</span>
+                    </div>
+                    <div class="prof-grade-answer-section">
+                        <div class="prof-grade-model-box">
+                            <div class="prof-grade-model-header" onclick="toggleModel(this)">
+                                <span><i class="fa-regular fa-lightbulb"></i> 모범 답안</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="prof-grade-model-content">
+                                사소한 무질서를 방치하면 큰 범죄로 이어진다. 디테일 관리 중요.
+                            </div>
+                        </div>
+                        <div class="prof-grade-student-box">
+                            작은 실수를 용납하지 않는 엄격한 규율이 필요하다는 뜻입니다.
+                        </div>
+                    </div>
+                    <div class="prof-grade-tools">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px; color:#666;">점수 입력</label>
+                            <input type="number" class="prof-grade-score-input" id="score_q24" max="10" min="0"
+                                oninput="updateTotal()" placeholder="-">
+                        </div>
+                        <div class="prof-grade-chips">
+                            <button class="prof-grade-chip" onclick="setScore('q24', 10)">만점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q24', 5)">5점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q24', 0)">0점</button>
+                        </div>
+                        <input type="text" class="prof-grade-comment" placeholder="코멘트">
+                    </div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="prof-grade-card" id="card_q25">
+                    <div class="prof-grade-q-title">
+                        <span>Q25. 손익분기점(BEP)의 정의를 서술하시오.</span>
+                        <span style="color:#666; font-size:0.9rem;">(5점)</span>
+                    </div>
+                    <div class="prof-grade-answer-section">
+                        <div class="prof-grade-model-box">
+                            <div class="prof-grade-model-header" onclick="toggleModel(this)">
+                                <span><i class="fa-regular fa-lightbulb"></i> 모범 답안</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="prof-grade-model-content">
+                                총수익과 총비용이 일치하는 매출 시점.
+                            </div>
+                        </div>
+                        <div class="prof-grade-student-box">
+                            회사가 돈을 벌기 시작하는 시점.
+                        </div>
+                    </div>
+                    <div class="prof-grade-tools">
+                        <div>
+                            <label style="display:block; font-size:0.8rem; margin-bottom:5px; color:#666;">점수 입력</label>
+                            <input type="number" class="prof-grade-score-input" id="score_q25" max="5" min="0"
+                                oninput="updateTotal()" placeholder="-">
+                        </div>
+                        <div class="prof-grade-chips">
+                            <button class="prof-grade-chip" onclick="setScore('q25', 5)">만점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q25', 3)">3점</button>
+                            <button class="prof-grade-chip" onclick="setScore('q25', 0)">0점</button>
+                        </div>
+                        <input type="text" class="prof-grade-comment" placeholder="코멘트">
+                    </div>
+                </div>
+
+                <div style="height: 100px;"></div>
+
+            </div>
+
+            <!-- Footer Action Bar -->
+            <div class="prof-grade-footer">
+                <button class="btn-grade-action btn-secondary" onclick="alert('이전 학생이 없습니다.')">
+                    <i class="fa-solid fa-chevron-left"></i> 이전 학생
+                </button>
+                <div style="color:#666; font-size:0.9rem;">
+                    <i class="fa-regular fa-keyboard"></i> 단축키: <span class="shortcut-tooltip">Alt+1 (만점)</span> <span
+                        class="shortcut-tooltip">Ctrl+Enter (저장&다음)</span>
+                </div>
+                <button class="btn-grade-action btn-primary" onclick="saveAndNext()">
+                    채점 저장 및 다음 학생 <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="layout.js"></script>
+    <script>
+        // Init Layout (mainly for global handlers if any, masking)
+        // initLayout('exam_grading_detail'); // We created custom layout here so might not need full init, but masking is needed.
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+
+            // Focus first input
+            setTimeout(() => {
+                const firstInput = document.getElementById('score_q21');
+                if (firstInput) firstInput.focus();
+            }, 500);
+
+            // Add global keydown listener
+            document.addEventListener('keydown', handleGlobalKeydown);
+        });
+
+        function toggleModel(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.fa-chevron-down') || header.querySelector('.fa-chevron-up');
+            content.classList.toggle('show');
+
+            if (content.classList.contains('show')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+
+        function setScore(qId, val) {
+            const input = document.getElementById('score_' + qId);
+            if (input) {
+                input.value = val;
+                updateTotal();
+
+                // Card visual update
+                const card = document.getElementById('card_' + qId);
+                card.classList.add('completed');
+            }
+        }
+
+        function updateTotal() {
+            let totalSubj = 0;
+            const objScore = 40; // Fixed
+
+            const inputs = document.querySelectorAll('.prof-grade-score-input');
+            inputs.forEach(inp => {
+                const val = parseInt(inp.value);
+                if (!isNaN(val)) {
+                    totalSubj += val;
+                    // Add completion style if value is present
+                    const card = inp.closest('.prof-grade-card');
+                    card.classList.add('completed');
+                } else {
+                    const card = inp.closest('.prof-grade-card');
+                    card.classList.remove('completed');
+                }
+            });
+
+            document.getElementById('subjScore').innerText = totalSubj;
+            document.getElementById('totalScore').innerText = (objScore + totalSubj);
+        }
+
+        function saveAndNext() {
+            // Validate?
+            const inputs = document.querySelectorAll('.prof-grade-score-input');
+            let allFilled = true;
+            inputs.forEach(inp => {
+                if (inp.value === '') allFilled = false;
+            });
+
+            if (!allFilled) {
+                if (!confirm('채점하지 않은 문항이 있습니다. 그래도 저장하시겠습니까?')) return;
+            }
+
+            alert('채점 저장 완료! 다음 학생으로 이동합니다.');
+            // Pseudo navigation logic
+            // location.reload(); 
+        }
+
+        function switchMode(mode) {
+            if (mode === 'question') {
+                alert('문항별 채점 모드로 전환합니다. (시뮬레이션)\n좌측 리스트가 Q21, Q22... 로 변경됩니다.');
+            } else {
+                alert('학생별 채점 모드로 전환합니다.');
+            }
+        }
+
+        // Shortcuts
+        function handleGlobalKeydown(e) {
+            // Ctrl + Enter : Save
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                saveAndNext();
+                return;
+            }
+
+            // Alt + 1 : Max Score for FOCUSED input
+            if (e.altKey && e.key === '1') {
+                e.preventDefault();
+                const active = document.activeElement;
+                if (active && active.classList.contains('prof-grade-score-input')) {
+                    const max = active.getAttribute('max');
+                    active.value = max;
+                    updateTotal();
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

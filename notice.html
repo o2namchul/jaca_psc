@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 관리 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/notice.css">
+</head>
+
+<body>
+
+    <div class="prof-notice-wrapper" style="padding: 30px;">
+        <!-- Search Bar -->
+        <div class="prof-notice-search-bar">
+            <select class="prof-notice-select">
+                <option value="">전체 과목</option>
+                <option value="MGT1001">경영학개론</option>
+                <option value="HRM2002">인적자원관리</option>
+                <option value="MKT3003">마케팅원론</option>
+            </select>
+            <input type="text" class="prof-notice-input" placeholder="제목 또는 내용을 검색하세요">
+            <button class="prof-notice-btn-search">검색</button>
+        </div>
+
+        <!-- Notice Table -->
+        <div class="prof-notice-table-container">
+            <table class="prof-notice-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 5%;" class="prof-notice-col-no">
+                    <col style="width: 15%;">
+                    <col style="width: 45%;">
+                    <col style="width: 5%;">
+                    <col style="width: 10%;" class="prof-notice-col-date">
+                    <col style="width: 10%;" class="prof-notice-col-views">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th class="prof-notice-col-no">No</th>
+                        <th>분류</th>
+                        <th>제목</th>
+                        <th>첨부</th>
+                        <th class="prof-notice-col-date">작성일</th>
+                        <th class="prof-notice-col-views">조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr class="prof-notice-row-urgent">
+                        <td><input type="checkbox"></td>
+                        <td class="prof-notice-col-no">105</td>
+                        <td><span class="prof-notice-badge prof-notice-badge-navy">전체공지</span>
+                        </td>
+                        <td class="prof-notice-table-left">
+                            <a href="#" class="prof-notice-link" onclick="openViewModal(this)">
+                                <span class="prof-notice-badge prof-notice-badge-urgent">긴급</span>
+                                LMS 서버 정기 점검 안내 (12/15 00:00~06:00)
+                            </a>
+                        </td>
+                        <td><i class="fa-solid fa-paperclip" style="color: #999;"></i></td>
+                        <td class="prof-notice-col-date">2024.12.10</td>
+                        <td class="prof-notice-col-views">1,205</td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr class="prof-notice-row-must">
+                        <td><input type="checkbox"></td>
+                        <td class="prof-notice-col-no">104</td>
+                        <td><span class="prof-notice-badge prof-notice-badge-outline-blue">경영학개론</span>
+                        </td>
+                        <td class="prof-notice-table-left">
+                            <a href="#" class="prof-notice-link" onclick="openViewModal(this)">
+                                <span class="prof-notice-badge prof-notice-badge-must">필독</span>
+                                중간고사 부정행위 관련 유의사항 안내
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td class="prof-notice-col-date">2024.10.20</td>
+                        <td class="prof-notice-col-views">450</td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="prof-notice-col-no">103</td>
+                        <td><span class="prof-notice-badge prof-notice-badge-outline-gray">인적자원관리</span>
+                        </td>
+                        <td class="prof-notice-table-left">
+                            <a href="#" class="prof-notice-link" onclick="openViewModal(this)">
+                                10주차 과제 제출 기한 연장 안내
+                            </a>
+                        </td>
+                        <td><i class="fa-solid fa-paperclip" style="color: #999;"></i></td>
+                        <td class="prof-notice-col-date">2024.12.08</td>
+                        <td class="prof-notice-col-views">88</td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="prof-notice-col-no">102</td>
+                        <td><span class="prof-notice-badge prof-notice-badge-outline-gray">마케팅원론</span>
+                        </td>
+                        <td class="prof-notice-table-left">
+                            <a href="#" class="prof-notice-link" onclick="openViewModal(this)">
+                                9주차 보강 영상 업로드 완료 (필수 시청)
+                            </a>
+                        </td>
+                        <td>-</td>
+                        <td class="prof-notice-col-date">2024.12.05</td>
+                        <td class="prof-notice-col-views">112</td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="prof-notice-col-no">101</td>
+                        <td><span class="prof-notice-badge prof-notice-badge-outline-blue">경영학개론</span>
+                        </td>
+                        <td class="prof-notice-table-left">
+                            <a href="#" class="prof-notice-link" onclick="openViewModal(this)">
+                                조별 프로젝트 조 편성 결과 공지
+                            </a>
+                        </td>
+                        <td><i class="fa-solid fa-paperclip" style="color: #999;"></i></td>
+                        <td class="prof-notice-col-date">2024.11.30</td>
+                        <td class="prof-notice-col-views">320</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="prof-notice-footer">
+            <button class="prof-notice-btn-secondary">선택 삭제</button>
+
+            <div class="prof-notice-pagination">
+                <a href="#" class="prof-notice-page-btn"><i class="fa-solid fa-chevron-left"></i></a>
+                <a href="#" class="prof-notice-page-btn active">1</a>
+                <a href="#" class="prof-notice-page-btn">2</a>
+                <a href="#" class="prof-notice-page-btn">3</a>
+                <a href="#" class="prof-notice-page-btn"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <button class="prof-notice-btn-primary" onclick="openWriteModal()">
+                <i class="fa-solid fa-pen"></i> 공지 등록
+            </button>
+        </div>
+    </div>
+
+    <!-- View Modal -->
+    <div id="view-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">공지사항 조회</h3>
+                <button class="btn-close-icon" onclick="closeModal('view-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="view-header">
+                    <h2 style="margin-top: 0; color: #333;">LMS 서버 정기 점검 안내 (12/15 00:00~06:00)</h2>
+                    <div class="view-info">
+                        <span class="view-info-item"><strong>작성자</strong> 이젠에듀</span>
+                        <span class="view-info-item"><strong>등록일</strong> 2024.12.10</span>
+                        <span class="view-info-item"><strong>조회수</strong> 1,205</span>
+                        <span class="view-info-item"><span class="prof-notice-badge prof-notice-badge-navy">전체공지</span>
+                            <span class="prof-notice-badge prof-notice-badge-urgent">긴급</span></span>
+                    </div>
+                </div>
+                <div class="view-content">
+                    <p>안녕하세요, 이젠에듀 교육지원팀입니다.</p>
+                    <p>안정적인 서비스 제공을 위해 LMS 서버 정기 점검을 진행할 예정입니다.</p>
+                    <p><br></p>
+                    <p><strong>[점검 일시]</strong></p>
+                    <p>2024년 12월 15일 (일) 00:00 ~ 06:00 (6시간)</p>
+                    <p><br></p>
+                    <p>점검 시간 동안에는 강의 수강, 과제 제출 등 모든 서비스 이용이 중단되오니,</p>
+                    <p>학습자 및 교수진 여러분께서는 이용에 참고하시기 바랍니다.</p>
+                    <p><br></p>
+                    <p>감사합니다.</p>
+                </div>
+                <div class="view-attachments">
+                    <div class="attachment-title"><i class="fa-solid fa-paperclip"></i> 첨부파일</div>
+                    <a href="#" class="attachment-link">점검안내_241215.pdf (124KB) <i class="fa-solid fa-download"></i></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-delete">삭제</button>
+                <button class="btn-primary" onclick="switchToEditMode()">수정</button>
+                <button class="btn-secondary" onclick="closeModal('view-modal')">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write Modal -->
+    <div id="write-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="write-modal-title">공지사항 등록</h3>
+                <button class="btn-close-icon" onclick="closeModal('write-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="write-form-group">
+                    <label class="write-label">분류</label>
+                    <select class="write-select">
+                        <option value="ALL">전체 공지</option>
+                        <option value="MGT1001">경영학개론</option>
+                        <option value="HRM2002">인적자원관리</option>
+                    </select>
+                </div>
+                <div class="write-form-group">
+                    <label class="write-label">옵션 설정</label>
+                    <div class="write-toggle-badges">
+                        <div class="toggle-badge urgent" onclick="toggleBadge(this)">긴급</div>
+                        <div class="toggle-badge must" onclick="toggleBadge(this)">필독</div>
+                    </div>
+                </div>
+                <div class="write-form-group">
+                    <label class="write-label">제목</label>
+                    <input type="text" class="write-input" placeholder="제목을 입력해주세요.">
+                </div>
+                <div class="write-form-group">
+                    <label class="write-label">내용</label>
+                    <div class="editor-container">
+                        <div class="editor-toolbar">
+                            <button class="editor-btn"><i class="fa-solid fa-bold"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-italic"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-underline"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-align-left"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-align-center"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-align-right"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-list-ul"></i></button>
+                            <button class="editor-btn"><i class="fa-solid fa-image"></i></button>
+                        </div>
+                        <textarea class="editor-textarea" placeholder="내용을 작성해주세요."></textarea>
+                    </div>
+                </div>
+                <div class="write-form-group">
+                    <label class="write-label">파일 첨부</label>
+                    <div class="file-drop-area">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div>이곳에 파일을 드래그하거나 클릭하여 업로드하세요.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('write-modal')">취소</button>
+                <button class="btn-primary" onclick="saveNotice()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        // 페이지별 ID를 다르게 넣어주세요! (예: index.html -> 'dashboard')
+        initLayout('notice');
+
+        // Modal Logic
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // View Modal Trigger
+        function openViewModal(element) {
+            // In a real app, you would fetch data based on ID
+            openModal('view-modal');
+        }
+
+        // Write Modal Trigger
+        function openWriteModal() {
+            document.getElementById('write-modal-title').innerText = '공지사항 등록';
+            // Reset form if needed
+            openModal('write-modal');
+        }
+
+        // Edit Mode Logic
+        function switchToEditMode() {
+            closeModal('view-modal');
+            document.getElementById('write-modal-title').innerText = '공지사항 수정';
+            // Pre-fill form data simulation
+            // ...
+            openModal('write-modal');
+        }
+
+        // Badge Toggle Logic
+        function toggleBadge(element) {
+            element.classList.toggle('active');
+        }
+
+        // Save Logic
+        function saveNotice() {
+            alert('공지사항이 저장되었습니다.');
+            closeModal('write-modal');
+        }
+
+        // Close on Outside Click
+        window.addEventListener('click', function (e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close on Esc Key
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                const activeModals = document.querySelectorAll('.modal-overlay.active');
+                activeModals.forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

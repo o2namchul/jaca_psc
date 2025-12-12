@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 마이페이지</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Layout & Page CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/mypage.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-my-layout">
+
+            <!-- Left Profile Card -->
+            <div class="prof-my-profile-section">
+                <div class="prof-my-avatar-circle">
+                    <i class="fa-solid fa-user"></i>
+                    <button class="prof-my-avatar-edit-btn" title="사진 변경"><i class="fa-solid fa-camera"></i></button>
+                </div>
+                <div class="prof-my-name-large">김이젠 교수</div>
+                <div class="prof-my-dept-text">경영학부 / 전임교수</div>
+                <div class="prof-my-status-label">재직중 (2024-1학기)</div>
+
+                <div class="prof-my-contact-list">
+                    <div class="prof-my-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>kim_ezen@ezenedu.co.kr</span>
+                    </div>
+                    <div class="prof-my-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>02-1234-5678 (내선 301)</span>
+                    </div>
+                    <div class="prof-my-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>본관 502호 연구실</span>
+                    </div>
+                </div>
+                <button class="prof-my-btn-edit-profile">기본 정보 수정</button>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="prof-my-content-section">
+                <!-- Tabs -->
+                <div class="prof-my-tabs">
+                    <div class="prof-my-tab active" onclick="switchTab('info')">인사정보</div>
+                    <div class="prof-my-tab" onclick="switchTab('salary')">급여/계약</div>
+                    <div class="prof-my-tab" onclick="switchTab('cert')">증명서 발급</div>
+                    <div class="prof-my-tab" onclick="switchTab('security')">계정 보안</div>
+                </div>
+
+                <!-- Tab Content: Info -->
+                <div id="tab-info" class="prof-my-tab-content active">
+                    <h3 class="prof-my-section-title">소속 및 직위 정보</h3>
+                    <table class="prof-my-info-table">
+                        <tr>
+                            <th>소속 학부</th>
+                            <td>경영학부</td>
+                            <th>직위</th>
+                            <td>전임교수</td>
+                        </tr>
+                        <tr>
+                            <th>사번</th>
+                            <td>P2023001</td>
+                            <th>입사일</th>
+                            <td>2018.03.01</td>
+                        </tr>
+                        <tr>
+                            <th>담당 과목</th>
+                            <td colspan="3">경영학개론, 인적자원관리, 마케팅원론</td>
+                        </tr>
+                    </table>
+
+                    <h3 class="prof-my-section-title" style="margin-top: 30px;">학력 및 경력</h3>
+                    <table class="prof-my-info-table">
+                        <tr>
+                            <th>최종 학력</th>
+                            <td>이젠대학교 대학원 경영학 박사 (2015)</td>
+                        </tr>
+                        <tr>
+                            <th>주요 경력</th>
+                            <td>
+                                - 2015~2018: ABC 컨설팅 수석 연구원<br>
+                                - 2018~현재: 이젠에듀원격평생교육원 교수
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Tab Content: Salary -->
+                <div id="tab-salary" class="prof-my-tab-content">
+                    <h3 class="prof-my-section-title">급여 명세서 조회</h3>
+                    <div class="prof-my-filter-row">
+                        <select class="prof-my-select">
+                            <option>2024년</option>
+                            <option>2023년</option>
+                        </select>
+                        <select class="prof-my-select">
+                            <option>12월</option>
+                            <option>11월</option>
+                            <option>10월</option>
+                        </select>
+                        <button class="prof-my-btn-action">조회</button>
+                    </div>
+                    <div class="prof-my-alert-box">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>급여 명세서는 PDF 형식으로 제공되며, 비밀번호(생년월일 6자리)가 설정되어 있습니다.</span>
+                    </div>
+                    <table class="prof-my-list-table">
+                        <thead>
+                            <tr>
+                                <th>지급년월</th>
+                                <th>지급총액</th>
+                                <th>공제총액</th>
+                                <th>실수령액</th>
+                                <th>명세서</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-11</td>
+                                <td>4,500,000원</td>
+                                <td>850,000원</td>
+                                <td>3,650,000원</td>
+                                <td><button class="prof-my-btn-sm">다운로드</button></td>
+                            </tr>
+                            <tr>
+                                <td>2024-10</td>
+                                <td>4,500,000원</td>
+                                <td>845,000원</td>
+                                <td>3,655,000원</td>
+                                <td><button class="prof-my-btn-sm">다운로드</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab Content: Cert -->
+                <div id="tab-cert" class="prof-my-tab-content">
+                    <h3 class="prof-my-section-title">증명서 신청/발급</h3>
+                    <div class="prof-my-cert-grid">
+                        <div class="prof-my-cert-item">
+                            <div class="prof-my-cert-icon"><i class="fa-solid fa-file-contract"></i></div>
+                            <div class="prof-my-cert-name">재직증명서</div>
+                            <button class="prof-my-btn-action" onclick="openDocModal('재직증명서')">발급 신청</button>
+                        </div>
+                        <div class="prof-my-cert-item">
+                            <div class="prof-my-cert-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                            <div class="prof-my-cert-name">원천징수영수증</div>
+                            <button class="prof-my-btn-action" onclick="openDocModal('원천징수영수증')">발급 신청</button>
+                        </div>
+                        <div class="prof-my-cert-item">
+                            <div class="prof-my-cert-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div class="prof-my-cert-name">강의경력증명서</div>
+                            <button class="prof-my-btn-action" onclick="openDocModal('강의경력증명서')">발급 신청</button>
+                        </div>
+                    </div>
+
+                    <h3 class="prof-my-section-title" style="margin-top:30px;">발급 내역</h3>
+                    <table class="prof-my-list-table">
+                        <thead>
+                            <tr>
+                                <th>신청일자</th>
+                                <th>증명서종류</th>
+                                <th>용도</th>
+                                <th>상태</th>
+                                <th>출력</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024.11.01</td>
+                                <td>재직증명서</td>
+                                <td>금융기관 제출용</td>
+                                <td><span style="color:green; font-weight:bold;">발급완료</span></td>
+                                <td><button class="prof-my-btn-sm">인쇄</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab Content: Security -->
+                <div id="tab-security" class="prof-my-tab-content">
+                    <h3 class="prof-my-section-title">비밀번호 변경</h3>
+                    <div style="max-width: 400px; margin-bottom: 40px;">
+                        <div class="prof-my-form-group">
+                            <label>현재 비밀번호</label>
+                            <input type="password" class="prof-my-input" placeholder="현재 비밀번호 입력">
+                        </div>
+                        <div class="prof-my-form-group">
+                            <label>새 비밀번호</label>
+                            <input type="password" class="prof-my-input" placeholder="새 비밀번호 (영문, 숫자, 특수문자 포함 8자 이상)">
+                        </div>
+                        <div class="prof-my-form-group">
+                            <label>새 비밀번호 확인</label>
+                            <input type="password" class="prof-my-input" placeholder="새 비밀번호 다시 입력">
+                        </div>
+                        <button class="prof-my-btn-action">비밀번호 변경하기</button>
+                    </div>
+
+                    <h3 class="prof-my-section-title">2단계 인증 설정</h3>
+                    <div class="prof-my-alert-box">
+                        <span>현재 OTP 인증이 <strong>사용 중지</strong> 상태입니다. 계정 보호를 위해 설정을 권장합니다.</span>
+                    </div>
+                    <button class="prof-my-btn-sm">OTP 설정하기</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logic -->
+    <div class="prof-my-modal-overlay" id="docModal">
+        <div class="prof-my-modal">
+            <div class="prof-my-modal-header">
+                <div class="prof-my-modal-title">증명서 발급 신청</div>
+                <button class="prof-my-modal-close" onclick="closeDocModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-my-modal-body">
+                <p>선택하신 [ <strong id="docTargetName"></strong> ]를 발급하시겠습니까?</p>
+                <div class="prof-my-form-group" style="margin-top:15px;">
+                    <label>제출 용도</label>
+                    <input type="text" class="prof-my-input" placeholder="예: 은행 대출용, 기관 제출용 등">
+                </div>
+                <div class="prof-my-form-group">
+                    <label>발급 매수</label>
+                    <select class="prof-my-select" style="width: 100%;">
+                        <option>1매</option>
+                        <option>2매</option>
+                        <option>3매</option>
+                    </select>
+                </div>
+            </div>
+            <div class="prof-my-modal-footer">
+                <button class="prof-my-btn-sm" onclick="closeDocModal()">취소</button>
+                <button class="prof-my-btn-action">신청하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Initialization -->
+    <script src="layout.js"></script>
+    <script>
+        initLayout('mypage');
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Remove active classes
+            document.querySelectorAll('.prof-my-tab').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.prof-my-tab-content').forEach(el => el.classList.remove('active'));
+
+            // Activate clicked tab
+            // Note: In a cleaner implementation, we'd use data-attributes, but matching by index or text for now.
+            // Let's use simpler logic: find the tab that called this function and add active.
+            // But we need to update the caller's class. Since we are in an onclick, 'this' isn't available directly here easily without passing it.
+            // Instead, let's just re-select based on the known order or ID if possible.
+            // Hardcoded mapping for simplicity in this specific file:
+            const tabs = document.querySelectorAll('.prof-my-tab');
+            if (tabName === 'info') tabs[0].classList.add('active');
+            if (tabName === 'salary') tabs[1].classList.add('active');
+            if (tabName === 'cert') tabs[2].classList.add('active');
+            if (tabName === 'security') tabs[3].classList.add('active');
+
+            // Activate content
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // Modal Functions
+        function openDocModal(docName) {
+            document.getElementById('docTargetName').textContent = docName;
+            document.getElementById('docModal').classList.add('active');
+        }
+
+        function closeDocModal() {
+            document.getElementById('docModal').classList.remove('active');
+        }
+
+        // Close modal on click outside
+        document.getElementById('docModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeDocModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

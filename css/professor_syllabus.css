@@ -1,0 +1,375 @@
+/* Scoped CSS for Professor Course Syllabus */
+/* All styles must be prefixed with .prof-plan- to avoid conflicts */
+
+:root {
+    --prof-plan-navy: #1a2b4b;
+    --prof-plan-bg: #f4f6f9;
+    --prof-plan-blue: #0056b3;
+    --prof-plan-white: #ffffff;
+    --prof-plan-text-main: #333333;
+    --prof-plan-text-sub: #666666;
+    --prof-plan-border: #e1e4e8;
+
+    /* Badge Colors */
+    --prof-plan-badge-navy-bg: #1a2b4b;
+    --prof-plan-badge-navy-text: #ffffff;
+    --prof-plan-badge-gray-bg: #f5f5f5;
+    --prof-plan-badge-gray-text: #616161;
+    --prof-plan-badge-blue-outline: #0056b3;
+    --prof-plan-badge-green-bg: #e8f5e9;
+    --prof-plan-badge-green-text: #2e7d32;
+    --prof-plan-badge-orange-bg: #fff3e0;
+    --prof-plan-badge-orange-text: #ef6c00;
+    --prof-plan-badge-red-bg: #ffebee;
+    --prof-plan-badge-red-text: #c62828;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--prof-plan-bg);
+    color: var(--prof-plan-text-main);
+}
+
+/* Layout Wrapper */
+.prof-plan-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Scoped) */
+.prof-plan-sidebar {
+    width: 260px;
+    background-color: var(--prof-plan-navy);
+    color: var(--prof-plan-white);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-plan-sidebar-header {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-plan-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.prof-plan-nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prof-plan-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-plan-nav-link:hover,
+.prof-plan-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--prof-plan-white);
+}
+
+.prof-plan-nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.prof-plan-nav-submenu.active {
+    display: block;
+}
+
+.prof-plan-sub-link {
+    display: block;
+    padding: 12px 20px 12px 40px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.prof-plan-sub-link:hover,
+.prof-plan-sub-link.active {
+    color: var(--prof-plan-white);
+}
+
+/* Main Content Area */
+.prof-plan-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+.prof-plan-header {
+    height: 60px;
+    background-color: var(--prof-plan-white);
+    border-bottom: 1px solid var(--prof-plan-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+/* Container for content */
+.prof-plan-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Top Filter Bar */
+.prof-plan-top-bar {
+    background-color: var(--prof-plan-white);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.prof-plan-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-plan-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 150px;
+}
+
+.prof-plan-btn-search {
+    padding: 8px 16px;
+    background-color: var(--prof-plan-navy);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.prof-plan-btn-action {
+    padding: 8px 16px;
+    background-color: var(--prof-plan-white);
+    border: 1px solid var(--prof-plan-border);
+    color: var(--prof-plan-text-main);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: auto;
+    /* Push to right */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.prof-plan-btn-action:hover {
+    background-color: #f8f9fa;
+}
+
+/* Section Cards */
+.prof-plan-section {
+    background-color: var(--prof-plan-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.prof-plan-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--prof-plan-navy);
+    color: var(--prof-plan-navy);
+}
+
+/* Basic Info Grid */
+.prof-plan-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.prof-plan-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prof-plan-label {
+    font-size: 0.85rem;
+    color: var(--prof-plan-text-sub);
+    font-weight: 500;
+}
+
+.prof-plan-value {
+    font-size: 1rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Badges */
+.prof-plan-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.prof-plan-badge-navy {
+    background-color: var(--prof-plan-badge-navy-bg);
+    color: var(--prof-plan-badge-navy-text);
+}
+
+.prof-plan-badge-gray {
+    background-color: var(--prof-plan-badge-gray-bg);
+    color: var(--prof-plan-badge-gray-text);
+}
+
+.prof-plan-badge-outline-blue {
+    border: 1px solid var(--prof-plan-badge-blue-outline);
+    color: var(--prof-plan-badge-blue-outline);
+    background: transparent;
+}
+
+.prof-plan-badge-green {
+    background-color: var(--prof-plan-badge-green-bg);
+    color: var(--prof-plan-badge-green-text);
+}
+
+/* Overview Text */
+.prof-plan-overview-text {
+    line-height: 1.6;
+    color: var(--prof-plan-text-main);
+    white-space: pre-line;
+}
+
+/* Evaluation Bars */
+.prof-plan-eval-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.prof-plan-eval-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.prof-plan-eval-label {
+    width: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.prof-plan-eval-bar-bg {
+    flex-grow: 1;
+    height: 24px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.prof-plan-eval-bar-fill {
+    height: 100%;
+    background-color: var(--prof-plan-blue);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width: 40px;
+    /* Ensure text fits */
+}
+
+/* Weekly Schedule Table */
+.prof-plan-table-wrapper {
+    overflow-x: auto;
+}
+
+.prof-plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    /* Ensure readable on mobile */
+}
+
+.prof-plan-table th,
+.prof-plan-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--prof-plan-border);
+    text-align: left;
+}
+
+.prof-plan-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--prof-plan-navy);
+    border-top: 2px solid var(--prof-plan-navy);
+}
+
+.prof-plan-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.prof-plan-table-center {
+    text-align: center !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-plan-wrapper {
+        flex-direction: column;
+    }
+
+    .prof-plan-sidebar {
+        width: 100%;
+        display: none;
+        /* Hide for now on mobile as per other pages */
+    }
+
+    .prof-plan-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prof-plan-top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prof-plan-btn-action {
+        margin-left: 0;
+        justify-content: center;
+    }
+}

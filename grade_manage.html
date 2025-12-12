@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성적 산출 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-grade-container">
+
+            <!-- 1. Settings Area (Criteria) -->
+            <div class="prof-grade-section">
+                <h3 class="prof-grade-section-title"><i class="fa-solid fa-sliders"></i> 평가 비율 설정</h3>
+                <div class="prof-grade-criteria-box">
+                    <div class="prof-grade-inputs">
+                        <div class="prof-grade-input-group">
+                            <label>출석</label>
+                            <input type="number" class="prof-grade-input" value="20" oninput="calculateTotal()">
+                            %
+                        </div>
+                        <div class="prof-grade-input-group">
+                            <label>중간</label>
+                            <input type="number" class="prof-grade-input" value="30" oninput="calculateTotal()">
+                            %
+                        </div>
+                        <div class="prof-grade-input-group">
+                            <label>기말</label>
+                            <input type="number" class="prof-grade-input" value="30" oninput="calculateTotal()">
+                            %
+                        </div>
+                        <div class="prof-grade-input-group">
+                            <label>과제</label>
+                            <input type="number" class="prof-grade-input" value="10" oninput="calculateTotal()">
+                            %
+                        </div>
+                        <div class="prof-grade-input-group">
+                            <label>토론</label>
+                            <input type="number" class="prof-grade-input" value="10" oninput="calculateTotal()">
+                            %
+                        </div>
+                    </div>
+                    <div class="prof-grade-total-display">
+                        <span>총계: <strong id="totalRatio">100</strong>%</span>
+                        <div class="prof-grade-progress-bar">
+                            <div class="prof-grade-progress-fill" id="totalProgress" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Stats Area (Chart) -->
+            <div class="prof-grade-section">
+                <h3 class="prof-grade-section-title"><i class="fa-solid fa-chart-simple"></i> 학점 분포 현황</h3>
+                <div class="prof-grade-chart-box">
+                    <!-- Simple CSS Bar Chart -->
+                    <div class="prof-grade-chart-bar-group">
+                        <div class="prof-grade-chart-bar-wrapper">
+                            <div class="prof-grade-chart-bar A" style="height: 30%;"></div>
+                            <span class="prof-grade-chart-label">A (30%)</span>
+                        </div>
+                        <div class="prof-grade-chart-bar-wrapper">
+                            <div class="prof-grade-chart-bar B" style="height: 40%;"></div>
+                            <span class="prof-grade-chart-label">B (40%)</span>
+                        </div>
+                        <div class="prof-grade-chart-bar-wrapper">
+                            <div class="prof-grade-chart-bar C" style="height: 20%;"></div>
+                            <span class="prof-grade-chart-label">C (20%)</span>
+                        </div>
+                        <div class="prof-grade-chart-bar-wrapper">
+                            <div class="prof-grade-chart-bar F" style="height: 10%;"></div>
+                            <span class="prof-grade-chart-label">F (10%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. List Area (Table) -->
+            <div class="prof-grade-section">
+                <div class="prof-grade-list-header">
+                    <div style="display:flex; align-items:center; gap:20px;">
+                        <h3 class="prof-grade-section-title"><i class="fa-solid fa-list-ol"></i> 성적 상세 리스트</h3>
+                        <!-- Privacy Toggle -->
+                        <label class="security-mask-toggle" title="개인정보 보호 모드">
+                            <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                                onchange="toggleMasking(this)">
+                            <div class="toggle-switch-label"></div>
+                            <span>개인정보보호 ON</span>
+                        </label>
+                    </div>
+                    <div class="prof-grade-actions">
+                        <button class="prof-grade-btn prof-grade-btn-secondary"><i class="fa-solid fa-calculator"></i>
+                            성적 산출하기</button>
+                        <button class="prof-grade-btn prof-grade-btn-green" onclick="openSecurityModal()"><i
+                                class="fa-solid fa-file-excel"></i> 엑셀
+                            다운로드</button>
+                        <button class="prof-grade-btn prof-grade-btn-primary"><i class="fa-solid fa-check"></i>
+                            최종 성적 확정</button>
+                    </div>
+                </div>
+
+                <table class="prof-grade-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th>이름(아이디)</th>
+                            <th>출석(20)</th>
+                            <th>중간(30)</th>
+                            <th>기말(30)</th>
+                            <th>과제(10)</th>
+                            <th>토론(10)</th>
+                            <th>총점(100)</th>
+                            <th>등수</th>
+                            <th>학점</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student 1 -->
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <span class="privacy-name" data-original="홍길동">홍길동</span>
+                                (<span class="privacy-id" data-original="2024001">2024001</span>)
+                            </td>
+                            <td>20</td>
+                            <td>30</td>
+                            <td>29</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td><strong>99</strong></td>
+                            <td>1/45</td>
+                            <td>
+                                <select class="prof-grade-select-grade">
+                                    <option selected>A+</option>
+                                    <option>A0</option>
+                                    <option>B+</option>
+                                </select>
+                            </td>
+                            <td>-</td>
+                        </tr>
+                        <!-- Student 2 -->
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <span class="privacy-name" data-original="이영희">이영희</span>
+                                (<span class="privacy-id" data-original="2024002">2024002</span>)
+                            </td>
+                            <td>18</td>
+                            <td>25</td>
+                            <td>22</td>
+                            <td>9</td>
+                            <td>8</td>
+                            <td><strong>82</strong></td>
+                            <td>15/45</td>
+                            <td>
+                                <select class="prof-grade-select-grade">
+                                    <option>A+</option>
+                                    <option>A0</option>
+                                    <option selected>B+</option>
+                                </select>
+                            </td>
+                            <td><span class="prof-grade-badge-objection">이의신청</span></td>
+                        </tr>
+                        <!-- Student 3 -->
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <span class="privacy-name" data-original="김철수">김철수</span>
+                                (<span class="privacy-id" data-original="2024003">2024003</span>)
+                            </td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>0</td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td><strong>30</strong></td>
+                            <td>45/45</td>
+                            <td>
+                                <select class="prof-grade-select-grade">
+                                    <option>C+</option>
+                                    <option>D0</option>
+                                    <option selected>F</option>
+                                </select>
+                            </td>
+                            <td><span class="prof-grade-badge-warning">학사경고</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        // 페이지별 ID를 다르게 넣어주세요! (예: index.html -> 'dashboard')
+        initLayout('grade_manage');
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        // Calculate Total Ratio
+        function calculateTotal() {
+            const inputs = document.querySelectorAll('.prof-grade-input');
+            let total = 0;
+            inputs.forEach(input => {
+                total += Number(input.value);
+            });
+
+            const totalDisplay = document.getElementById('totalRatio');
+            const progressBar = document.getElementById('totalProgress');
+
+            totalDisplay.innerText = total;
+            progressBar.style.width = total + '%';
+
+            if (total === 100) {
+                progressBar.style.backgroundColor = 'var(--prof-dash-blue)';
+                totalDisplay.style.color = 'var(--prof-dash-blue)';
+            } else {
+                progressBar.style.backgroundColor = 'var(--prof-dash-badge-red-bg)';
+                totalDisplay.style.color = 'red';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

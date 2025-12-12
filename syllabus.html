@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 강의계획서</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Layout & Page CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/syllabus.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-plan-container">
+            <!-- Course Selector -->
+            <div class="prof-plan-filter-row" style="margin-bottom: 20px;">
+                <select class="prof-plan-select"
+                    style="padding: 10px; font-size: 1rem; border: 1px solid #ddd; border-radius: 4px; min-width: 300px; font-weight: bold; color: #333;">
+                    <option>경영학개론 2025-2학기 1차</option>
+                    <option>인적자원관리 2025-2학기 1차</option>
+                </select>
+            </div>
+
+            <!-- Header -->
+            <div class="prof-plan-header-row">
+                <div>
+                    <h2 class="prof-plan-title">강의계획서 관리 (Syllabus)</h2>
+                    <span class="prof-plan-badge prof-plan-badge-edit"
+                        style="margin-top: 5px; display:inline-block;">작성중 (Draft)</span>
+                </div>
+                <div class="prof-plan-controls">
+                    <button class="prof-plan-btn-secondary"><i class="fa-solid fa-print"></i> 미리보기</button>
+                    <button class="prof-plan-btn-primary" onclick="alert('저장되었습니다.')"><i class="fa-solid fa-save"></i>
+                        저장</button>
+                    <button class="prof-plan-btn-primary" style="background-color: #059669;"
+                        onclick="alert('제출 완료되었습니다.')"><i class="fa-solid fa-paper-plane"></i> 제출</button>
+                </div>
+            </div>
+
+            <!-- Basic Info Form -->
+            <div class="prof-plan-form-grid">
+                <div class="prof-plan-form-group">
+                    <label class="prof-plan-label">교과목명</label>
+                    <input type="text" class="prof-plan-input" value="경영학개론" readonly
+                        style="background-color: #f8fafc;">
+                </div>
+                <div class="prof-plan-form-group">
+                    <label class="prof-plan-label">전공구분</label>
+                    <input type="text" class="prof-plan-input" value="경영학" readonly style="background-color: #f8fafc;">
+                </div>
+                <div class="prof-plan-form-group">
+                    <label class="prof-plan-label">개발 교강사</label>
+                    <input type="text" class="prof-plan-input" value="김교수">
+                </div>
+                <div class="prof-plan-form-group">
+                    <label class="prof-plan-label">이수 구분</label>
+                    <select class="prof-plan-input">
+                        <option>전공필수</option>
+                        <option>전공선택</option>
+                        <option>교양</option>
+                    </select>
+                </div>
+                <!-- Full Width Items -->
+                <div class="prof-plan-form-group prof-plan-full-width">
+                    <label class="prof-plan-label">교과목 개요 (Course Description)</label>
+                    <textarea class="prof-plan-textarea"
+                        rows="4">기업 경영의 기본적인 원리와 개념을 이해하고, 기업 환경 변화에 따른 경영 전략 수립 능력을 배양한다.</textarea>
+                </div>
+                <div class="prof-plan-form-group prof-plan-full-width">
+                    <label class="prof-plan-label">수업 목표 (Learning Objectives)</label>
+                    <textarea class="prof-plan-textarea" rows="4">1. 경영학의 기초 이론을 습득한다.
+2. 실제 기업 사례를 분석하여 문제 해결 능력을 기른다.
+3. 윤리 경영과 지속 가능 경영의 중요성을 이해한다.</textarea>
+                </div>
+                <div class="prof-plan-form-group prof-plan-full-width">
+                    <label class="prof-plan-label">평가 방법 (Assessment)</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" class="prof-plan-input" placeholder="중간고사 (30%)" style="flex: 1;">
+                        <input type="text" class="prof-plan-input" placeholder="기말고사 (30%)" style="flex: 1;">
+                        <input type="text" class="prof-plan-input" placeholder="과제 (20%)" style="flex: 1;">
+                        <input type="text" class="prof-plan-input" placeholder="출석 (20%)" style="flex: 1;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Plan -->
+            <div class="prof-plan-weekly-section">
+                <div class="prof-plan-subtitle">
+                    <i class="fa-solid fa-list-check"></i> 주차별 강의 계획
+                </div>
+
+                <!-- Week 1 -->
+                <div class="prof-plan-week-item">
+                    <div class="prof-plan-week-header" onclick="toggleWeek(this)">
+                        <span class="prof-plan-week-title">1주차: 경영학의 기초</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="prof-plan-week-content active">
+                        <div class="prof-plan-week-row">
+                            <input type="text" class="prof-plan-input" placeholder="주제 (Topic)" value="경영이란 무엇인가?">
+                        </div>
+                        <div class="prof-plan-week-row">
+                            <textarea class="prof-plan-textarea" rows="2"
+                                placeholder="세부 내용 및 수업 방식">경영의 정의, 목적, 효율성과 효과성의 개념 설명</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="prof-plan-week-item">
+                    <div class="prof-plan-week-header" onclick="toggleWeek(this)">
+                        <span class="prof-plan-week-title">2주차: 경영 환경의 이해</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="prof-plan-week-content">
+                        <div class="prof-plan-week-row">
+                            <input type="text" class="prof-plan-input" placeholder="주제 (Topic)" value="내부 환경과 외부 환경">
+                        </div>
+                        <div class="prof-plan-week-row">
+                            <textarea class="prof-plan-textarea" rows="2"
+                                placeholder="세부 내용 및 수업 방식">SWOT 분석, PEST 분석 기법 소개</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="prof-plan-week-item">
+                    <div class="prof-plan-week-header" onclick="toggleWeek(this)">
+                        <span class="prof-plan-week-title">3주차: 기업의 사회적 책임 (CSR)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="prof-plan-week-content">
+                        <div class="prof-plan-week-row">
+                            <input type="text" class="prof-plan-input" placeholder="주제 (Topic)" value="윤리 경영과 CSR">
+                        </div>
+                        <div class="prof-plan-week-row">
+                            <textarea class="prof-plan-textarea" rows="2"
+                                placeholder="세부 내용 및 수업 방식">ESG 경영 사례 분석</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ... More weeks would go here ... -->
+                <div style="text-align: center; margin-top: 20px; color: #94a3b8;">
+                    <i class="fa-solid fa-ellipsis"></i><br>
+                    (4주차 ~ 15주차 생략)
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Initialization -->
+    <script src="layout.js"></script>
+    <script>
+        initLayout('syllabus');
+
+        function toggleWeek(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.fa-chevron-down');
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+
+</html>

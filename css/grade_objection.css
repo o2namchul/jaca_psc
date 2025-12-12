@@ -1,0 +1,290 @@
+/* Grade Objection Page Scoped Styles */
+
+.prof-obj-container {
+    display: flex;
+    height: calc(100vh - 100px);
+    /* Adjust based on header height */
+    gap: 20px;
+    overflow: hidden;
+}
+
+/* Left Panel: Student List (Fixed Width) */
+.prof-obj-list-panel {
+    flex: 0 0 340px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.prof-obj-list-header {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.prof-obj-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+.prof-obj-search-box {
+    position: relative;
+    width: 100%;
+}
+
+.prof-obj-search-input {
+    width: 100%;
+    padding: 10px 12px 10px 35px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.prof-obj-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+/* Student Items */
+.prof-obj-list-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.prof-obj-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prof-obj-item:hover {
+    background-color: #f8fafc;
+}
+
+.prof-obj-item.active {
+    background-color: #eff6ff;
+    border-left: 4px solid #3b82f6;
+}
+
+.prof-obj-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prof-obj-name {
+    font-weight: 700;
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.prof-obj-date {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.prof-obj-subject {
+    font-size: 0.85rem;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prof-obj-status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.prof-obj-status-new {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.prof-obj-status-progress {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.prof-obj-status-done {
+    background-color: #ecfccb;
+    color: #4d7c0f;
+}
+
+
+/* Right Panel: Details (Flexible) */
+.prof-obj-detail-panel {
+    flex: 1;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.prof-obj-detail-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prof-obj-detail-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.prof-obj-detail-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #f8fafc;
+}
+
+/* Chat/Message Style */
+.prof-obj-message-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.prof-obj-msg-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #64748b;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+.prof-obj-msg-body {
+    color: #334155;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.prof-obj-reply-section {
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.prof-obj-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    resize: none;
+    height: 120px;
+}
+
+.prof-obj-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.prof-obj-btn-send {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    float: right;
+    transition: background-color 0.2s;
+}
+
+.prof-obj-btn-send:hover {
+    background-color: #2563eb;
+}
+
+/* Empty State */
+.prof-obj-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #94a3b8;
+}
+
+.prof-obj-empty i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* Status Change Buttons */
+.prof-obj-status-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.prof-obj-btn-status {
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    background-color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.prof-obj-btn-status:hover {
+    background-color: #f1f5f9;
+}
+
+.prof-obj-btn-status.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .prof-obj-container {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+
+    .prof-obj-list-panel {
+        flex: none;
+        width: 100%;
+        height: 300px;
+    }
+
+    .prof-obj-detail-panel {
+        flex: none;
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 교수자 CDMS</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+    <link rel="stylesheet" href="css/content_manage.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-cdms-container">
+
+            <!-- Storage Gauge Bar -->
+            <div class="prof-cdms-storage-section">
+                <div class="prof-cdms-storage-header">
+                    <span>스토리지 사용량</span>
+                    <span>45GB / 100GB (45%)</span>
+                </div>
+                <div class="prof-cdms-storage-track">
+                    <div class="prof-cdms-storage-bar" style="width: 45%;"></div>
+                </div>
+            </div>
+
+            <!-- Control Bar -->
+            <div class="prof-cdms-control-bar">
+                <div class="prof-cdms-filter-wrapper">
+                    <select class="prof-cdms-filter-select">
+                        <option value="">전체 강의 보기</option>
+                        <option value="biz_intro">경영학개론</option>
+                        <option value="hr_mgmt">인적자원관리</option>
+                    </select>
+                </div>
+                <button class="prof-cdms-btn-upload" onclick="openUploadModal()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> 영상 업로드
+                </button>
+            </div>
+
+            <!-- Video List Table -->
+            <div class="prof-cdms-table-container">
+                <table class="prof-cdms-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;"><input type="checkbox"></th>
+                            <th style="width: 140px;">썸네일</th>
+                            <th>영상정보</th>
+                            <th style="width: 100px;">재생시간</th>
+                            <th style="width: 100px;" class="prof-cdms-col-hide-mobile">용량</th>
+                            <th style="width: 140px;">상태</th>
+                            <th style="width: 120px;" class="prof-cdms-col-hide-mobile">등록일</th>
+                            <th style="width: 80px;">미리보기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Item 1: Completed -->
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td class="prof-cdms-thumbnail-cell">
+                                <div class="prof-cdms-thumbnail-box" onclick="openPreviewModal('1주차_경영학의이해_1교시.mp4')">
+                                    <i class="fa-solid fa-play"></i>
+                                </div>
+                            </td>
+                            <td class="prof-cdms-info-cell">
+                                <span class="prof-cdms-video-title">1주차_경영학의이해_1교시.mp4</span>
+                                <span class="prof-cdms-video-meta">경영학개론 | 1주차 1교시 매핑됨</span>
+                            </td>
+                            <td>00:25:30</td>
+                            <td class="prof-cdms-col-hide-mobile">450MB</td>
+                            <td>
+                                <span class="prof-cdms-badge prof-cdms-badge-success">
+                                    <i class="fa-solid fa-check"></i> 변환완료
+                                </span>
+                            </td>
+                            <td class="prof-cdms-col-hide-mobile">2024.12.10</td>
+                            <td>
+                                <button class="prof-cdms-btn-preview" onclick="openPreviewModal('1주차_경영학의이해_1교시.mp4')">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Item 2: Processing -->
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td class="prof-cdms-thumbnail-cell">
+                                <div class="prof-cdms-thumbnail-box">
+                                    <i class="fa-solid fa-spinner fa-spin"></i>
+                                </div>
+                            </td>
+                            <td class="prof-cdms-info-cell">
+                                <span class="prof-cdms-video-title">13주차_마케팅성공사례.mov</span>
+                                <span class="prof-cdms-video-meta">인적자원관리 | 미연결</span>
+                            </td>
+                            <td>--:--:--</td>
+                            <td class="prof-cdms-col-hide-mobile">1.2GB</td>
+                            <td>
+                                <span class="prof-cdms-badge prof-cdms-badge-processing">
+                                    <span class="prof-cdms-processing-dot"></span> 변환중(45%)
+                                </span>
+                            </td>
+                            <td class="prof-cdms-col-hide-mobile">2024.12.11</td>
+                            <td>
+                                <button class="prof-cdms-btn-preview" disabled
+                                    style="opacity: 0.5; cursor: not-allowed;">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Item 3: Error -->
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td class="prof-cdms-thumbnail-cell">
+                                <div class="prof-cdms-thumbnail-box" style="background-color: #fee;">
+                                    <i class="fa-solid fa-triangle-exclamation" style="color: #c62828;"></i>
+                                </div>
+                            </td>
+                            <td class="prof-cdms-info-cell">
+                                <span class="prof-cdms-video-title" style="color: #c62828;">(잘못된파일)_강의영상.avi</span>
+                                <span class="prof-cdms-video-meta">업로드 실패</span>
+                            </td>
+                            <td>00:00:00</td>
+                            <td class="prof-cdms-col-hide-mobile">0MB</td>
+                            <td>
+                                <span class="prof-cdms-badge prof-cdms-badge-error">
+                                    <i class="fa-solid fa-circle-exclamation"></i> 인코딩실패
+                                </span>
+                            </td>
+                            <td class="prof-cdms-col-hide-mobile">2024.12.11</td>
+                            <td>
+                                <button class="prof-cdms-btn-preview" disabled
+                                    style="opacity: 0.5; cursor: not-allowed;">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="prof-cdms-modal-overlay" id="uploadModal">
+        <div class="prof-cdms-modal">
+            <div class="prof-cdms-modal-header">
+                <div class="prof-cdms-modal-title">영상 파일 업로드</div>
+                <button class="prof-cdms-modal-close" onclick="closeModal('uploadModal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-cdms-modal-body">
+                <div class="prof-cdms-drop-zone">
+                    <div class="prof-cdms-drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div class="prof-cdms-drop-text">동영상 파일을 이곳에 드래그하세요</div>
+                    <div class="prof-cdms-drop-subtext">또는 클릭하여 파일 탐색기 열기</div>
+                    <div style="margin-top: 15px; font-size: 0.8rem; color: #999;">
+                        지원 형식: MP4, MOV, AVI (최대 2GB)
+                    </div>
+                </div>
+
+                <div class="prof-cdms-input-group">
+                    <label class="prof-cdms-label">영상 제목</label>
+                    <input type="text" class="prof-cdms-input" placeholder="영상 제목을 입력하세요">
+                </div>
+
+                <div class="prof-cdms-input-group">
+                    <label class="prof-cdms-label">연결 강의 (선택)</label>
+                    <select class="prof-cdms-input">
+                        <option value="">강의 선택 안함</option>
+                        <option value="1">경영학개론</option>
+                        <option value="2">인적자원관리</option>
+                    </select>
+                </div>
+            </div>
+            <div style="padding: 20px; border-top: 1px solid #eee; text-align: right;">
+                <button class="prof-cdms-btn-preview" onclick="closeModal('uploadModal')"
+                    style="margin-right: 10px;">취소</button>
+                <button class="prof-cdms-btn-upload" style="display: inline-flex;">업로드 시작</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="prof-cdms-modal-overlay" id="previewModal">
+        <div class="prof-cdms-modal" style="width: 800px;">
+            <div class="prof-cdms-modal-header">
+                <div class="prof-cdms-modal-title" id="previewTitle">미리보기</div>
+                <button class="prof-cdms-modal-close" onclick="closeModal('previewModal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-cdms-modal-body" style="padding: 0;">
+                <div class="prof-cdms-player-placeholder">
+                    <i class="fa-solid fa-circle-play" style="font-size: 3rem; margin-right: 15px;"></i>
+                    <span>Video Player Placeholder</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('content_manage');
+
+        // Modal Logic
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.add('active');
+        }
+
+        function openPreviewModal(title) {
+            document.getElementById('previewTitle').innerText = '미리보기: ' + title;
+            document.getElementById('previewModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close when clicking outside
+        window.onclick = function (event) {
+            if (event.target.classList.contains('prof-cdms-modal-overlay')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

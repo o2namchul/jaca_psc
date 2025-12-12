@@ -1,0 +1,200 @@
+/* Syllabus Page Scoped Styles */
+
+.prof-plan-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    min-height: calc(100vh - 100px);
+}
+
+/* Header Section */
+.prof-plan-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 20px;
+}
+
+.prof-plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.prof-plan-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Form Grid */
+.prof-plan-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.prof-plan-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-plan-label {
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.prof-plan-input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.prof-plan-input:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.prof-plan-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.prof-plan-full-width {
+    grid-column: span 2;
+}
+
+/* Weekly Schedule */
+.prof-plan-weekly-section {
+    margin-top: 40px;
+}
+
+.prof-plan-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-plan-week-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.prof-plan-week-header {
+    background-color: #f8fafc;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prof-plan-week-title {
+    font-weight: 700;
+    color: #334155;
+    font-size: 1rem;
+}
+
+.prof-plan-week-content {
+    padding: 20px;
+    display: none;
+    background-color: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.prof-plan-week-content.active {
+    display: block;
+}
+
+.prof-plan-week-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.prof-plan-week-row input {
+    flex: 1;
+}
+
+/* Status Badge */
+.prof-plan-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.prof-plan-badge-edit {
+    background-color: #fff7ed;
+    color: #c2410c;
+}
+
+.prof-plan-badge-done {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+
+/* Buttons */
+.prof-plan-btn-primary {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.prof-plan-btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.prof-plan-btn-secondary {
+    background-color: white;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.prof-plan-btn-secondary:hover {
+    background-color: #f1f5f9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-plan-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prof-plan-full-width {
+        grid-column: span 1;
+    }
+}

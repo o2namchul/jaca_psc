@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쪽지 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/message.css">
+</head>
+
+<body>
+
+    <div class="prof-msg-split-container">
+
+        <!-- Left Panel: Folders -->
+        <div class="prof-msg-left-panel">
+            <button class="prof-msg-compose-btn" onclick="openComposeModal()">
+                <i class="fa-solid fa-pen"></i> 쪽지 쓰기
+            </button>
+            <ul class="prof-msg-folder-list">
+                <li class="prof-msg-folder-item active" onclick="switchTab('inbox')">
+                    <span><i class="fa-solid fa-inbox" style="margin-right: 8px;"></i> 받은 쪽지함</span>
+                    <span class="prof-msg-badge">2</span>
+                </li>
+                <li class="prof-msg-folder-item" onclick="switchTab('sent')">
+                    <span><i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i> 보낸 쪽지함</span>
+                </li>
+                <li class="prof-msg-folder-item">
+                    <span><i class="fa-solid fa-trash-can" style="margin-right: 8px;"></i> 휴지통</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Panel: Message List -->
+        <div class="prof-msg-right-panel">
+            <div class="prof-msg-list-header">
+                <h3 style="margin: 0; font-size: 1.1rem;" id="listTitle">받은 쪽지함</h3>
+                <div class="prof-msg-search">
+                    <input type="text" placeholder="검색..."
+                        style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+            </div>
+
+            <div class="prof-msg-list-container">
+
+                <!-- Inbox Table -->
+                <table class="prof-msg-list-table" id="inboxTable">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 60%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>보낸사람</th>
+                            <th>내용</th>
+                            <th>날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="prof-msg-row unread" onclick="toggleDetail(this, 'msg1')">
+                            <td>이영희 (2024002)</td>
+                            <td>[긴급] 교수님, 오늘 출석 인정 관련하여 문의드립니다...</td>
+                            <td>2024.12.11 09:30</td>
+                        </tr>
+                        <tr class="prof-msg-row unread" onclick="toggleDetail(this, 'msg2')">
+                            <td>김철수 (2024005)</td>
+                            <td>과제 제출 기한 연장 가능할까요?</td>
+                            <td>2024.12.11 08:15</td>
+                        </tr>
+                        <tr class="prof-msg-row" onclick="toggleDetail(this, 'msg3')">
+                            <td>교학처 (관리자)</td>
+                            <td>2024-2학기 성적 입력 기간 안내드립니다.</td>
+                            <td>2024.12.10 14:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Sent Table (Hidden by default) -->
+                <table class="prof-msg-list-table" id="sentTable" style="display: none;">
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 50%;">
+                        <col style="width: 15%;">
+                        <col style="width: 15%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>받는사람</th>
+                            <th>내용</th>
+                            <th>날짜</th>
+                            <th>수신확인</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="prof-msg-row">
+                            <td>경영학개론 수강생 전체</td>
+                            <td>기말고사 일정 변경 안내</td>
+                            <td>2024.12.01</td>
+                            <td><span style="color: #2e7d32; font-weight: bold; font-size: 0.8rem;">읽음
+                                    40/45</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Message Detail View (Hidden by default) -->
+                <div class="prof-msg-detail-panel" id="msgDetail">
+                    <div class="prof-msg-detail-header">
+                        <div class="prof-msg-detail-title">[긴급] 교수님, 오늘 출석 인정 관련하여 문의드립니다...</div>
+                        <div class="prof-msg-detail-meta">
+                            <span>보낸사람: 이영희 (2024002)</span>
+                            <span>2024.12.11 09:30</span>
+                        </div>
+                    </div>
+                    <div class="prof-msg-detail-body">
+                        교수님 안녕하세요,<br>
+                        오늘 개인적인 사정으로 인해 부득이하게 수업에 늦을 것 같습니다.<br>
+                        관련 증빙 서류는 추후 제출하겠습니다.<br>
+                        확인 부탁드립니다.
+                    </div>
+                    <div style="text-align: right; margin-top: 20px;">
+                        <button class="prof-msg-btn-primary" onclick="openComposeModal('이영희 (2024002)')">답장하기</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Compose Modal -->
+    <div class="prof-msg-modal-overlay" id="composeModal">
+        <div class="prof-msg-modal">
+            <div class="prof-msg-modal-header">
+                <h3 style="margin: 0;">쪽지 쓰기</h3>
+                <button onclick="closeComposeModal()"
+                    style="background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem;"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-msg-modal-body">
+                <div class="prof-msg-input-group">
+                    <label class="prof-msg-label">받는 사람</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" class="prof-msg-input" id="recipientInput" placeholder="이름 또는 아이디 검색">
+                        <button class="prof-msg-btn-secondary" onclick="alert('학생 검색 팝업이 열립니다.')">주소록</button>
+                    </div>
+                </div>
+                <div class="prof-msg-input-group">
+                    <label class="prof-msg-label">내용</label>
+                    <textarea class="prof-msg-textarea" placeholder="내용을 입력하세요..."></textarea>
+                </div>
+                <div class="prof-msg-input-group">
+                    <label style="font-size: 0.9rem; cursor: pointer;">
+                        <input type="checkbox"> 수신 확인 알림 받기
+                    </label>
+                </div>
+            </div>
+            <div class="prof-msg-modal-footer">
+                <button class="prof-msg-btn-secondary" onclick="closeComposeModal()">취소</button>
+                <button class="prof-msg-btn-primary" onclick="sendMessage()">보내기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('message');
+
+        // Tab Switching
+        function switchTab(tab) {
+            const inboxTable = document.getElementById('inboxTable');
+            const sentTable = document.getElementById('sentTable');
+            const listTitle = document.getElementById('listTitle');
+            const detailPanel = document.getElementById('msgDetail');
+            const folders = document.querySelectorAll('.prof-msg-folder-item');
+
+            // Reset Detail View
+            detailPanel.style.display = 'none';
+
+            // Update Active Folder
+            folders.forEach(f => f.classList.remove('active'));
+            if (tab === 'inbox') {
+                folders[0].classList.add('active');
+                inboxTable.style.display = 'table';
+                sentTable.style.display = 'none';
+                listTitle.textContent = '받은 쪽지함';
+            } else if (tab === 'sent') {
+                folders[1].classList.add('active');
+                inboxTable.style.display = 'none';
+                sentTable.style.display = 'table';
+                listTitle.textContent = '보낸 쪽지함';
+            }
+        }
+
+        // Detail View
+        function toggleDetail(row, msgId) {
+            const detailPanel = document.getElementById('msgDetail');
+
+            // Mark as read visually
+            row.classList.remove('unread');
+
+            // Show detail (In a real app, load content by ID)
+            detailPanel.style.display = 'block';
+        }
+
+        // Compose Modal
+        const composeModal = document.getElementById('composeModal');
+        const recipientInput = document.getElementById('recipientInput');
+
+        function openComposeModal(recipient = '') {
+            recipientInput.value = recipient;
+            composeModal.classList.add('active');
+        }
+
+        function closeComposeModal() {
+            composeModal.classList.remove('active');
+        }
+
+        function sendMessage() {
+            alert('쪽지가 발송되었습니다.');
+            closeComposeModal();
+        }
+
+        // Close modal when clicking outside
+        composeModal.addEventListener('click', function (e) {
+            if (e.target === composeModal) {
+                closeComposeModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

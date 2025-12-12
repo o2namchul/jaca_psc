@@ -1,0 +1,571 @@
+/* Scoped CSS for LMS Login Page */
+/* All styles prefixed with .auth-login- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.auth-login-container {
+    display: flex;
+    height: 100vh;
+    min-height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Left Branding Panel */
+.auth-login-left-panel {
+    flex: 1;
+    background: linear-gradient(135deg, #1a2b4b 0%, #0d1626 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Abstract Pattern Decoration */
+.auth-login-left-panel::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-login-left-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.auth-login-logo-area {
+    text-align: center;
+    z-index: 10;
+}
+
+.auth-login-logo-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.auth-login-brand-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.auth-login-slogan {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+}
+
+/* Right Login Form Panel */
+.auth-login-right-panel {
+    flex: 1;
+    max-width: 600px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.05);
+    z-index: 20;
+}
+
+/* Wrapper for content centering */
+.auth-login-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-login-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* User Type Tabs */
+.auth-login-tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+}
+
+.auth-login-tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    font-size: 1rem;
+    color: #888;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.auth-login-tab:hover {
+    color: #1a2b4b;
+}
+
+.auth-login-tab.active {
+    color: #1a2b4b;
+    font-weight: 700;
+}
+
+.auth-login-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1a2b4b;
+}
+
+/* Form Groups */
+.auth-login-form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.auth-login-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.auth-login-input-container {
+    position: relative;
+}
+
+.auth-login-input {
+    width: 100%;
+    padding: 14px 15px;
+    padding-right: 40px;
+    /* Space for icon */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-login-input:focus {
+    outline: none;
+    border-color: #1a2b4b;
+    box-shadow: 0 0 0 3px rgba(26, 43, 75, 0.1);
+}
+
+.auth-login-icon-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Utilities Row */
+.auth-login-utils {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.auth-login-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.auth-login-link {
+    color: #666;
+    text-decoration: none;
+}
+
+.auth-login-link:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.auth-login-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #1a2b4b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.auth-login-btn:hover {
+    background-color: #0d1626;
+}
+
+.auth-login-btn:active {
+    transform: translateY(1px);
+}
+
+/* Footer Links */
+.auth-login-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.auth-login-footer strong {
+    color: #1a2b4b;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .auth-login-left-panel {
+        display: none;
+    }
+
+    .auth-login-right-panel {
+        max-width: 100%;
+        flex: 1;
+    }
+}
+
+/* Instructor Registration Modal Styles */
+#instructor-modal.instructor-modal-overlay {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Dimmed background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#instructor-modal.is-active {
+    display: flex;
+    /* Flex to center */
+    opacity: 1;
+}
+
+#instructor-modal .instructor-modal-container {
+    background-color: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+#instructor-modal.is-active .instructor-modal-container {
+    transform: translateY(0);
+}
+
+#instructor-modal .instructor-modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#instructor-modal .instructor-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+}
+
+#instructor-modal .instructor-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    line-height: 1;
+}
+
+#instructor-modal .instructor-modal-close:hover {
+    color: #333;
+}
+
+#instructor-modal .instructor-modal-body {
+    padding: 25px;
+}
+
+#instructor-modal .instructor-modal-section {
+    margin-bottom: 20px;
+}
+
+#instructor-modal .instructor-modal-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Badges */
+.instructor-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.badge-nav {
+    background-color: #1a2b4b;
+    /* Navy */
+}
+
+.badge-red {
+    background-color: #e74c3c;
+    /* Redish */
+}
+
+.badge-gray {
+    background-color: #f0f2f5;
+    color: #333;
+    /* Dark text for light bg */
+}
+
+/* List & Content */
+.instructor-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.instructor-contact-info p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Find Account Modal Styles */
+#find-account-modal.account-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1100;
+    /* Higher than instructor modal just in case */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#find-account-modal.is-active {
+    display: flex;
+    opacity: 1;
+}
+
+#find-account-modal .account-modal-container {
+    background-color: white;
+    width: 90%;
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#find-account-modal.is-active .account-modal-container {
+    transform: translateY(0);
+}
+
+/* Modal Tabs */
+.account-modal-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.account-modal-tab {
+    flex: 1;
+    text-align: center;
+    padding: 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: all 0.2s;
+}
+
+.account-modal-tab.active {
+    background-color: white;
+    color: #1a2b4b;
+    font-weight: 700;
+    border-bottom: 3px solid #1a2b4b;
+}
+
+/* Modal Body */
+.account-modal-body {
+    padding: 30px;
+}
+
+.account-modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Badge Toggle System */
+.account-auth-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.auth-method-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #f0f2f5;
+    color: #666;
+    border: 1px solid transparent;
+}
+
+.auth-method-badge:hover {
+    background-color: #e4e6eb;
+}
+
+.auth-method-badge.active {
+    background-color: #1a2b4b;
+    color: white;
+    border-color: #1a2b4b;
+}
+
+/* Forms */
+.account-form-group {
+    margin-bottom: 15px;
+}
+
+.account-form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.account-form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.account-form-input:focus {
+    outline: none;
+    border-color: #1a2b4b;
+}
+
+.account-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #1a2b4b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.account-submit-btn:hover {
+    background-color: #0d1626;
+}
+
+/* Result Area */
+.account-result-area {
+    margin-top: 20px;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    background-color: #eef4ff;
+    border-radius: 6px;
+    color: #1a2b4b;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.account-result-area.show {
+    padding: 20px;
+    height: auto;
+    opacity: 1;
+    border: 1px solid #d0e1fd;
+}
+
+.input-group-phone,
+.input-group-email {
+    display: none;
+    /* Toggled by JS */
+}

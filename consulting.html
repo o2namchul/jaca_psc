@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1 상담 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/consulting.css">
+</head>
+
+<body>
+
+    <div class="prof-consult-container">
+
+        <!-- Filters -->
+        <div class="prof-consult-filters">
+            <div class="prof-consult-filter-group">
+                <select class="prof-consult-select">
+                    <option>전체 강의</option>
+                    <option>경영학개론 (2024-2학기)</option>
+                    <option>인적자원관리 (2024-2학기)</option>
+                </select>
+                <select class="prof-consult-select">
+                    <option>전체 상태</option>
+                    <option>답변대기</option>
+                    <option>답변완료</option>
+                </select>
+                <!-- Privacy Toggle -->
+                <label class="security-mask-toggle" title="개인정보 보호 모드" style="margin-left: 10px;">
+                    <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                        onchange="toggleMasking(this)">
+                    <div class="toggle-switch-label"></div>
+                    <span>개인정보보호 ON</span>
+                </label>
+            </div>
+            <input type="text" class="prof-consult-search" placeholder="제목 또는 작성자 검색">
+        </div>
+
+        <!-- Board List -->
+        <div class="prof-consult-table-container">
+            <table class="prof-consult-table">
+                <colgroup>
+                    <col style="width: 5%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 40%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>강의명</th>
+                        <th>분류</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1: Waiting -->
+                    <tr class="prof-consult-row-highlight">
+                        <td>15</td>
+                        <td>경영학개론</td>
+                        <td>성적</td>
+                        <td class="prof-consult-table-left">
+                            <span class="prof-consult-link"
+                                onclick="openConsultModal('김이젠', '중간고사 3번 문제 채점 관련 문의드립니다.', '2024.12.10')">
+                                <i class="fa-solid fa-lock" style="color: #ccc; margin-right: 5px;"></i>
+                                중간고사 3번 문제 채점 관련 문의드립니다.
+                            </span>
+                        </td>
+                        <td><span class="privacy-name" data-original="김이젠">김이젠</span></td>
+                        <td>2024.12.10</td>
+                        <td><span class="prof-consult-badge prof-consult-badge-waiting">답변대기</span></td>
+                    </tr>
+                    <!-- Row 2: Waiting -->
+                    <tr class="prof-consult-row-highlight">
+                        <td>14</td>
+                        <td>인적자원관리</td>
+                        <td>출석</td>
+                        <td class="prof-consult-table-left">
+                            <span class="prof-consult-link"
+                                onclick="openConsultModal('이영희', '10월 5일 병결 처리에 필요한 서류 제출합니다.', '2024.12.09')">
+                                <i class="fa-solid fa-lock" style="color: #ccc; margin-right: 5px;"></i>
+                                10월 5일 병결 처리에 필요한 서류 제출합니다.
+                            </span>
+                        </td>
+                        <td><span class="privacy-name" data-original="이영희">이영희</span></td>
+                        <td>2024.12.09</td>
+                        <td><span class="prof-consult-badge prof-consult-badge-waiting">답변대기</span></td>
+                    </tr>
+                    <!-- Row 3: Done -->
+                    <tr>
+                        <td>13</td>
+                        <td>경영학개론</td>
+                        <td>과제</td>
+                        <td class="prof-consult-table-left">
+                            <span class="prof-consult-link"
+                                onclick="openConsultModal('홍길동', '과제 제출 파일 형식이 pdf만 가능한가요?', '2024.12.08', true)">
+                                <i class="fa-solid fa-lock" style="color: #ccc; margin-right: 5px;"></i>
+                                과제 제출 파일 형식이 pdf만 가능한가요?
+                            </span>
+                        </td>
+                        <td><span class="privacy-name" data-original="홍길동">홍길동</span></td>
+                        <td>2024.12.08</td>
+                        <td><span class="prof-consult-badge prof-consult-badge-done">답변완료</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Chat-Style Modal -->
+    <div class="prof-consult-modal-overlay" id="consultModal">
+        <div class="prof-consult-modal-container">
+            <!-- Header -->
+            <div class="prof-consult-modal-header">
+                <div class="prof-consult-modal-title-group">
+                    <div class="prof-consult-modal-title">
+                        <i class="fa-regular fa-comments" style="color: #0056b3;"></i>
+                        <span id="modalTitle">상담 제목</span>
+                    </div>
+                    <div class="prof-consult-modal-meta">
+                        <span id="modalAuthInfo">김이젠 (2024005)</span> | <span id="modalDate">2024.12.10</span>
+                    </div>
+                </div>
+                <button class="prof-consult-modal-close" onclick="closeModal()">&times;</button>
+            </div>
+
+            <!-- Body (Chat & Form) -->
+            <div class="prof-consult-modal-body">
+
+                <!-- Chat History -->
+                <div class="prof-consult-chat-area" id="chatArea">
+                    <!-- Dynamic Content -->
+                </div>
+
+                <!-- Answer Form -->
+                <div class="prof-consult-reply-area">
+                    <!-- Macros -->
+                    <div class="quick-reply-bar">
+                        <button class="btn-macro" onclick="insertMacro('잘 확인했습니다. 요청하신 내용대로 처리해 드리겠습니다.')">
+                            <i class="fa-solid fa-check"></i> 처리 완료
+                        </button>
+                        <button class="btn-macro"
+                            onclick="insertMacro('안녕하세요. 문의하신 내용에 대해 답변 드립니다.\n해당 부분은 강의계획서 3페이지를 참고하시면 도움이 될 것입니다.')">
+                            <i class="fa-solid fa-book-open"></i> 규정 안내
+                        </button>
+                        <button class="btn-macro"
+                            onclick="insertMacro('안녕하세요. 첨부해주신 파일이 열리지 않습니다.\n번거로우시겠지만 다시 한 번 확인 후 재업로드 부탁드립니다.')">
+                            <i class="fa-solid fa-triangle-exclamation"></i> 파일 재요청
+                        </button>
+                    </div>
+
+                    <textarea class="prof-consult-textarea" id="replyText" placeholder="답변을 입력하세요..."></textarea>
+
+                    <div class="prof-consult-footer-actions">
+                        <div class="file-upload-simple">
+                            <i class="fa-solid fa-paperclip"></i> 파일 첨부
+                        </div>
+                        <button class="prof-consult-btn-send" onclick="saveAnswer()">
+                            <i class="fa-solid fa-paper-plane"></i> 답변 보내기
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('consulting');
+
+        const modal = document.getElementById('consultModal');
+        const chatArea = document.getElementById('chatArea');
+        const replyText = document.getElementById('replyText');
+
+        // Sample Data for Simulation
+        const sampleQuestion = `교수님 안녕하세요,
+중간고사 3번 문제에서 저는 교재 150페이지 내용을 바탕으로 서술하였는데 부분 점수만 받은 것 같아서 문의드립니다.
+혹시 어떤 부분이 부족했는지 피드백 주시면 감사하겠습니다.`;
+
+        const sampleAnswer = `네, 학생분. 문의 주신 내용 확인했습니다.
+3번 문제의 채점 기준은 핵심 키워드인 '환경 분석'과 'SWOT'의 연계성이었습니다.
+작성해주신 답안은 전반적인 내용은 훌륭하나, 구체적인 사례 적용 부분에서 다소 미흡하여 부분 점수가 부여되었습니다.
+이 점 참고해주시기 바랍니다.`;
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        function openConsultModal(author, title, date, isDone = false) {
+            document.getElementById('modalTitle').textContent = title;
+            // Check Masking State for Author Name
+            const toggle = document.getElementById('privacyToggle');
+            let displayAuthor = author;
+
+            if (toggle && toggle.checked) {
+                // Manually mask if single value not using global class here
+                // But better to use global toggler logic if possible?
+                // Let's create a temporary span to use global logic or just simple util
+                if (author.length > 1) {
+                    const first = author.charAt(0);
+                    const last = author.charAt(author.length - 1);
+                    displayAuthor = first + '*'.repeat(author.length - 2) + last;
+                }
+            }
+
+            document.getElementById('modalAuthInfo').textContent = `${displayAuthor} (학습자)`;
+            document.getElementById('modalDate').textContent = date;
+
+            // Clear Chat
+            chatArea.innerHTML = '';
+
+            // 1. Add Question Bubble
+            addMessage(displayAuthor, date, sampleQuestion, 'q', true);
+
+            // 2. If done, Add Answer Bubble
+            if (isDone) {
+                addMessage('김이젠 (교수)', '2024.12.08 15:30', sampleAnswer, 'a');
+                replyText.value = ''; // Clear text
+                replyText.placeholder = '추가 답변을 입력선택...';
+            } else {
+                replyText.value = '';
+                replyText.placeholder = '답변을 입력하세요...';
+            }
+
+            modal.classList.add('active');
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function insertMacro(text) {
+            replyText.value = text;
+            replyText.focus();
+        }
+
+        function saveAnswer() {
+            if (!replyText.value.trim()) {
+                alert('내용을 입력해주세요.');
+                return;
+            }
+
+            // Simulate sending
+            const now = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            addMessage('김이젠 (교수)', now, replyText.value, 'a');
+
+            // Allow multiple replies? usually yes in chat model
+            // For now, clear input and scroll
+            replyText.value = '';
+            chatArea.scrollTop = chatArea.scrollHeight;
+
+            alert('답변이 등록되었습니다.');
+            // In real app, might refresh list status
+        }
+
+        function addMessage(author, time, text, type, hasFile = false) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('chat-bubble');
+            bubble.classList.add(type === 'q' ? 'chat-bubble-q' : 'chat-bubble-a');
+
+            let fileHtml = '';
+            if (hasFile && type === 'q') {
+                fileHtml = `
+                    <div class="chat-attach">
+                        <i class="fa-solid fa-paperclip"></i> <a href="#">capture_image.jpg (1.2MB)</a>
+                    </div>
+                `;
+            }
+
+            bubble.innerHTML = `
+                <div class="chat-info">
+                    <strong>${author}</strong>
+                    <span>${time}</span>
+                </div>
+                <div style="white-space: pre-wrap;">${text}</div>
+                ${fileHtml}
+            `;
+            chatArea.appendChild(bubble);
+        }
+
+        // Close on outside click
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

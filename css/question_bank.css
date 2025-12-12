@@ -1,0 +1,383 @@
+/* Scoped CSS for Professor Question Bank */
+/* All styles prefixed with .prof-qb- */
+
+/* Container */
+.prof-qb-container {
+    padding: 30px;
+    background-color: var(--prof-dash-white);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    min-height: 600px;
+    grid-column: span 12;
+}
+
+/* Filter Bar */
+.prof-qb-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--prof-dash-border);
+}
+
+.prof-qb-select {
+    padding: 8px 12px;
+    border: 1px solid var(--prof-dash-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--prof-dash-text-main);
+    min-width: 120px;
+    outline: none;
+}
+
+.prof-qb-search-wrap {
+    display: flex;
+    flex-grow: 1;
+    gap: 5px;
+    min-width: 250px;
+}
+
+.prof-qb-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--prof-dash-border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.prof-qb-btn-search {
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.prof-qb-btn-search:hover {
+    background-color: #5a6268;
+}
+
+.prof-qb-btn-primary {
+    padding: 8px 20px;
+    background-color: var(--prof-dash-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prof-qb-btn-primary:hover {
+    background-color: #004494;
+}
+
+/* Data Grid (Table) */
+.prof-qb-table-wrapper {
+    overflow-x: auto;
+}
+
+.prof-qb-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.prof-qb-table th {
+    padding: 15px 10px;
+    border-bottom: 2px solid var(--prof-dash-border);
+    color: #495057;
+    font-weight: 600;
+    text-align: center;
+    background-color: #f8f9fa;
+    white-space: nowrap;
+}
+
+.prof-qb-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--prof-dash-border);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prof-qb-table tr:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+/* Text Truncation for Question */
+.prof-qb-text-cell {
+    text-align: left !important;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 15px !important;
+}
+
+/* Badges */
+.prof-qb-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Type Badges */
+.prof-qb-badge-mcq {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Blue */
+.prof-qb-badge-sub {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Purple */
+.prof-qb-badge-ox {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+/* Green */
+
+/* Difficulty Text */
+.prof-qb-diff-high {
+    color: #c62828;
+    font-weight: 700;
+}
+
+.prof-qb-diff-mid {
+    color: #ef6c00;
+    font-weight: 600;
+}
+
+.prof-qb-diff-low {
+    color: #757575;
+    font-weight: 500;
+}
+
+/* Status Pills */
+.prof-qb-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.prof-qb-pill-green {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.prof-qb-pill-orange {
+    background-color: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffe0b2;
+    animation: profQbPulse 2s infinite;
+}
+
+.prof-qb-pill-red {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+@keyframes profQbPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(255, 152, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+    }
+}
+
+/* Action Buttons */
+.prof-qb-btn-manage {
+    padding: 4px 8px;
+    background: white;
+    border: 1px solid var(--prof-dash-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.prof-qb-btn-manage:hover {
+    background-color: #eee;
+}
+
+/* Modals */
+.prof-qb-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.prof-qb-modal-overlay.active {
+    display: flex;
+}
+
+.prof-qb-modal {
+    background: white;
+    border-radius: 8px;
+    width: 800px;
+    max-width: 95%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.prof-qb-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--prof-dash-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.prof-qb-modal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.prof-qb-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.prof-qb-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.prof-qb-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--prof-dash-border);
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Modal Form Elements */
+.prof-qb-form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.prof-qb-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-qb-label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #495057;
+}
+
+.prof-qb-textarea {
+    width: 100%;
+    border: 1px solid var(--prof-dash-border);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+/* Dynamic Sections */
+.prof-qb-section-mcq {
+    background-color: #f8faff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e1e8f0;
+    margin-bottom: 15px;
+    display: none;
+    /* Hidden by default */
+}
+
+.prof-qb-section-sub {
+    background-color: #fff8f8;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #f0e1e1;
+    margin-bottom: 15px;
+    display: none;
+    /* Hidden by default */
+}
+
+.prof-qb-option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* Review Comment Box */
+.prof-qb-review-box {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-left: 5px solid #ff9800;
+    /* Default Warn */
+    background-color: #fffbf5;
+    border-radius: 4px;
+}
+
+/* Utilities */
+.prof-qb-show {
+    display: block !important;
+}
+
+.prof-qb-hide {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .prof-qb-text-cell {
+        max-width: 150px;
+    }
+
+    .prof-qb-hide-mobile {
+        display: none;
+    }
+}

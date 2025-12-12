@@ -1,0 +1,344 @@
+/* Scoped CSS for Lecture Management */
+/* Prefix: .lecture-mgr- */
+
+:root {
+    --lm-navy: #1a2b4b;
+    --lm-bg: #f4f6f9;
+    --lm-white: #ffffff;
+    --lm-border: #e1e4e8;
+    --lm-text-main: #333;
+    --lm-text-sub: #666;
+
+    /* Type Colors */
+    --lm-color-vod: #007bff;
+    /* Blue */
+    --lm-color-assign: #6f42c1;
+    /* Purple */
+    --lm-color-discuss: #fd7e14;
+    /* Orange */
+    --lm-color-exam: #dc3545;
+    /* Red */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: var(--lm-bg);
+    color: var(--lm-text-main);
+}
+
+.lecture-mgr-wrapper {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lecture-mgr-header {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lecture-mgr-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--lm-navy);
+}
+
+/* Week Accordion/Card */
+.lecture-week-card {
+    background-color: var(--lm-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid var(--lm-border);
+}
+
+.lecture-week-header {
+    padding: 15px 20px;
+    background-color: #fafbfc;
+    border-bottom: 1px solid var(--lm-border);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--lm-navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lecture-week-body {
+    padding: 0;
+}
+
+/* Row Items */
+.lecture-item-row {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--lm-border);
+    transition: background-color 0.2s;
+    position: relative;
+    gap: 20px;
+}
+
+.lecture-item-row:last-child {
+    border-bottom: none;
+}
+
+.lecture-item-row:hover {
+    background-color: #f8f9fa;
+}
+
+/* Visual Cue (Left Border) */
+.lecture-item-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.item-vod::before {
+    background-color: var(--lm-color-vod);
+}
+
+.item-assignment::before {
+    background-color: var(--lm-color-assign);
+}
+
+.item-discussion::before {
+    background-color: var(--lm-color-discuss);
+}
+
+.item-exam::before {
+    background-color: var(--lm-color-exam);
+}
+
+/* Item Layout */
+.item-type-badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.badge-vod {
+    background-color: var(--lm-color-vod);
+}
+
+.badge-assign {
+    background-color: var(--lm-color-assign);
+}
+
+.badge-discuss {
+    background-color: var(--lm-color-discuss);
+}
+
+.badge-exam {
+    background-color: var(--lm-color-exam);
+}
+
+.item-content {
+    flex-grow: 1;
+}
+
+.item-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--lm-text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-meta {
+    font-size: 0.9rem;
+    color: var(--lm-text-sub);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Actions & Stats */
+.item-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 250px;
+    justify-content: flex-end;
+}
+
+.stat-group {
+    text-align: right;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.stat-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.progress-track {
+    width: 60px;
+    height: 4px;
+    background-color: #eee;
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--lm-navy);
+}
+
+/* Status Badges */
+.status-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background-color: #eee;
+    color: #666;
+    font-weight: 500;
+}
+
+.status-ongoing {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-closed {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.status-pending {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.status-reserved {
+    background-color: #f5f5f5;
+    color: #9e9e9e;
+}
+
+/* Buttons */
+.btn-action {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-preview {
+    background-color: white;
+    border: 1px solid var(--lm-border);
+    color: var(--lm-text-sub);
+}
+
+.btn-preview:hover {
+    background-color: #f8f9fa;
+    color: var(--lm-navy);
+    border-color: var(--lm-navy);
+}
+
+.btn-grade {
+    background-color: var(--lm-navy);
+    color: white;
+    border: 1px solid var(--lm-navy);
+}
+
+.btn-grade:hover {
+    background-color: #0d1626;
+}
+
+/* VOD Modal */
+.vod-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.vod-modal-overlay.active {
+    display: flex;
+}
+
+.vod-modal-container {
+    width: 90%;
+    max-width: 900px;
+    background: black;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.vod-modal-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.vod-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.vod-close {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.vod-player-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    height: 0;
+}
+
+.vod-player-wrapper iframe,
+.vod-player-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

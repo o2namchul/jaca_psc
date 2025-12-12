@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 교수자 대시보드</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+    <link rel="stylesheet" href="css/forum.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-forum-container">
+
+            <!-- Top Filter -->
+            <div class="prof-forum-filter-bar">
+                <div class="prof-forum-filter-group">
+                    <select class="prof-forum-select">
+                        <option>전체 강의</option>
+                        <option>경영학개론</option>
+                        <option>인적자원관리</option>
+                    </select>
+                    <select class="prof-forum-select">
+                        <option>전체 카테고리</option>
+                        <option>질문</option>
+                        <option>자유</option>
+                        <option>정보</option>
+                        <option>스터디</option>
+                    </select>
+                    <!-- Privacy Toggle -->
+                    <label class="security-mask-toggle" title="개인정보 보호 모드" style="margin-left: 10px;">
+                        <input type="checkbox" class="toggle-switch-input" id="privacyToggle" checked
+                            onchange="toggleMasking(this)">
+                        <div class="toggle-switch-label"></div>
+                        <span>개인정보보호 ON</span>
+                    </label>
+                </div>
+                <div class="prof-forum-search-group">
+                    <input type="text" class="prof-forum-search-input" placeholder="검색어를 입력하세요">
+                    <button class="prof-forum-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <!-- List Table -->
+            <table class="prof-forum-table">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">No</th>
+                        <th style="width: 100px;">카테고리</th>
+                        <th>제목</th>
+                        <th style="width: 120px;">작성자</th>
+                        <th style="width: 100px;">작성일</th>
+                        <th style="width: 80px;">조회</th>
+                        <th style="width: 80px;">좋아요</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td>4</td>
+                        <td><span class="prof-forum-badge prof-forum-badge-orange">질문</span></td>
+                        <td class="prof-forum-title-cell">
+                            <a href="#" class="prof-forum-link" onclick="openForumView(this, '김이젠')">기말고사 범위 5장
+                                포함인가요?</a>
+                            <span class="prof-forum-reply-count">[5]</span>
+                            <i class="fa-solid fa-fire prof-forum-icon-hot"></i>
+                            <span class="prof-forum-badge-status-gray">해결됨</span>
+                        </td>
+                        <td><span class="privacy-name" data-original="김이젠">김이젠</span></td>
+                        <td>2024.12.11</td>
+                        <td>150</td>
+                        <td>12</td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td>3</td>
+                        <td><span class="prof-forum-badge prof-forum-badge-purple">스터디</span></td>
+                        <td class="prof-forum-title-cell">
+                            <a href="#" class="prof-forum-link" onclick="openForumView(this, '홍길동')">경영학개론 A+ 노리는 스터디원
+                                모집합니다
+                                (2/4)</a>
+                            <span class="prof-forum-reply-count">[2]</span>
+                        </td>
+                        <td><span class="privacy-name" data-original="홍길동">홍길동</span></td>
+                        <td>2024.12.10</td>
+                        <td>45</td>
+                        <td>3</td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td>2</td>
+                        <td><span class="prof-forum-badge prof-forum-badge-green">자유</span></td>
+                        <td class="prof-forum-title-cell">
+                            <a href="#" class="prof-forum-link" onclick="openForumView(this, '이영희')">오늘 강의 내용 너무 어렵지
+                                않았나요?
+                                ㅠㅠ</a>
+                            <span class="prof-forum-reply-count">[12]</span>
+                        </td>
+                        <td><span class="privacy-name" data-original="이영희">이영희</span></td>
+                        <td>2024.12.09</td>
+                        <td>88</td>
+                        <td>5</td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td>1</td>
+                        <td><span class="prof-forum-badge prof-forum-badge-blue">정보</span></td>
+                        <td class="prof-forum-title-cell">
+                            <a href="#" class="prof-forum-link" onclick="openForumView(this, '박철수')">과제 참고하기 좋은 논문 사이트
+                                링크
+                                공유합니다.</a>
+                            <span class="prof-forum-reply-count">[0]</span>
+                        </td>
+                        <td><span class="privacy-name" data-original="박철수">박철수</span></td>
+                        <td>2024.12.08</td>
+                        <td>30</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Bottom Action Bar -->
+            <div class="prof-forum-action-bar">
+                <button class="prof-forum-btn prof-forum-btn-secondary">삭제</button>
+                <button class="prof-forum-btn prof-forum-btn-primary" onclick="openForumWrite()">글쓰기</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Forum View Modal -->
+    <div id="forum-view-modal" class="forum-modal-overlay">
+        <div class="forum-modal-container">
+            <!-- Header -->
+            <div class="forum-modal-header">
+                <div class="forum-header-content">
+                    <div class="forum-header-meta">
+                        <span class="forum-detail-badge badge-qna">질문</span>
+                        <span>경영학개론</span>
+                    </div>
+                    <h3 class="forum-detail-title">기말고사 범위 5장 포함인가요? <span
+                            class="prof-forum-badge-status-gray">해결됨</span></h3>
+                    <div class="forum-header-meta" style="margin-top:5px; margin-bottom:0;">
+                        <span>2024.12.11</span> | <span>조회 150</span>
+                    </div>
+                </div>
+                <div class="forum-header-actions">
+                    <button class="btn-header-action"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-header-action"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn-header-action btn-header-close"
+                        onclick="closeForumModal('forum-view-modal')">&times;</button>
+                </div>
+            </div>
+
+            <!-- Body Split: Post + Comments -->
+            <div class="forum-modal-body">
+                <!-- Post Content -->
+                <div class="forum-post-content">
+                    <div class="post-profile">
+                        <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+                        <div class="profile-info">
+                            <div class="profile-info-name"><span id="postAuthorName">김이젠</span> (학생)</div>
+                        </div>
+                    </div>
+                    <div class="post-text">
+                        <p>교수님 강의계획서에는 4장까지로 되어있는데 강의 중에는 5장도 언급하셔서요...</p>
+                        <p>혹시 이번 기말고사에 5장도 포함되는지 궁금합니다!</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn-like" id="btn-like-demo" onclick="toggleLike()">
+                            <i class="fa-regular fa-heart"></i> 좋아요 <span>12</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <div class="forum-comments-section">
+                    <div class="comments-header">댓글 <i class="fa-solid fa-comment-dots"></i> 5</div>
+                    <div class="comments-list">
+                        <!-- Comment 1 (Professor) -->
+                        <div class="comment-item">
+                            <div class="profile-avatar" style="background-color: #1a2b4b; color: white;"><i
+                                    class="fa-solid fa-graduation-cap"></i></div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <div class="comment-author">김이젠 <span class="badge-prof-role">교수</span></div>
+                                    <div class="comment-date">2024.12.11 14:00</div>
+                                </div>
+                                <div class="comment-text">네, 5장 초반부(p.120~135)까지 포함됩니다. 강의 시간에 설명드린 부분 위주로 공부하시면 됩니다.
+                                </div>
+                                <button class="btn-comment-reply">답글달기</button>
+                            </div>
+                        </div>
+                        <!-- Comment 2 (Reply) -->
+                        <div class="comment-item reply">
+                            <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <div class="comment-author"><span class="other-comment-author privacy-name"
+                                            data-original="홍길동">홍길동</span> (학생)</div>
+                                    <div class="comment-date">2024.12.11 14:15</div>
+                                </div>
+                                <div class="comment-text">아 5장도 포함이군요! 감사합니다. 교수님!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Input Area -->
+                    <div class="forum-comment-input-area">
+                        <div class="profile-avatar" style="width:32px; height:32px; font-size:1rem;"><i
+                                class="fa-solid fa-user"></i></div>
+                        <textarea class="comment-textarea" placeholder="댓글을 남겨주세요..."></textarea>
+                        <button class="btn-comment-submit">등록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forum Write Modal -->
+    <div id="forum-write-modal" class="forum-modal-overlay">
+        <div class="forum-modal-container" style="max-height: 800px;">
+            <div class="forum-modal-header">
+                <div class="forum-header-content">
+                    <h3 class="forum-detail-title">토론 글쓰기</h3>
+                </div>
+                <button class="btn-header-action btn-header-close"
+                    onclick="closeForumModal('forum-write-modal')">&times;</button>
+            </div>
+            <div class="forum-modal-body" style="padding: 25px;">
+                <div class="write-form-group">
+                    <label class="write-label">카테고리</label>
+                    <div class="write-toggle-group">
+                        <div class="badge-toggle badge-qna active" onclick="toggleWriteBadge(this)">질문</div>
+                        <div class="badge-toggle badge-study" onclick="toggleWriteBadge(this)">스터디</div>
+                        <div class="badge-toggle badge-info" onclick="toggleWriteBadge(this)">정보</div>
+                        <div class="badge-toggle badge-free" onclick="toggleWriteBadge(this)">자유</div>
+                    </div>
+                </div>
+                <!-- Reusing write styles from notice.css if possible, or defined in forum.css -->
+                <div class="write-form-group">
+                    <label class="write-label" style="font-weight: 600; display:block; margin-bottom:8px;">제목</label>
+                    <input type="text"
+                        style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"
+                        placeholder="제목을 입력하세요">
+                </div>
+                <div class="write-form-group">
+                    <label class="write-label" style="font-weight: 600; display:block; margin-bottom:8px;">내용</label>
+                    <textarea
+                        style="width:100%; min-height: 300px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; box-sizing: border-box;"
+                        placeholder="내용을 작성하세요"></textarea>
+                </div>
+            </div>
+            <div class="forum-write-footer">
+                <button class="prof-forum-btn prof-forum-btn-secondary"
+                    onclick="closeForumModal('forum-write-modal')">취소</button>
+                <button class="prof-forum-btn prof-forum-btn-primary"
+                    onclick="alert('등록되었습니다.'); closeForumModal('forum-write-modal')">등록</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('forum_list');
+
+        // Masking Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle) toggleMasking(toggle);
+        });
+
+        // Modal Logic
+        function openForumView(el, authorName) {
+            // Apply masking manually to modal elements if needed or reuse classes
+            const postAuthorSpan = document.getElementById('postAuthorName');
+            postAuthorSpan.setAttribute('data-original', authorName);
+            postAuthorSpan.classList.add('privacy-name');
+            postAuthorSpan.innerText = authorName;
+
+            // In reality, fetch data via AJAX
+            document.getElementById('forum-view-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Re-trigger masking to cover the modal content
+            const toggle = document.getElementById('privacyToggle');
+            if (toggle && toggle.checked) toggleMasking(toggle);
+        }
+
+        function openForumWrite() {
+            document.getElementById('forum-write-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeForumModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Like Animation
+        function toggleLike() {
+            const btn = document.getElementById('btn-like-demo');
+            const span = btn.querySelector('span');
+            let count = parseInt(span.innerText);
+
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+                btn.innerHTML = '<i class="fa-regular fa-heart"></i> 좋아요 <span>' + (count - 1) + '</span>';
+            } else {
+                btn.classList.add('active');
+                btn.innerHTML = '<i class="fa-solid fa-heart"></i> 좋아요 <span>' + (count + 1) + '</span>';
+            }
+        }
+
+        // Write Category Toggle
+        function toggleWriteBadge(el) {
+            // Remove active from all siblings
+            const parent = el.parentElement;
+            parent.querySelectorAll('.badge-toggle').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Close on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('forum-modal-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close on Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.forum-modal-overlay.active').forEach(m => {
+                    m.classList.remove('active');
+                    document.body.style.overflow = '';
+                })
+            }
+        });
+    </script>
+
+</body>
+
+</html>

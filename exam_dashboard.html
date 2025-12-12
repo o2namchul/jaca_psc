@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험 관리 대시보드 - 이젠에듀</title>
+    <!-- Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="layout.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style_exam.css">
+</head>
+
+<body>
+
+    <div class="prof-exam-dash-container">
+
+        <!-- 1. Header & Summary -->
+        <div class="prof-exam-dash-header">
+            <h2 class="prof-exam-header-title">시험 관리 대시보드</h2>
+
+            <div class="prof-exam-summary-widget">
+                <div class="prof-exam-sum-item">
+                    <span class="prof-exam-sum-label">운영중 과목</span>
+                    <span class="prof-exam-sum-val">3개</span>
+                </div>
+                <div style="width:1px; height:40px; background:#eee;"></div>
+                <div class="prof-exam-sum-item">
+                    <span class="prof-exam-sum-label">진행중 시험</span>
+                    <span class="prof-exam-sum-val" id="sumRunning">-</span>
+                </div>
+                <div style="width:1px; height:40px; background:#eee;"></div>
+                <div class="prof-exam-sum-item">
+                    <span class="prof-exam-sum-label">미채점 건수</span>
+                    <span class="prof-exam-sum-val highlight-red" id="sumGradingTodo">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Filter Bar -->
+        <div class="prof-exam-filter-bar">
+            <select class="prof-exam-select">
+                <option>2024년 2학기</option>
+                <option>2024년 1학기</option>
+            </select>
+            <select class="prof-exam-select">
+                <option>전체 과목</option>
+                <option>마케팅원론</option>
+                <option>소비자행동론</option>
+            </select>
+        </div>
+
+        <!-- 3. Exam Grid -->
+        <div class="prof-exam-grid" id="examGrid">
+            <!-- JS Renders Cards Here -->
+        </div>
+
+    </div>
+
+    <!-- Layout & Custom Scripts -->
+    <script src="layout.js"></script>
+    <script src="script_exam.js"></script>
+</body>
+
+</html>

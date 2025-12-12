@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이젠에듀원격평생교육원 - 교수자 자료실</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/professor_dashboard.css">
+    <link rel="stylesheet" href="css/resource_library.css">
+</head>
+
+<body>
+
+    <div class="prof-dash-content">
+        <div class="prof-res-container">
+
+            <!-- Top Filter & Search Bar -->
+            <div class="prof-res-top-bar">
+                <div class="prof-res-filter-group">
+                    <select class="prof-res-select">
+                        <option value="">전체 강의 보기</option>
+                        <option value="biz_intro">경영학개론</option>
+                        <option value="hr_mgmt">인적자원관리</option>
+                        <option value="marketing">마케팅원론</option>
+                    </select>
+                </div>
+                <div class="prof-res-filter-group">
+                    <div class="prof-res-search-group">
+                        <input type="text" class="prof-res-search-input" placeholder="제목 검색...">
+                        <button class="prof-res-btn-search">검색</button>
+                    </div>
+                    <button class="prof-res-btn-upload" onclick="openResourceWrite()">
+                        <i class="fa-solid fa-upload"></i> 자료 등록
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resource List Table -->
+            <div class="prof-res-table-container">
+                <table class="prof-res-table">
+                    <colgroup>
+                        <col style="width: 60px;"> <!-- No -->
+                        <col style="width: 150px;"> <!-- 강의명 -->
+                        <col style="width: auto;"> <!-- 제목 -->
+                        <col style="width: 100px;"> <!-- 파일형식 -->
+                        <col style="width: 100px;" class="prof-res-col-size"> <!-- 용량 -->
+                        <col style="width: 100px;" class="prof-res-col-down"> <!-- 다운로드 -->
+                        <col style="width: 100px;"> <!-- 상태 -->
+                        <col style="width: 120px;" class="prof-res-col-date"> <!-- 등록일 -->
+                        <col style="width: 80px;"> <!-- 관리 -->
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>강의명</th>
+                            <th>제목</th>
+                            <th>파일형식</th>
+                            <th class="prof-res-col-size">용량</th>
+                            <th class="prof-res-col-down">다운로드</th>
+                            <th>상태</th>
+                            <th class="prof-res-col-date">등록일</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr>
+                            <td>4</td>
+                            <td>경영학개론</td>
+                            <td class="prof-res-col-title">
+                                <a href="#" class="prof-res-link"
+                                    onclick="openResourceView('1주차 강의안 (OT 포함)', 'PDF')">1주차 강의안 (OT 포함)</a>
+                            </td>
+                            <td><span class="prof-res-file-badge prof-res-badge-pdf">PDF</span></td>
+                            <td class="prof-res-col-size">2.5MB</td>
+                            <td class="prof-res-col-down">45회</td>
+                            <td><span class="prof-res-status-public">공개</span></td>
+                            <td class="prof-res-col-date">2024.09.01</td>
+                            <td><button class="prof-res-btn-manage" onclick="openResourceManage('1주차 강의안 (OT 포함)')"><i
+                                        class="fa-solid fa-gear"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr>
+                            <td>3</td>
+                            <td>인적자원관리</td>
+                            <td class="prof-res-col-title">
+                                <a href="#" class="prof-res-link"
+                                    onclick="openResourceView('중간고사 대비 요약 정리', 'HWP')">중간고사 대비 요약 정리</a>
+                            </td>
+                            <td><span class="prof-res-file-badge prof-res-badge-hwp">HWP</span></td>
+                            <td class="prof-res-col-size">120KB</td>
+                            <td class="prof-res-col-down">38회</td>
+                            <td><span class="prof-res-status-public">공개</span></td>
+                            <td class="prof-res-col-date">2024.10.20</td>
+                            <td><button class="prof-res-btn-manage" onclick="openResourceManage('중간고사 대비 요약 정리')"><i
+                                        class="fa-solid fa-gear"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr>
+                            <td>2</td>
+                            <td>마케팅원론</td>
+                            <td class="prof-res-col-title">
+                                <a href="#" class="prof-res-link"
+                                    onclick="openResourceView('조별 과제 발표 양식 (템플릿)', 'PPT')">조별 과제 발표 양식 (템플릿)</a>
+                            </td>
+                            <td><span class="prof-res-file-badge prof-res-badge-ppt">PPT</span></td>
+                            <td class="prof-res-col-size">5.8MB</td>
+                            <td class="prof-res-col-down">50회</td>
+                            <td><span class="prof-res-status-public">공개</span></td>
+                            <td class="prof-res-col-date">2024.11.05</td>
+                            <td><button class="prof-res-btn-manage" onclick="openResourceManage('조별 과제 발표 양식 (템플릿)')"><i
+                                        class="fa-solid fa-gear"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr>
+                            <td>1</td>
+                            <td>경영학개론</td>
+                            <td class="prof-res-col-title">
+                                <a href="#" class="prof-res-link" style="color: #999;"
+                                    onclick="openResourceView('(참고) 2023년도 기출문제 해설', 'ZIP')">(참고) 2023년도 기출문제 해설</a>
+                            </td>
+                            <td><span class="prof-res-file-badge prof-res-badge-zip">ZIP</span></td>
+                            <td class="prof-res-col-size">10MB</td>
+                            <td class="prof-res-col-down">0회</td>
+                            <td><span class="prof-res-status-private"><i class="fa-solid fa-lock"></i>
+                                    비공개</span></td>
+                            <td class="prof-res-col-date">2024.11.05</td>
+                            <td><button class="prof-res-btn-manage"
+                                    onclick="openResourceManage('(참고) 2023년도 기출문제 해설')"><i
+                                        class="fa-solid fa-gear"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- View Modal -->
+    <div class="prof-res-modal-overlay" id="resource-view-modal">
+        <div class="prof-res-modal">
+            <div class="prof-res-modal-header">
+                <div class="prof-res-modal-title">
+                    <span class="prof-res-file-badge prof-res-badge-pdf" id="view-modal-badge"
+                        style="margin-right: 10px;">PDF</span>
+                    <span id="view-modal-title">자료 제목</span>
+                </div>
+                <button class="prof-res-modal-close" onclick="closeModal('resource-view-modal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-res-modal-body">
+                <div class="view-meta-grid">
+                    <div class="view-meta-item">
+                        <span class="view-meta-label">강의명</span>
+                        <span class="view-meta-value">경영학개론</span>
+                    </div>
+                    <div class="view-meta-item">
+                        <span class="view-meta-label">등록일</span>
+                        <span class="view-meta-value">2024.09.01</span>
+                    </div>
+                    <div class="view-meta-item">
+                        <span class="view-meta-label">조회수</span>
+                        <span class="view-meta-value">128</span>
+                    </div>
+                    <div class="view-meta-item">
+                        <span class="view-meta-label">다운로드</span>
+                        <span class="view-meta-value">45</span>
+                    </div>
+                </div>
+                <div class="view-description">
+                    <p>수업 시간에 다루지 못한 보충 자료가 포함되어 있습니다.</p>
+                    <p>15페이지부터 20페이지까지의 내용을 중점적으로 확인하시기 바랍니다.</p>
+                </div>
+                <div class="view-download-btn-area">
+                    <button class="btn-large-download" onclick="alert('다운로드가 시작됩니다.')">
+                        <i class="fa-solid fa-cloud-arrow-down" style="font-size: 1.5rem;"></i>
+                        <div style="text-align: left; line-height: 1.2;">
+                            <div style="font-size: 1rem;">Marketing_Week3.pdf</div>
+                            <div style="font-size: 0.8rem; opacity: 0.8; font-weight: normal;">2.5 MB</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write/Manage Modal (Shared Structure) -->
+    <div class="prof-res-modal-overlay" id="resource-write-modal">
+        <div class="prof-res-modal">
+            <div class="prof-res-modal-header">
+                <div class="prof-res-modal-title" id="write-modal-title">자료 등록</div>
+                <button class="prof-res-modal-close" onclick="closeModal('resource-write-modal')"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="prof-res-modal-body">
+                <div class="prof-res-form-group">
+                    <label class="prof-res-label">강의 선택</label>
+                    <select class="prof-res-select">
+                        <option>경영학개론</option>
+                        <option>인적자원관리</option>
+                    </select>
+                </div>
+
+                <div class="prof-res-form-group">
+                    <label class="prof-res-label">제목</label>
+                    <input type="text" class="prof-res-input" placeholder="자료 제목을 입력하세요" id="write-modal-input-title">
+                </div>
+
+                <div class="prof-res-form-group">
+                    <label class="prof-res-label">내용</label>
+                    <textarea class="prof-res-textarea" placeholder="자료에 대한 설명을 입력하세요"></textarea>
+                </div>
+
+                <div class="prof-res-form-group">
+                    <label class="prof-res-label">파일 첨부</label>
+                    <div class="prof-res-upload-box">
+                        <div class="prof-res-upload-icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <div class="prof-res-upload-text">
+                            이곳에 파일을 드래그하거나 클릭하여 업로드하세요.<br>
+                            (최대 50MB)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prof-res-form-group">
+                    <label class="prof-res-label">공개 설정</label>
+                    <div class="toggle-switch-group">
+                        <button class="btn-toggle-option active public" onclick="toggleVisibility(this, 'public')">
+                            <i class="fa-regular fa-eye"></i> 즉시 공개
+                        </button>
+                        <button class="btn-toggle-option private" onclick="toggleVisibility(this, 'private')">
+                            <i class="fa-solid fa-lock"></i> 비공개
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Download Log (Visible only in Manage Mode) -->
+                <div id="manage-log-area" style="display: none;">
+                    <div class="manage-log-accordion">
+                        <div class="manage-log-header" onclick="toggleLog()">
+                            <span><i class="fa-solid fa-list"></i> 다운로드 로그 확인 (45명)</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="manage-log-body" id="manage-log-body">
+                            김철수 (2024.12.11 14:00)<br>
+                            이영희 (2024.12.10 10:30)<br>
+                            박민수 (2024.12.09 09:15)<br>
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="prof-res-modal-footer">
+                <button class="prof-res-btn-delete" id="btn-delete" style="display: none; margin-right: auto;"
+                    onclick="confirm('정말 삭제하시겠습니까?')">삭제</button>
+                <button class="prof-res-btn-manage" onclick="closeModal('resource-write-modal')">취소</button>
+                <button class="prof-res-btn-upload" style="width: auto;" id="btn-submit">등록하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('resource_library');
+
+        // Modal Functions
+        function openResourceView(title, type) {
+            document.getElementById('view-modal-title').innerText = title;
+            const badge = document.getElementById('view-modal-badge');
+
+            // Set badge class/text based on type
+            badge.className = 'prof-res-file-badge'; // reset
+            badge.innerText = type;
+            if (type === 'PDF') badge.classList.add('prof-res-badge-pdf');
+            else if (type === 'PPT') badge.classList.add('prof-res-badge-ppt');
+            else if (type === 'HWP') badge.classList.add('prof-res-badge-hwp');
+            else badge.classList.add('prof-res-badge-zip');
+
+            document.getElementById('resource-view-modal').classList.add('active');
+        }
+
+        function openResourceWrite() {
+            // Write Mode
+            document.getElementById('write-modal-title').innerText = '자료 등록';
+            document.getElementById('write-modal-input-title').value = '';
+            document.getElementById('btn-submit').innerText = '등록하기';
+            document.getElementById('btn-delete').style.display = 'none';
+            document.getElementById('manage-log-area').style.display = 'none';
+
+            document.getElementById('resource-write-modal').classList.add('active');
+        }
+
+        function openResourceManage(title) {
+            // Manage Mode
+            document.getElementById('write-modal-title').innerText = '자료 관리';
+            document.getElementById('write-modal-input-title').value = title;
+            document.getElementById('btn-submit').innerText = '수정 완료';
+            document.getElementById('btn-delete').style.display = 'block';
+            document.getElementById('manage-log-area').style.display = 'block';
+
+            document.getElementById('resource-write-modal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Toggle Visibility Switch
+        function toggleVisibility(el, type) {
+            const parent = el.parentElement;
+            parent.querySelectorAll('.btn-toggle-option').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Toggle Log Accordion
+        function toggleLog() {
+            const body = document.getElementById('manage-log-body');
+            const icon = document.querySelector('.manage-log-header i.fa-chevron-down');
+
+            if (body.style.display === 'block') {
+                body.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                body.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Outside Click Close
+        window.onclick = function (event) {
+            if (event.target.classList.contains('prof-res-modal-overlay')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
