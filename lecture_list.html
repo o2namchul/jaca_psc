@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의목록 - 이젠에듀원격평생교육원</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Scoped CSS -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/lecture_list.css">
+</head>
+
+<body>
+
+    <div class="prof-list-container">
+
+        <!-- Filter Bar -->
+        <div class="prof-list-filter-bar">
+            <select class="prof-list-select">
+                <option>전체 학기</option>
+                <option selected>2024년 2학기</option>
+                <option>2024년 1학기</option>
+            </select>
+
+            <div class="prof-list-filter-group">
+                <label class="prof-list-radio-label">
+                    <input type="radio" name="status" checked> 전체
+                </label>
+                <label class="prof-list-radio-label">
+                    <input type="radio" name="status"> 수업중
+                </label>
+                <label class="prof-list-radio-label">
+                    <input type="radio" name="status"> 마감
+                </label>
+            </div>
+
+            <input type="text" class="prof-list-search-input" placeholder="강의명을 검색하세요">
+            <button class="prof-list-btn-search">검색</button>
+        </div>
+
+        <!-- Lecture Cards -->
+        <div class="prof-list-cards">
+
+            <!-- Card 1 -->
+            <div class="prof-list-card">
+                <div class="prof-list-thumb">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+                <div class="prof-list-info">
+                    <div class="prof-list-title-row">
+                        <h3 class="prof-list-title">경영학개론</h3>
+                        <span class="prof-list-badge prof-list-badge-navy">2024-2학기</span>
+                        <span class="prof-list-badge prof-list-badge-green">수업중</span>
+                        <span class="prof-list-badge prof-list-badge-blue">온라인</span>
+                    </div>
+                    <div class="prof-list-meta">
+                        수강생: 45명 | 기간: 2024.09.01 ~ 2024.12.20
+                    </div>
+                </div>
+                <div class="prof-list-actions">
+                    <button class="prof-list-btn prof-list-btn-primary"
+                        onclick="openLectureModal('경영학개론')">강의보기</button>
+                    <a href="syllabus.html" class="prof-list-btn prof-list-btn-secondary">계획서 관리</a>
+                    <a href="notice.html" class="prof-list-btn prof-list-btn-secondary">공지사항</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="prof-list-card">
+                <div class="prof-list-thumb">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <div class="prof-list-info">
+                    <div class="prof-list-title-row">
+                        <h3 class="prof-list-title">인적자원관리</h3>
+                        <span class="prof-list-badge prof-list-badge-navy">2024-2학기</span>
+                        <span class="prof-list-badge prof-list-badge-green">수업중</span>
+                        <span class="prof-list-badge prof-list-badge-blue">온라인</span>
+                    </div>
+                    <div class="prof-list-meta">
+                        수강생: 38명 | 기간: 2024.09.01 ~ 2024.12.20
+                    </div>
+                </div>
+                <div class="prof-list-actions">
+                    <button class="prof-list-btn prof-list-btn-primary"
+                        onclick="openLectureModal('인적자원관리')">강의보기</button>
+                    <a href="syllabus.html" class="prof-list-btn prof-list-btn-secondary">계획서 관리</a>
+                    <a href="notice.html" class="prof-list-btn prof-list-btn-secondary">공지사항</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="prof-list-card" style="opacity: 0.8;">
+                <div class="prof-list-thumb">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <div class="prof-list-info">
+                    <div class="prof-list-title-row">
+                        <h3 class="prof-list-title">마케팅원론</h3>
+                        <span class="prof-list-badge prof-list-badge-gray-outline">2024-1학기</span>
+                        <span class="prof-list-badge prof-list-badge-gray">마감</span>
+                        <span class="prof-list-badge prof-list-badge-purple">블렌디드</span>
+                    </div>
+                    <div class="prof-list-meta">
+                        수강생: 50명 (성적 마감 완료)
+                    </div>
+                </div>
+                <div class="prof-list-actions">
+                    <button class="prof-list-btn prof-list-btn-secondary"
+                        style="background-color: #e0e0e0; color: #666; border: none; cursor:not-allowed;">결과 보기</button>
+                    <a href="syllabus.html" class="prof-list-btn prof-list-btn-secondary">계획서 조회</a>
+                    <a href="notice.html" class="prof-list-btn prof-list-btn-secondary">공지 조회</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Lecture Modal -->
+    <div class="lec-modal-overlay" id="lectureModal">
+        <div class="lec-modal-container">
+            <div class="lec-modal-header">
+                <div class="lec-modal-title" id="lecModalTitle">강의명</div>
+                <button class="lec-modal-close" onclick="closeLectureModal()">&times;</button>
+            </div>
+            <div class="lec-modal-body">
+                <div class="lec-week-list" id="lecWeekList">
+                    <!-- JS Generated Content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="layout.js"></script>
+    <script>
+        initLayout('lecture_list');
+
+        function openLectureModal(title) {
+            document.getElementById('lecModalTitle').innerText = title;
+            const list = document.getElementById('lecWeekList');
+            list.innerHTML = '';
+
+            // Generate 15 weeks
+            for (let w = 1; w <= 15; w++) {
+                let lessonsHtml = '';
+                // 2 lessons per week
+                for (let l = 1; l <= 2; l++) {
+                    lessonsHtml += `
+                        <div class="lec-lesson-row">
+                            <span class="lec-lesson-title">${w}주차 ${l}차시 학습하기</span>
+                            <span class="lec-lesson-status">학습가능</span>
+                        </div>
+                    `;
+                }
+
+                const weekItem = `
+                    <div class="lec-week-item">
+                        <div class="lec-week-header">${w}주차 강의</div>
+                        <div class="lec-lesson-container">
+                            ${lessonsHtml}
+                        </div>
+                    </div>
+                `;
+                list.insertAdjacentHTML('beforeend', weekItem);
+            }
+
+            document.getElementById('lectureModal').classList.add('active');
+        }
+
+        function closeLectureModal() {
+            document.getElementById('lectureModal').classList.remove('active');
+        }
+
+        // Close on outside click
+        document.getElementById('lectureModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lectureModal')) {
+                closeLectureModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

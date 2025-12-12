@@ -1,0 +1,305 @@
+/* css/lecture_list.css */
+:root {
+    --pl-navy: #2C3E50;
+    --pl-blue: #3498DB;
+    --pl-bg: #F5F7FA;
+    --pl-border: #E1E4E8;
+    --pl-text: #333;
+    --pl-text-sub: #666;
+}
+
+body {
+    background-color: var(--pl-bg);
+}
+
+.prof-list-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Filter Bar */
+.prof-list-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.prof-list-select {
+    padding: 8px 12px;
+    border: 1px solid var(--pl-border);
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.prof-list-filter-group {
+    display: flex;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+.prof-list-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.prof-list-search-input {
+    margin-left: auto;
+    padding: 8px 12px;
+    border: 1px solid var(--pl-border);
+    border-radius: 4px;
+    width: 250px;
+}
+
+.prof-list-btn-search {
+    padding: 8px 16px;
+    background-color: var(--pl-navy);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Cards */
+.prof-list-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.prof-list-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.prof-list-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.prof-list-thumb {
+    width: 60px;
+    height: 60px;
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: var(--pl-navy);
+    margin-right: 25px;
+}
+
+.prof-list-info {
+    flex: 1;
+}
+
+.prof-list-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.prof-list-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--pl-text);
+}
+
+.prof-list-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.prof-list-badge-navy {
+    background-color: var(--pl-navy);
+    color: white;
+}
+
+.prof-list-badge-green {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.prof-list-badge-blue {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.prof-list-badge-purple {
+    background-color: #F3E5F5;
+    color: #7B1FA2;
+}
+
+.prof-list-badge-gray {
+    background-color: #F5F5F5;
+    color: #757575;
+}
+
+.prof-list-badge-gray-outline {
+    border: 1px solid #ddd;
+    color: #757575;
+    background: white;
+}
+
+
+.prof-list-meta {
+    font-size: 0.9rem;
+    color: var(--pl-text-sub);
+}
+
+.prof-list-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.prof-list-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prof-list-btn-primary {
+    background-color: var(--pl-blue);
+    color: white;
+    border: none;
+}
+
+.prof-list-btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.prof-list-btn-secondary {
+    background-color: white;
+    border: 1px solid var(--pl-border);
+    color: var(--pl-text);
+}
+
+.prof-list-btn-secondary:hover {
+    background-color: #f9f9f9;
+}
+
+
+/* Modal Styles */
+.lec-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.lec-modal-overlay.active {
+    display: flex;
+}
+
+.lec-modal-container {
+    background: white;
+    width: 600px;
+    max-height: 80vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lec-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lec-modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--pl-navy);
+}
+
+.lec-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.lec-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.lec-week-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lec-week-item {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.lec-week-header {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    color: var(--pl-navy);
+}
+
+.lec-lesson-row {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+}
+
+.lec-lesson-row:last-child {
+    border-bottom: none;
+}
+
+.lec-lesson-title {
+    color: #333;
+}
+
+.lec-lesson-status {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #e3f2fd;
+    color: #1976d2;
+}
